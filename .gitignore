@@ -1,0 +1,36 @@
+# original ignored folders in KCLS deploy repo
+# /openils was added to file path by Catalyst
+share
+#openils/var/data/offline
+openils/var/data/overdue
+openils/var/lock
+openils/var/log
+openils/var/run
+openils/var/web/reporter
+openils/var/web/tmp
+openils/var/web/wireframes
+openils/conf/*.example
+
+# Files modified during an autogen.sh. ignored
+#openils/var/web/js/dojo/fieldmapper/FacetDefs.js
+#openils/var/web/js/dojo/fieldmapper/OrgTree.js
+#openils/var/web/opac/common/js/cs-CZ/FacetDefs.js
+#openils/var/web/opac/common/js/cs-CZ/OrgTree.js
+#openils/var/web/opac/common/js/en-CA/FacetDefs.js
+#openils/var/web/opac/common/js/en-CA/OrgTree.js
+#openils/var/web/opac/common/js/en-US/FacetDefs.js
+#openils/var/web/opac/common/js/en-US/OrgTree.js
+#openils/var/web/opac/common/js/fr-CA/FacetDefs.js
+#openils/var/web/opac/common/js/fr-CA/OrgTree.js
+#openils/var/web/opac/common/js/hy-AM/FacetDefs.js
+#openils/var/web/opac/common/js/hy-AM/OrgTree.js
+#openils/var/web/opac/common/js/ru-RU/FacetDefs.js
+#openils/var/web/opac/common/js/ru-RU/OrgTree.js
+#openils/var/web/opac/extras/slimpac/cs-CZ/lib_list.inc
+#openils/var/web/opac/extras/slimpac/en-CA/lib_list.inc
+#openils/var/web/opac/extras/slimpac/en-US/lib_list.inc
+#openils/var/web/opac/extras/slimpac/fr-CA/lib_list.inc
+#openils/var/web/opac/extras/slimpac/hy-AM/lib_list.inc
+#openils/var/web/opac/extras/slimpac/ru-RU/lib_list.inc
+#openils/var/web/opac/skin/kcls.1/js/combined.js
+#openils/var/web/opac/skin/kcls_pregrey/js/combined.js
