@@ -1,0 +1,121 @@
+[%-  
+
+PROCESS "opac/parts/relators.tt2";
+
+authors = [
+    {
+        type => 'author', 
+        label => l('Author'),
+        xpath => '//*[@tag="100"]|//*[@tag="110"]|//*[@tag="111"]'
+    }, {
+        type => 'added', 
+        label => l('Added Author'),
+        xpath => '//*[@tag="700"]|//*[@tag="710"]|//*[@tag="711"]'
+    }, {
+        type => 'cast', 
+        label => l('Cast'),
+        xpath => '//*[@tag="508"]'
+    }, {
+        type => 'notes', 
+        label => l('Author Notes: '),
+        xpath => '' # Comes from added content...
+    }
+];
+
+BLOCK build_author_links;
+    FOR node IN ctx.marc_xml.findnodes(xpath);
+        term = '';
+        qterm = '';
+        iprop = '';
+        tlabel = '';
+        birthdate = '';
+        deathdate = '';
+        graphics = [];
+        tag = node.getAttribute('tag');
+        FOR subfield IN node.childNodes;
+            NEXT UNLESS subfield.nodeName == "subfield";
+            code = subfield.getAttribute('code');
+            IF code == '4';
+                relcode = subfield.textContent.substr(0,3);
+                tlabel = relators.$relcode || label;
+            END;
+            IF code == '6';
+               target_field = tag;
+               linked_fields = [subfield.textContent()];
+               get_linked_880s;
+            END;
+            NEXT UNLESS code.match('[a-z]');
+            sf = subfield.textContent | html;
+            IF code.match('[acdq]');
+                sf_raw = subfield.textContent.replace('[#"^$\+\-,\.:;&|\[\]()]', ' ');
+                qterm = qterm _ ' ' _ sf_raw;
+            END;
+            # Only Persons have birth/death dates in schema.org
+            IF code.match('d') && tag.substr(1,2) == '00';
+                IF subfield.textContent.match('^\s*\d{4}');
+                    birthdate = subfield.textContent.replace('^\s*(\d{4}).*$', '$1');
+                END;
+                IF subfield.textContent.match('-\d{4}\s*$');
+                    deathdate = subfield.textContent.replace('^\s*.{4}\-(\d{4})\s*$', '$1');
+                END;
+            ELSE;
+                term = term _ ' ' _ sf;
+            END;
+        END;
+        url = mkurl(ctx.opac_root _ '/results', {query => qterm, qtype => 'author'}, ['page', 'expand']);
+        author_type = (tlabel || label) | html;
+        
+        # schema.org changes
+        IF type == 'author';
+            IF args.schema.itemtype && args.schema.itemtype.match('MusicAlbum');
+                iprop = ' itemtype="http://schema.org/MusicGroup" itemscope itemprop="byArtist"';
+            ELSIF tag.substr(1,2) == '00';
+                iprop = ' itemtype="http://schema.org/Person" itemscope itemprop="author"';
+            ELSE;
+                iprop = ' itemtype="http://schema.org/Organization" itemscope itemprop="author"';
+            END;
+        ELSIF type == 'added';
+            IF tag.substr(1,2) == '00';
+                iprop = ' itemtype="http://schema.org/Person" itemscope itemprop="contributor"';
+            ELSE;
+                iprop = ' itemtype="http://schema.org/Organization" itemscope itemprop="contributor"';
+            END;
+        END;
+        '<a href="' _ url _ '"' _ iprop _ '>';
+        IF iprop; '<span itemprop="name">'; END;
+        term.replace('^\s+', '');
+        IF iprop; '</span>'; END;
+        IF birthdate;
+            ' <span itemprop="birthDate">' _ birthdate _ '</span>-';
+        END;
+        IF deathdate;
+            '<span itemprop="deathDate">' _ deathdate _ '</span>';
+        END;
+        '</a>';
+        FOREACH link880 IN graphics;
+            diratt = '';
+            IF link880.dir;
+                diratt = ' dir="' _ link880.dir _ '"';
+            END;
+            ' <span class="graphic880"' _ diratt _ '>';
+            link880.value | html;
+            '</span>';
+        END;
+        ' (' _ author_type _ '). ';
+    END;
+END;
+%]
+
+<div class='rdetail_authors_div'>
+[%- FOREACH author IN authors;
+    NEXT UNLESS author.xpath; 
+    links = PROCESS build_author_links(
+        xpath=author.xpath, label=author.label, type=author.type
+    );
+    IF links.match('\S') %]
+    <span class='rdetail-author-div'>[% links %]</span>
+    [%- END %]
+[%- END %]
+</div>
+
+
