@@ -16,7 +16,6 @@
     function new_tab( element ) {
         var tabName = element.getAttribute( 'tabname' );
         var url = element.getAttribute( 'url' );
-        url = "oils://remote" + url;
         var content_params = { 
             'override_tab_lock' : true, 
             'no_xulG' : false, 

@@ -644,6 +644,9 @@ sub scoped_bib_holdings_summary {
     my %statement_blob;
     for my $type ( keys %type_blob ) {
         my ($mfhd,$list) = _summarize_contents(new_editor(), $type_blob{$type});
+
+        return {} if $U->event_code($mfhd); # _summarize_contents() failed, bad data?
+
         $statement_blob{$type} = $list;
     }
 
@@ -1496,6 +1499,7 @@ sub _prepare_unit {
     }
 
     my ($mfhd, $formatted_parts) = _summarize_contents($e, $issuances);
+    return $mfhd if $U->event_code($mfhd);
 
     # special case for single formatted_part (may have summarized version)
     if (@$formatted_parts == 1) {
@@ -1527,6 +1531,7 @@ sub _prepare_summaries {
     my ($e, $issuances, $sdist, $type) = @_;
 
     my ($mfhd, $formatted_parts) = _summarize_contents($e, $issuances, $sdist);
+    return $mfhd if $U->event_code($mfhd);
 
     my $search_method = "search_serial_${type}_summary";
     my $summary = $e->$search_method([{"distribution" => $sdist->id}]);
@@ -1812,7 +1817,6 @@ sub _build_unit {
     return $unit;
 }
 
-
 sub _summarize_contents {
     my $editor = shift;
     my $issuances = shift;
@@ -1891,11 +1895,24 @@ sub _summarize_contents {
 
     my @formatted_parts;
     my @scap_fields_ordered = $mfhd->field('85[345]');
+
     foreach my $scap_field (@scap_fields_ordered) { #TODO: use generic MFHD "summarize" method, once available
-       my @updated_holdings = $mfhd->get_compressed_holdings($scap_field);
-       foreach my $holding (@updated_holdings) {
-           push(@formatted_parts, $holding->format);
-       }
+        my @updated_holdings;
+        eval {
+            @updated_holdings = $mfhd->get_compressed_holdings($scap_field);
+        };
+        if ($@) {
+            my $msg = "get_compressed_holdings(): $@ ; using sdist ID #" .
+                ($sdist ? $sdist->id : "<NONE>") . " and " .
+                scalar(@$issuances) . " issuances, of which one has ID #" .
+                $issuances->[0]->id;
+
+            $msg =~ s/\n//gm;
+            $logger->error($msg);
+            return new OpenILS::Event("BAD_PARAMS", note => $msg);
+        }
+
+        push @formatted_parts, map { $_->format } @updated_holdings;
     }
 
     return ($mfhd, \@formatted_parts);
@@ -3641,6 +3658,37 @@ sub clone_subscription {
 
     $e->commit or return $e->die_event;
     return $result;
+}
+
+__PACKAGE__->register_method(
+    "method" => "summary_test",
+    "api_name" => "open-ils.serial.summary_test",
+    "stream" => 1,
+    "api_level" => 1,
+    "argc" => 3
+);
+
+# This crummy little test method allows quicker reproduction of certain
+# failures (e.g. at item receive time) of the holdings summarization code.
+# Pass it an authtoken, an array of issuance IDs, and a single sdist ID
+sub summary_test {
+    my ($self, $conn, $authtoken, $iss_id_list, $sdist_id) = @_;
+
+    my $e = new_editor(authtoken => $authtoken, xact => 1);
+    return $e->die_event unless $e->checkauth;
+    return $e->die_event unless $e->allowed("RECEIVE_SERIAL");
+
+    my @issuances;
+    foreach my $id (@$iss_id_list) {
+        my $iss = $e->retrieve_serial_issuance($id) or return $e->die_event;
+        push @issuances, $iss;
+    }
+
+    my $dist = $e->retrieve_serial_distribution($sdist_id) or return $e->die_event;
+
+    $conn->respond(_summarize_contents($e, \@issuances, $dist));
+    $e->rollback;
+    return;
 }
 
 1;

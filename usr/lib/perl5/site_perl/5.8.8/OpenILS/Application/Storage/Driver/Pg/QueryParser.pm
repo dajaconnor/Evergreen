@@ -415,6 +415,7 @@ sub initialize_query_normalizers {
 
     for my $cmfinm ( @$tree ) {
         my $field_info = $self->search_field_class_by_id( $cmfinm->field );
+        next unless $field_info;
         __PACKAGE__->add_query_normalizer( $field_info->{classname}, $field_info->{field}, $cmfinm->norm->func, OpenSRF::Utils::JSON->JSON2perl($cmfinm->params) );
     }
 }
@@ -904,9 +905,9 @@ sub flatten {
 
                 if(scalar @bumps > 0 && scalar @{$node->only_positive_atoms} > 0) {
                     # Note: Previous rank function used search_normalize outright. Duplicating that here.
-                    $node_rank .= "\n" . ${spc} x 5 . "* evergreen.rel_bump(('{' || search_normalize(";
-                    $node_rank .= join(") || ',' || search_normalize(",map { $self->QueryParser->quote_phrase_value($_->content) } @{$node->only_positive_atoms});
-                    $node_rank .= ") || '}')::TEXT[], " . $node->table_alias . ".value, '{" . join(",",@bumps) . "}'::TEXT[], '{" . join(",",@bumpmults) . "}'::NUMERIC[])";
+                    $node_rank .= "\n" . ${spc} x 5 . "* evergreen.rel_bump(('{' || quote_literal(search_normalize(";
+                    $node_rank .= join(")) || ',' || quote_literal(search_normalize(",map { $self->QueryParser->quote_phrase_value($_->content) } @{$node->only_positive_atoms});
+                    $node_rank .= ")) || '}')::TEXT[], " . $node->table_alias . ".value, '{" . join(",",@bumps) . "}'::TEXT[], '{" . join(",",@bumpmults) . "}'::NUMERIC[])";
                 }
 
                 my $NOT = '';
@@ -946,7 +947,7 @@ sub flatten {
                       . ${spc} x 2 ."AND ${talias}.field IN (". join(',', @field_ids) . ")\n"
                       . "${spc})";
 
-                if ($join_type != 'INNER') {
+                if ($join_type ne 'INNER') {
                     my $NOT = $node->negate ? '' : ' NOT';
                     $where .= "${talias}.id IS$NOT NULL";
                 } elsif ($where ne '') {

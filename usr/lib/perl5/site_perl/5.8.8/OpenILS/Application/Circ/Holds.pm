@@ -3041,6 +3041,11 @@ sub find_nearest_permitted_hold {
         $logger->info("circulator: checking if hold $holdid is permitted for copy $bc");
 
         my $hold = $editor->retrieve_action_hold_request($holdid) or next;
+        # Force and recall holds bypass all rules
+        if ($hold->hold_type eq 'R' || $hold->hold_type eq 'F') {
+            $best_hold = $hold;
+            last;
+        }
         my $reqr = $reqr_cache{$hold->requestor} || $editor->retrieve_actor_user($hold->requestor);
         my $rlib = $org_cache{$hold->request_lib} || $editor->retrieve_actor_org_unit($hold->request_lib);
 
@@ -4056,6 +4061,11 @@ sub rec_hold_count {
 
 
     if (my $pld = $args->{pickup_lib_descendant}) {
+
+        my $top_ou = new_editor()->search_actor_org_unit(
+            {parent_ou => undef}
+        )->[0]; # XXX Assumes single root node. Not alone in this...
+
         $query->{where}->{'+ahr'}->{pickup_lib} = {
             in => {
                 select  => {aou => [{ 
@@ -4066,7 +4076,7 @@ sub rec_hold_count {
                 from    => 'aou',
                 where   => {id => $pld}
             }
-        };
+        } if ($pld != $top_ou->id);
     }
 
 
