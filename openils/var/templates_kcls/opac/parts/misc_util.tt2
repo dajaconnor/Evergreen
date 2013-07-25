@@ -1,0 +1,144 @@
+[% 
+    # Extract MARC fields from XML
+    #   get_marc_attrs( { marc_xml => doc } )
+    BLOCK get_marc_attrs;
+        xml = args.marc_xml;
+		
+        args.isbns = [];
+        FOR isbn IN xml.findnodes('//*[@tag="020"]/*[@code="a"]');
+            args.isbns.push(isbn.textContent);
+        END;
+
+        args.upcs = [];
+        FOR upc IN xml.findnodes('//*[@tag="024"]/*[@code="a"]');
+            args.upcs.push(upc.textContent);
+        END;
+        args.upc = args.upcs.0; # use first UPC as the default
+        args.issn = xml.findnodes('//*[@tag="022"]/*[@code="a"]').textContent;
+        
+		titresults = xml.findnodes('//*[@tag="245"]/*[@code="a" or @code="b" or @code="n" or @code="p"]');
+        titresults_content = [];
+            FOR sub IN titresults; 
+				titresults_content.push(sub.textContent); 
+			END;
+        attrs.title = titresults_content.join(" ");    
+		attrs.title = attrs.title | replace('[:;/,]$', '');
+		
+		args.title_extended = '';
+        FOR node IN xml.findnodes('//*[@tag="245"]/*'); 
+            args.title_extended = args.title_extended _ ' ' _ node.textContent;
+        END;
+		
+        args.author = xml.findnodes('//*[@tag="100"]/*[@code="a"]').textContent || xml.findnodes('//*[@tag="110"]/*[@code="a"]').textContent || '';
+		
+		args.publishers = xml.findnodes('//*[@tag="260"]/*[@code="b"]') 
+						|| xml.findnodes('//*[@tag="264" and @ind2="1"]/*[@code="b"]') 
+						|| '';
+		args.publishers_content = [];
+		FOR sub IN args.publishers;
+			args.publishers_content.push(sub.textContent);
+        END;
+		args.publisher = (args.publishers_content.size) ? args.publishers_content.0 : '';
+
+		args.pubdates = xml.findnodes('//*[@tag="260"]/*[@code="c"]');
+		args.pubdates_content = [];
+		IF args.pubdates;
+			FOR sub IN args.pubdates;
+				args.pubdates_content.push(sub.textContent);
+			END;
+		ELSE;
+			args.pubdates = xml.findnodes('//*[@tag="264" and @ind2="1"]/*[@code="c"]');
+			args.pubdates_content = [];
+			FOR sub IN args.pubdates;
+				args.pubdates_content.push(sub.textContent);
+			END;
+			IF args.pubdates;
+				args.copyright = xml.findnodes('//*[@tag="264" and @ind2="4"]/*[@code="c"]').textContent || '';
+			END;
+		END;
+		args.pubdate = (args.pubdates_content.size) ? args.pubdates_content.0 : '';
+		
+        args.edition = xml.findnodes('//*[@tag="250"]/*[@code="a"]').textContent ||
+            xml.findnodes('//*[@tag="534"]/*[@code="b"]').textContent ||
+            xml.findnodes('//*[@tag="775"]/*[@code="b"]').textContent;
+        phys = xml.findnodes(
+            '//*[@tag="300"]/*[@code="a" or @code="b" or @code="c" or @code="e"]'
+        );
+        phys_content = [];
+        FOR p IN phys; phys_content.push(p.textContent); END;
+        args.phys_desc = phys_content.join("");
+
+        args.contents = xml.findnodes('//*[@tag="505"]').textContent;
+
+        # capture all of the 520a's
+        args.summary = [];
+        FOR s IN xml.findnodes('//*[@tag="520"]/*[@code="a"]');
+            args.summary.push(s.textContent); 
+        END;
+		
+		# Marc CN
+		marcresults = xml.findnodes('//*[@tag="092"]/*[@code="a"]') || xml.findnodes('//*[@tag="099"]/*[@code="a"]');
+		marcresults_content = [];
+            FOR sub IN marcresults; 
+				marcresults_content.push(sub.textContent); 
+			END;
+		IF marcresults_content.size;
+			attrs.marc_cn = marcresults_content.join(" ");
+		ELSE;
+			attrs.marc_cn = "N/A";
+		END;
+		
+        # clean up the ISBN
+        args.isbn_clean = args.isbns.0.replace('\ .*', '');
+
+        # Extract the 856 URLs that are not otherwise represented by asset.uri's
+        args.online_res = [];
+        FOR node IN xml.findnodes('//*[@tag="856"]');
+            IF node.findnodes('./*[@code="9" or @code="w" or @code="n"]'); NEXT; END; # asset.uri's
+            label = node.findnodes('./*[@code="z"]'); # XXX KCLS => y -> z
+            #notes = node.findnodes('./*[@code="z" or @code="3"]'); # XXX KCLS
+            FOR href IN node.findnodes('./*[@code="u"]');
+                NEXT UNLESS href;
+                # it's possible for multiple $u's to exist within 1 856 tag.
+                # in that case, honor the label/notes data for the first $u, but
+                # leave any subsequent $u's as unadorned href's. 
+                # use href/link/note keys to be consistent with args.uri's
+                args.online_res.push({
+                    href => href.textContent, 
+                    link => (loop.first AND label) ? label.textContent : href.textContent,
+                    #note => (loop.first) ? notes.textContent : '' # XXX KCLS
+                    note => ''
+                });
+            END;
+        END;
+
+        args.holdings = [];
+        FOR holding IN xml.findnodes('//*[local-name()="volumes"]/*[local-name()="volume"]');
+            args.holdings.push(
+                holding.getAttribute('label')
+            );
+        END;
+
+        # Extract the copy count summary
+        count_type = (ctx.is_staff) ? 'staff' : 'public';
+        xpath = '//*[local-name()="counts"]/*[local-name()="count"][@type="' _ count_type _ '"]';
+        FOR node IN xml.findnodes(xpath);
+            args.copy_counts = {};
+            FOR attr IN ['count', 'available', 'unshadow', 'transcendant']; 
+                args.copy_counts.$attr = node.getAttribute(attr);
+            END;
+        END;
+
+        # "mattype" == "custom marc format specifier"
+        FOR icon_style IN ['mattype', 'item_type']; 
+            node = xml.findnodes(
+                '//*[local-name()="attributes"]/*[local-name()="field"][@name="' _ icon_style _ '"]');
+            IF node AND node.textContent;
+                args.format_label = node.getAttribute('coded-value')
+                args.format_icon = ctx.media_prefix _ '/images/format_icons/' _ icon_style _ '/' _ node.textContent _ '.png';
+                LAST;
+            END;
+        END;
+    END;
+%]
+

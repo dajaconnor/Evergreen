@@ -1,0 +1,101 @@
+<!--
+<div style='width:664px;height:35px;background:#FFFFFF;'>
+    <strong><center></center></strong>
+</div>
+-->
+
+<!-- ========================================================================================== 
+    HOME BANNER / CONTENT SLIDER
+    ==========================================================================================  -->
+<link rel="stylesheet" type="text/css" href="[% ctx.media_prefix %]/css/skin/default/opac/contentslider.css" />
+<div id="hp-banner">
+ <div id="hp-welcome">      
+        <h2>Need Help Using the Library<br />Catalog? Start Here.</h2>
+        The KCLS catalog provides access to nearly<br />
+        15 million items. Learn how to make the most<br />
+        of this valuable resource.<br />
+        <br />
+        <a href="http://www.kcls.org/usingthelibrary/catalog_help"
+           style="position:relative;top:5px;">Learn more &raquo;</a><br />
+        <br />      
+        <div id="paginate-homebanner">
+            <a class="toc" href="#1" rel="1" style="background:gray;"></a>
+            <a class="toc" href="#2" rel="2" style="background:#ffc331;"></a>
+            <a class="toc" href="#3" rel="3" style="background:pink;"></a>
+            <a class="toc" href="#4" rel="4" style="background:#2bb0fd;"></a>
+            <a class="toc" href="#5" rel="5" style="background:#54987f;"></a>
+            <a class="toc" href="#6" rel="6" style="background:white;"></a>
+        </div>
+    </div>
+	 <div style="float:right;width:675px;height:213px;color:green;overflow:hidden;">
+        <div id="homebanner" class="sliderwrapper">
+            <div class="contentdiv">
+                <a href="http://www.kcls.org/databases/databaseTracking.cfm?trackMe=243&redirectURL=http%3A%2F%2Favod%2Efilms%2Ecom%2FPortalPlayLists%2Easpx%3Faid%3D21260"><img src="[% ctx.media_prefix %]/images/access_video.jpg" /></a>
+            </div>
+            <div class="contentdiv">
+                <a href='https://itunes.apple.com/us/app/readometer/id658819682?mt=8'><img src="[% ctx.media_prefix %]/images/READometer.jpg" /></a>
+            </div>
+            <div class="contentdiv">
+                <a href='http://www.kcls.org/kids/summer/'><img src="[% ctx.media_prefix %]/images/srp_2013.jpg" /></a>
+            </div>
+            <div class="contentdiv">
+                <a href='http://www.kcls.org/downloads/ '><img src="[% ctx.media_prefix %]/images/zinio_slide.jpg" /></a>
+            </div>
+            <div class="contentdiv">
+                <a href='http://www.kcls.org/cooks/ '><img src="[% ctx.media_prefix %]/images/aplaceatthetable_summer.jpg" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="[% ctx.media_prefix %]/js/ui/default/opac/contentslider.js"></script>
+<script>
+    setTimeout(
+        function() {
+            featuredcontentslider.init({
+                id: "homebanner",
+                contentsource: ["inline", ""],
+                toc: "markup",
+                nextprev: ["", ""],
+                enablefade: [true, 0.04],
+                onChange: function(previndex, curindex){},
+                autorotate: [true, 3000] //pause time (in milliseconds)
+            })
+        }, 100
+    );
+</script>
+<!-- ========================================================================================== 
+    HOME BANNER / CONTENT SLIDER.  Remove this ^== script when the banner is removed
+    ==========================================================================================  -->
+
+<div id="hp-buttons">
+    <div style="float:left;">
+        <img src='[% ctx.media_prefix %]/images/hp-links-left.jpg' />
+    </div>
+    <div style="float:left;">
+        <div id="home-buttons-inner">
+            <table cellpadding="0" cellspacing="5" border="0" id="hp-ql-table">
+                <tr><td colspan="3"><span style="color: #333;font-weight: bold;font-size: 13px;">Browse for:</span></td></tr>
+                <tr>
+                    <td><a href="http://www.kcls.org/downloads/">eBOOKS</a></td>
+                    <td><a href="http://www.kcls.org/downloads/">eAUDIOBOOKS</a></td>
+                    <td><a href="http://www.rbdigital.com/kclswa/zinio">DIGITAL MAGAZINES</a></td>
+                </tr>
+                 <tr>
+                    <td><a href="http://www.kcls.org/movies/movies_browse.cfm">MOVIES</a></td>
+                    <td><a href="http://www.kcls.org/music/music_browse.cfm">MUSIC</a></td>
+                     <td><a href="http://www.kcls.org/databases/">PREMIUM DATABASES</a></td>
+                 </tr>
+            </table>
+        </div>
+    </div>
+    <div style="float:left;">
+        <img src='[% ctx.media_prefix %]/images/hp-links-right.jpg' />
+    </div>
+    <div style="float:right;">
+        <a href="http://www.kcls.org/locations">
+            <img alt="Locations" src="[% ctx.media_prefix %]/images/locations.jpg" />
+        </a>
+    </div>
+    <div style="clear:both;"></div>
+</div>

@@ -1,0 +1,237 @@
+[% ctx.page_title = 'Self Checkout' %]
+[% WRAPPER base.tt2 %]
+<!-- ***************************************** main.tt2 ***************************************************** -->
+
+
+<div id="selfcheck-main">
+<script type="text/javascript">
+function switchTo(str,subpage) {
+	var pages = [];
+	var sidebarLinks = [];
+	pages['step0'] = document.getElementById('step0');
+	pages['step1'] = document.getElementById('step1');
+	pages['step2'] = document.getElementById('step2');
+	pages['step3'] = document.getElementById('step3');
+	pages['step3a'] = document.getElementById('step3a');
+	//pages['step3b'] = document.getElementById('step3b');
+	pages['step3c'] = document.getElementById('step3c');
+	pages['step3d'] = document.getElementById('step3d');
+	pages['step3e'] = document.getElementById('step3e');
+	pages['step3f'] = document.getElementById('step3f');
+	pages['step4'] = document.getElementById('step4');
+	pages['step5'] = document.getElementById('step5');
+	pages['pay_fines'] = document.getElementById('pay_fines');
+	
+	sidebarLinks['sidebar_step3c'] = document.getElementById('sidebar_step3c');
+	sidebarLinks['sidebar_step3d'] = document.getElementById('sidebar_step3d');
+	sidebarLinks['sidebar_step3e'] = document.getElementById('sidebar_step3e');
+	sidebarLinks['sidebar_step3f'] = document.getElementById('sidebar_step3f');
+
+	for(var i in pages) { if(!pages[i]) continue; pages[i].style.display="none"; }
+	for(var i in sidebarLinks) { if(!sidebarLinks[i]) continue; sidebarLinks[i].className=""; }
+	
+	if(subpage) {
+		pages[subpage].style.display="block";
+		sidebarLinks['sidebar_'+subpage].className="selected";
+	}
+	pages[str].style.display="block";
+	if(str=='step3' && !subpage) pages['step3a'].style.display="block";
+	try{dojo.byId('selfckScanBox').focus();dojo.byId('selfckScanBox').select();}catch(e){}
+}
+</script>
+
+
+
+<div dojoType='openils.widget.ProgressDialog' jsId='progressDialog'></div>
+<div dojoType="dijit.Dialog" jsId='oilsSelfckWsDialog' class='oils-login-dialog' style='display:none;'>
+    <form>
+        <table>
+            <tr>
+                <td>Choose a location</td>
+                <td><div dojoType='openils.widget.OrgUnitFilteringSelect' jsId='oilsSelfckWsLocSelector' 
+                    searchAttr='shortname' labelAttr='shortname'/></td>
+            </tr>
+            <tr>
+                <td>Enter a workstation name</td>
+                <td><input dojoType='dijit.form.TextBox' jsId='oilsSelfckWsName'/></td>
+            </tr>
+            <tr>
+                <td colspan='2' align='center'>
+                    <button jsId='oilsSelfckWsSubmit' dojoType='dijit.form.Button'>Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div style="height:66px;background:#ae2c2a;"><div id='header'>
+  <a href='javascript:;'><img src='[% ctx.media_prefix %]/images/selfcheck/KCLS_logo_horiz.gif' alt='kcls logo' /></a>
+  <span style="font-size:36px;color:white;position:relative;top:-10px;left:15px;">CHECK OUT HERE</span>
+</div></div>
+
+<div id='content-wrapper'>
+  <div id='main-content'>
+	<div style='clear:both;'></div>
+	
+
+<script src='[% ctx.media_prefix %]/js/ui/kcls/circ/selfcheck/selfcheck.js'> </script>
+<script src="[% ctx.media_prefix %]/js/ui/kcls/circ/selfcheck/payment.js"></script>
+<link rel='stylesheet' type='text/css' href='[% ctx.media_prefix %]/css/skin/kcls/selfcheck.css'/>
+[% INCLUDE 'circ/selfcheck/audio_config.tt2' %]
+
+  <div id="step0" class="checkout" style="width=100%;text-align:center;">Staff login required</div>
+  <div id="step1" class="checkout hidden" style="padding-top:15px;">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+    <td align="center"><h1>Scan your library card barcode<br />OR type your library card number</h1></td></tr></table>
+    <table cellpadding="0" cellspacing="0" border="0" style="margin:20px auto;"><tr>
+    <td><img src="[% ctx.media_prefix %]/images/selfcheck/libcard_barcode.jpg" alt='library card' /></td><td style="padding-left:10px;"><span style="font-size:18px;">Example 0017620030</span><br /><input type="text" id='patron-login-username' />
+		<div style="position:absolute;"><div style="position:relative;top:-70px;"><div id='oils-selfck-status-div2' class='status_box'></div></div></div></td>
+    <td><a href="javascript:;" onclick="checkLogin();" style="position:relative;top:12px;left:5px;"><img alt='go' src="[% ctx.media_prefix %]/images/selfcheck/gobutton.jpg" /></a></td></tr></table>
+  </div>
+  <div id="step2" class="checkout hidden" style="padding-top:15px;">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+    <td align="center"><h1>Enter your PIN or password</h1></td></tr></table>
+    <table cellpadding="0" cellspacing="0" border="0" style="margin:20px auto;"><tr>
+    <td style="padding-left:10px;"><span style="font-size:18px;">Example 0926</span><br /><input type="password" id='patron-login-password' />
+		<div style="position:absolute;"><div style="position:relative;top:10px;"><div id='oils-selfck-status-div3' class='status_box'></div><div class="hidden" id="back_to_login"><a href="javascript:;" onclick="cancelLogin();">Cancel</a></div></div></div></td>
+    <td><a href="javascript:;" onclick="selfCheckMgr.loginPatron(dojo.byId('patron-login-username').value,dojo.byId('patron-login-password').value);" style="position:relative;top:12px;left:5px;"><img alt='go' src="[% ctx.media_prefix %]/images/selfcheck/gobutton.jpg" /></a></td></tr></table>
+  </div>
+  <div id="step3" class="checkout" style="display:none;">
+	<table cellpadding="0" cellspacing="0" border="0" width="694" height="410" style="margin-bottom:2px;">
+      <tr><td valign="top" width="444" style="padding:3px;" rowspan="2">
+		<img src="[% ctx.media_prefix %]/images/selfcheck/barcodedetailbook.jpg" alt='item barcode' style="float:left;" />
+        <div class="header1">
+          <h2>Scan your library item to begin checkout</h2>
+		  <input type="text" jsId='selfckScanBox' class="userid" id="selfckScanBox" dojoType='dijit.form.TextBox' />
+        </div>
+        <br />
+
+        <div id="step3a" style="">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%" height="70"><tr><td width="100%"><div id='oils-selfck-status-div' class="oils-selfck-status-div"></div></td></tr></table>
+		  <div id='oils-selfck-scan-text' class='hidden'></div>
+          <br /><br />
+          <table cellpadding="5" cellspacing="0" border="0" class="item_table" width="100%">
+		   <tbody id='oils-selfck-circ-tbody'>
+          	<tr id='oils-selfck-circ-row'><td>
+              <table cellpadding="2" cellspacing="0" border="0">
+                <tr><td class="label">BARCODE:</td><td name="barcode"></td></tr>
+                <tr><td class="label">TITLE:</td><td name="title"></td></tr>
+                <tr><td class="label" nowrap="nowrap">DUE DATE:</td><td name="due_date"></td></tr>
+				<tr><td></td><td><div class="hidden"><div name='checkout' class='hidden'>Checkout</div><div name='renew' class='hidden'>Renewal</div></div></td></tr>
+              </table>
+            </td></tr>
+		   </tbody>
+          </table>
+        </div>
+        
+        <div id="step3c" style="display:none;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="center" style="font-weight:bold;font-size:20px;">Fines</td></tr></table>
+          <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td><a href="javascript:;" onclick="selfCheckMgr.printList('fines')"><img src="[% ctx.media_prefix %]/images/selfcheck/printlist.jpg" alt='print' /></a></td><td class="hidden"><a class="hidden" href="javascript:;" id="oils-selfck-pay-fines-link">Pay Fines</a></td></tr></table><br />
+          <table cellpadding="5" cellspacing="0" border="0" class="item_table" width="100%">
+		   <tbody id='oils-selfck-fines-tbody'>
+          	<tr id='oils-selfck-fines-row'><td width="443">
+              <table cellpadding="2" cellspacing="0" border="0" width="100%">
+                <tr><td class="label"><input style="float:left;margin:2px;" class="hidden" type="checkbox" checked="checked" name='selector' onclick='selfCheckMgr.keepMeLoggedIn();' title='pay this fine' /> TITLE:</td><td name="title"></td></tr>
+                <tr><td class="label">DUE DATE:</td><td name="due_date"></td></tr>
+                <tr><td class="label">DATE RETURN:</td><td name="date_return"></td></tr>
+                <tr><td class="label">BALANCE OWED:</td><td style="color:red;">$<span name="balance"></span></td></tr>
+              </table>
+            </td></tr>
+		   </tbody>
+          </table>
+<div id="pay_fines" class="hidden">
+[% INCLUDE 'circ/selfcheck/payment.tt2' %]
+</div>
+        </div>
+        
+		<div id="step3d" style="display:none;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="center" style="font-weight:bold;font-size:20px;">Items Checked Out</td></tr></table><br />
+          <a href="javascript:;" onclick="selfCheckMgr.printList('items_out');"><img src="[% ctx.media_prefix %]/images/selfcheck/printlist.jpg" alt='print' /></a><br /><br />
+          <table cellpadding="5" cellspacing="0" border="0" class="item_table" width="100%">
+		   <tbody id='oils-selfck-circ-out-tbody'>
+          	<tr id='oils-selfck-circ-out-row'><td>
+              <table cellpadding="2" cellspacing="0" border="0">
+              	<tr><td class="label">BARCODE:</td><td name="barcode"></td></tr>
+                <tr><td class="label">TITLE:</td><td name="title"></td></tr>
+                <tr><td class="label">AUTHOR:</td><td name="author"></td></tr>
+                <tr><td class="label">DUE DATE:</td><td name="due_date"></td></tr>
+                <tr><td class="label hidden">FORMAT:</td><td class="hidden" name="format"></td></tr>
+              </table>
+            </td></tr>
+		   </tbody>
+          </table>
+        </div>
+        
+        <div id="step3e" style="display:none;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="center" style="font-weight:bold;font-size:20px;">Items Ready for Pick-Up</td></tr></table><br />
+          <a href="javascript:;"><img src="[% ctx.media_prefix %]/images/selfcheck/printlist.jpg" alt='print' /></a><br /><br />
+          <table cellpadding="5" cellspacing="0" border="0" class="item_table" width="100%">
+		   <tbody id='oils-selfck-rdy-tbody'>
+          	<tr id='oils-selfck-rdy-row'><td>
+              <table cellpadding="2" cellspacing="0" border="0">
+                <tr><td class="label">TITLE:</td><td name="title"></td></tr>
+                <tr><td class="label hidden">FORMAT:</td><td name="format" class="hidden"></td></tr>
+                <tr><td class="label">PICKUP LOCATION:</td><td name="lib"></td></tr>
+                <tr><td class="label">PICK UP BY:</td><td name="date"></td></tr>
+              </table>
+            </td></tr>
+		   </tbody>
+          </table>
+        </div>
+        
+        <div id="step3f" style="display:none;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="center" style="font-weight:bold;font-size:20px;">Holds</td></tr></table><br />
+          <a href="javascript:;" onclick="selfCheckMgr.printList('holds')"><img alt='print' src="[% ctx.media_prefix %]/images/selfcheck/printlist.jpg" /></a><br /><br />
+          <table cellpadding="5" cellspacing="0" border="0" class="item_table" width="100%">
+		   <tbody id='oils-selfck-hold-tbody'>
+          	<tr id='oils-selfck-hold-row'><td>
+              <table cellpadding="2" cellspacing="0" border="0">
+                <tr><td class="label">TITLE:</td><td name="title"></td></tr>
+                <tr><td class="label">AUTHOR:</td><td name="author"></td></tr>
+                <tr><td class="label hidden">FORMAT:</td><td class="hidden" name="format"></td></tr>
+                <tr><td class="label">STATUS:</td><td name="status"></td></tr>
+              </table>
+            </td></tr>
+		   </tbody>
+          </table>
+        </div>
+
+      </td>
+      <td class="sidebar" valign="top" width="226">
+	   <div id="floatdiv" style="position:relative; width:226px; height:375px;left:0px;top:0px;z-index:100;">
+		<h3 class="top" id="todays_date"></h3>
+        <div class="greet">Hello, <span id="user_name"></span>.</div>
+        <h3>Your Account</h3>
+        <p id="sidebar_step3c">Fines: <span id="acct_fines"></span><br /><a href="javascript:;" id='oils-selfck-view-fines-link'>View Details</a></p>
+        <p id="sidebar_step3d">(<span id="oils-selfck-circ-account-total">0) Items</span> Checked Out<br /><a href="javascript:;" id='oils-selfck-items-out-details-link'>View Details</a></p>
+        <p id="sidebar_step3e">(<span id="oils-selfck-holds-ready">0) Items</span> Ready for Pick-Up<br /><a href="javascript:;" onclick="selfCheckMgr.drawHoldsPage();">View Details</a></p>
+        <p id="sidebar_step3f">(<span id="oils-selfck-holds-total">0) Items</span> on Hold<br /><a href="javascript:;" id='oils-selfck-hold-details-link'>View Details</a></p>
+
+		<div style="padding-left:40px;padding-top:10px;">
+          <div style="padding-bottom:5px;"><a href="javascript:;" id='oils-selfck-nav-logout-print'><img alt='logout with receipt' src="[% ctx.media_prefix %]/images/selfcheck/logoutbutton.jpg" style="" /></a></div>
+          <div style=""><a href="javascript:;" id='oils-selfck-nav-logout'><img alt='logout without receipt' src="[% ctx.media_prefix %]/images/selfcheck/logoutwithoutreceiptbutton.jpg" style="" /></a></div>
+        </div>
+        <div style="clear:both;padding-top:15px;padding-left:3px;">
+          <a href="javascript:;" id="back_button" onclick="selfCheckMgr.keepMeLoggedIn();switchTo('step3');"><img alt='back to checkout' src="[% ctx.media_prefix %]/images/selfcheck/arrow.gif" /></a> <a href="javascript:;" onclick="selfCheckMgr.keepMeLoggedIn();switchTo('step3');"><span style="position:relative;top:-4px;left:2px;">Back to Checkout</span></a>
+        </div>
+	   </div>
+<script src="[% ctx.media_prefix %]/js/ui/kcls/circ/selfcheck/floating.js"></script>
+      </td></tr>
+    </table>
+  </div>
+  
+  <div id="step4" class="checkout" style="padding-top:15px;display:none;">
+  	<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="center"><h1>Checkout Complete.<br />Please take your reciept.</h1></td></tr></table>
+  </div>
+  
+  <div id="step5" class="checkout" style="padding-top:15px;display:none;">
+  	<table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td align="center"><h1>Checkout Complete.</h1></td></tr></table>
+  </div>
+  
+  
+  	<div style='clear:both;'></div>	
+  </div>
+</div>
+</div>
+<!-- ***************************************** END: main.tt2 ***************************************************** -->
+[% END %]
