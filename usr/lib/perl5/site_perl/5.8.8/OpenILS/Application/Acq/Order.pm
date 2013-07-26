@@ -299,6 +299,7 @@ sub delete_lineitem {
 sub create_lineitem_list_assets {
     my($mgr, $li_ids, $vandelay, $bib_only) = @_;
 
+    my $noVl = $vandelay->{noVl};
     # Do not create line items if none are specified
     return {} unless (scalar(@$li_ids));
 
@@ -307,19 +308,33 @@ sub create_lineitem_list_assets {
         return undef;
     }
 
-    my $res = import_li_bibs_via_vandelay($mgr, $li_ids, $vandelay);
-    return undef unless $res;
-    return $res if $bib_only;
-
-    # create the bibs/volumes/copies for the successfully imported records
-    for my $li_id (@{$res->{li_ids}}) {
-        $mgr->editor->xact_begin;
-        my $data = create_lineitem_assets($mgr, $li_id) or return undef;
-        $mgr->editor->xact_commit;
-        $mgr->respond;
+    if ($noVl)
+    {
+        # No Vandelay, From EG 2_1
+        # create the bibs/volumes/copies and ingest the records
+        for my $li_id (@$li_ids) {
+            $mgr->editor->xact_begin;
+            my $data = create_lineitem_assets($mgr, $li_id, $noVl) or return undef;
+            $mgr->editor->xact_commit;
+            $mgr->respond;
+        }
+        return $li_ids;
     }
+    else
+    {
+        my $res = import_li_bibs_via_vandelay($mgr, $li_ids, $vandelay);
+        return undef unless $res;
+        return $res if $bib_only;
 
-    return $res;
+        # create the bibs/volumes/copies for the successfully imported records
+        for my $li_id (@{$res->{li_ids}}) {
+            $mgr->editor->xact_begin;
+            my $data = create_lineitem_assets($mgr, $li_id) or return undef;
+            $mgr->editor->xact_commit;
+            $mgr->respond;
+        }
+        return $res;
+    }
 }
 
 sub test_vandelay_import_args {
@@ -1155,7 +1170,7 @@ sub check_purchase_order_received {
 # ----------------------------------------------------------------------------
 
 sub create_lineitem_assets {
-    my($mgr, $li_id) = @_;
+    my($mgr, $li_id, $noVl) = @_;
     my $evt;
 
     my $li = $mgr->editor->retrieve_acq_lineitem([
@@ -1164,6 +1179,15 @@ sub create_lineitem_assets {
             flesh_fields => {jub => ['purchase_order', 'attributes']}
         }
     ]) or return 0;
+    # -----------------------------------------------------------------
+    # If not using Vandelay, create the bib record if necessary
+    # -----------------------------------------------------------------
+    if ($noVl) {
+        unless($li->eg_bib_id) {
+            create_bib($mgr, $li) or return 0;
+            $logger->info("acq-noVl: created bib for acq lineitem $li");
+        }
+    }
 
     # note: at this point, the bib record this LI links to should already be created
 
@@ -1205,6 +1229,28 @@ sub create_lineitem_assets {
     }
 
     return { li => $li };
+}
+
+sub create_bib {
+    my($mgr, $li) = @_;
+
+    my $record = OpenILS::Application::Cat::BibCommon->biblio_record_xml_import(
+        $mgr->editor,
+        $li->marc,
+        undef, # bib source
+        undef,
+        1, # override tcn collisions
+    );
+
+    if($U->event_code($record)) {
+        $mgr->editor->event($record);
+        $mgr->editor->rollback;
+        return 0;
+    }
+
+    $li->eg_bib_id($record->id);
+    $mgr->add_bib;
+    return update_lineitem($mgr, $li);
 }
 
 sub create_volume {
