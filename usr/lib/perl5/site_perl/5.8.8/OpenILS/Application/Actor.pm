@@ -4767,4 +4767,33 @@ sub filter_group_entry_crud {
     }
 }
 
+# Handles stored default messages for patrons
+__PACKAGE__->register_method(
+    method    => "patron_message_list",
+    api_name  => "open-ils.actor.patron_message_list",
+    signature => q/
+		Grabs a list of all pre-defined messages that can be sent to a patron.
+		/
+);
+
+# Gets the list of default patron messages
+sub patron_message_list {
+	
+	my $message_ref = $U->storagereq('open-ils.storage.direct.action.patron_message_list');
+	my @message = @$message_ref;
+	my $stringtoSend;
+	
+	foreach (@message) {
+		
+		my @sub_message = @$_;
+		
+		foreach (@sub_message) {
+			
+			$stringtoSend .= $_ . "&SPLIT&";
+		}
+	}
+
+	return $stringtoSend;
+}
+
 1;
