@@ -88,7 +88,6 @@ function new_penalty_init() {
             false
         );
 
-		build_message_menu();
         default_focus();
 
     } catch(E) {
@@ -127,71 +126,5 @@ function build_penalty_menu() {
         var err_prefix = 'new_standing_penalty.js -> build_penalty_menu() : ';
         if (error) error.standard_unexpected_error_alert(err_prefix,E); else alert(err_prefix + E);
     }
-}
-
-function loadMessage(text){
-
-	var messageBox = document.getElementById("note_tb");
-	messageBox.value = text;
-}
-
-function build_message_menu(){
-	
-   // Load the dropdown
-	var messageString = fieldmapper.standardRequest(
-		[ api.PATRON_MESSAGE_LIST.app, api.PATRON_MESSAGE_LIST.method ],
-		{   async: false,
-			timeout: 10,
-		}
-	);
-
-	var messageList = messageString.split(/&SPLIT&/);
-	
-	// Array of arrays
-	var weightArray = [];
-
-	// Message, weight pairs
-	for (var i = 0; i < messageList.length; i+=2){
-		
-		if (i < messageList.length -1){
-			
-			var message = messageList[i];
-			var weight = messageList[i + 1];
-		
-			// In case I didn't end up with a real weight for some reason
-			if (!isInteger(weight)){
-				
-				weight = 1000;
-			}
-			
-			//messageHash[messageList[i]] = messageList[i + 1];
-			
-			// Ensure weight array is long enough, and there is already an array at index messageList[i + 2]
-			if ( !(weightArray[weight] instanceof Array) ){
-					
-				weightArray[weight] = [];
-			}
-			
-			weightArray[ weight ].push( message );
-		}
-	}
-	
-	// Order by weight, then alphabetically
-	for(var i in weightArray){
-		
-		weightArray[i].sort();
-		
-		for (var n in weightArray[i]){
-			
-			var message = weightArray[i][n];
-			
-			var dropdown = document.getElementById("csp_messagelist");
-			dropdown.appendItem( message, message, "" );
-		}
-	}
-}
-
-function isInteger(possibleInteger) {
-    return /^[\d]+$/.test(possibleInteger)​;
 }
 
