@@ -33,7 +33,8 @@
                 <a href="http://www.kcls.org/databases/databaseTracking.cfm?trackMe=243&redirectURL=http%3A%2F%2Favod%2Efilms%2Ecom%2FPortalPlayLists%2Easpx%3Faid%3D21260"><img src="[% ctx.media_prefix %]/images/access_video.jpg" /></a>
             </div>
             <div class="contentdiv">
-                <a href='https://itunes.apple.com/us/app/readometer/id658819682?mt=8'><img src="[% ctx.media_prefix %]/images/READometer.jpg" /></a>
+                <a href='http://www.kcls.org/databases/databaseTracking.cfm?trackMe=161&redirectURL=http%3A%2F%2Flibraries%2Emangolanguages%2Ecom%2Fkcls%2Fstart'><img src="[% ctx.media_prefix %]/images/mango.jpg" 
+/></a>
             </div>
             <div class="contentdiv">
                 <a href='http://www.kcls.org/kids/summer/'><img src="[% ctx.media_prefix %]/images/srp_2013.jpg" /></a>
