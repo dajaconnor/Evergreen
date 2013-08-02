@@ -439,18 +439,19 @@ sub _get_pref_lib {
         return $self->apache->headers_in->get('OILS-Pref-Lib');
     }
 
-    if ($ctx->{user}) {
-        # See if the user has a search library preference
-        my $lset = $self->editor->search_actor_user_setting({
-            usr => $ctx->{user}->id, 
-            name => 'opac.default_search_location'
-        })->[0];
-        return OpenSRF::Utils::JSON->JSON2perl($lset->value) if $lset;
+    #kmig57 - default search location is not used by KCLS
+    # if ($ctx->{user}) {
+    #    # See if the user has a search library preference
+    #    my $lset = $self->editor->search_actor_user_setting({
+    #        usr => $ctx->{user}->id, 
+    #        name => 'opac.default_search_location'
+    #    })->[0];
+    #    return OpenSRF::Utils::JSON->JSON2perl($lset->value) if $lset;
 
-        # Otherwise return the user's home library
-        my $ou = $ctx->{user}->home_ou;
-        return ref($ou) ? $ou->id : $ou;
-    }
+    #    # Otherwise return the user's home library
+    #    my $ou = $ctx->{user}->home_ou;
+    #    return ref($ou) ? $ou->id : $ou;
+    #}
 
     if ($ctx->{physical_loc}) {
         return $ctx->{physical_loc};
