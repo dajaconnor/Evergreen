@@ -1331,35 +1331,7 @@ sub retrieve_hold_queue_status_impl {
 
         # fetch cut_in_line and request_time since they're in the order_by
         # and we're asking for distinct values
-        select => {ahr => ['id', 'cut_in_line', 'request_time']},
-        from   => 'ahr',
-        where => {
-            id => { in => {
-                select => { ahcm => ['hold'] },
-                from   => {
-                    'ahcm' => {
-                        'ahcm2' => {
-                            'class' => 'ahcm',
-                            'field' => 'target_copy',
-                            'fkey'  => 'target_copy'
-                        }
-                    }
-                },
-                where => { '+ahcm2' => { hold => $hold->id } },
-                distinct => 1
-            }}
-        },
-        order_by => [
-            {
-                "class" => "ahr",
-                "field" => "cut_in_line",
-                "transform" => "coalesce",
-                "params" => [ 0 ],
-                "direction" => "desc"
-            },
-            { "class" => "ahr", "field" => "request_time" }
-        ],
-        distinct => 1
+        from => [ "action.get_hold_queue_status_by_id", $hold->id ]
     });
 
     if (!@$q_holds) { # none? maybe we don't have a map ...
