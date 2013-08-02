@@ -670,12 +670,23 @@ sub patron_search {
 	my $iv = _clean_regex_chars($$search{ident}{value});
 	my $nv = _clean_regex_chars($$search{name}{value});
 	my $cv = _clean_regex_chars($$search{card}{value});
+    my $egv = _clean_regex_chars($$search{egid}{value});
 
 	my $card = '';
 	if ($cv) {
 	    $card = 'JOIN (SELECT DISTINCT usr FROM actor.card WHERE evergreen.lowercase(barcode) LIKE ?||\'%\') AS card ON (card.usr = users.id)';
 	    unshift(@usrv, $cv);
 	}
+
+    #for Evergreen usr id search
+    my $egid = '';
+    $_ = $egv;
+    if (m/\D/) {
+        $egid = ' AND FALSE';
+    }
+    elsif ($egv) {
+        $egid = ' AND users.id = ' . $egv;
+    }
 
 	my $phone = '';
 	my @ps;
@@ -793,6 +804,7 @@ sub patron_search {
 		  WHERE	users.deleted = FALSE
 			$inactive
 			$opt_in_where
+            $egid
 		  GROUP BY $group_list
 		  ORDER BY $order_by
 		  LIMIT $limit

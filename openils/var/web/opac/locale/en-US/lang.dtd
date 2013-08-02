@@ -1671,6 +1671,8 @@
 <!ENTITY staff.patron_search_form.usrname.label 'OPAC Login:'>
 <!ENTITY staff.patron_search_form.card.accesskey 'B'>
 <!ENTITY staff.patron_search_form.card.label 'Barcode:'>
+<!ENTITY staff.patron_search_form.egid.accesskey 'E'>
+<!ENTITY staff.patron_search_form.egid.label 'Evergreen User ID:'>
 <!ENTITY staff.patron_search_form.phone.accesskey 'P'>
 <!ENTITY staff.patron_search_form.phone.label 'Phone:'>
 <!ENTITY staff.patron_search_form.post_code.accesskey ''>
