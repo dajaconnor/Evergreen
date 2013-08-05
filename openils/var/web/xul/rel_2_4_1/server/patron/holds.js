@@ -1291,10 +1291,47 @@ patron.holds.prototype = {
                         function() {
                             try {
                                 JSAN.use('util.functional');
+                                var result_message = "";
+                                var fail_count = 0;
+                                var success_count = 0;
                                 for (var i = 0; i < obj.retrieve_ids.length; i++) {
                                     var robj = obj.network.simple_request('FM_AHR_UNCANCEL',[ ses(), obj.retrieve_ids[i].id]);
-                                    if (typeof robj.ilsevent != 'undefined') throw(robj);
+                                    if (typeof robj[0].result === "number") {
+                                        //success
+                                        result_message += "\nHold Type: " + robj[0].type + "  Target: " + robj[0].target + "  Un-cancel was successful.\n" + 
+                                                                         "     Hold request Id: " + robj[0].result + " created.\n";
+                                        success_count++;
+                                    }
+                                    else {
+                                        if(robj[0].result instanceof Array) {
+                                            //failure hold exists
+                                            if (typeof robj[0].result[0].ilsevent != 'undefined') {
+                                                result_message += "\nHold Type: " + robj[0].type + "  Target: " + robj[0].target + "  Un-cancel was unsuccessful.\n" + 
+                                                                                "     " + robj[0].result[0].desc + ".\n";
+                                                fail_count++;
+                                            }
+                                        }
+                                        else if (robj[0].result.success == 0){
+                                            //failure max holds
+                                           result_message += "\nHold Type: " + robj[0].type + "  Target: " + robj[0].target + "  Un-cancel was unsuccessful.\n" + 
+                                                                            "     " + robj[0].result.last_event.desc + ".\n";
+                                           fail_count++;
+                                        }
+                                        else {
+                                            //failure
+                                            result_message += "\nUn-cancel was unsuccessful.\n";
+                                            fail_count++;
+                                        }
+                                    }
                                 }
+                                if (0 < fail_count) {
+                                    result_message = fail_count + " hold(s) were unsuccessfully un-cancelled.\n" + result_message;
+                                }
+                                if (0 < success_count) {
+                                    result_message = success_count + " hold(s) were successfully un-cancelled.\n" + result_message;
+                                }
+                                result_message = "\n" + result_message;
+                                window.alert(result_message);
                                 obj.clear_and_retrieve();
                             } catch(E) {
                                 obj.error.standard_unexpected_error_alert($("patronStrings").getString('staff.patron.holds.holds_uncancel.hold_not_uncancelled'),E);

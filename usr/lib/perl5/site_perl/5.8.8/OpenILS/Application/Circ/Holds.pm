@@ -65,7 +65,6 @@ __PACKAGE__->register_method(
     }
 );
 
-
 sub test_and_create_hold_batch {
     my( $self, $conn, $auth, $params, $target_list, $oargs ) = @_;
 
@@ -113,15 +112,19 @@ sub test_and_create_hold_batch {
             )->run($auth, $ahr, $oargs);
             $res2 = {
                 'target' => $$params{$target_field},
-                'result' => $res2
+                'result' => $res2,
+                'type' => $$params{'hold_type'}
             };
             $conn->respond($res2);
+            $$conn{'res'} =$res2;
         } else {
             $res = {
                 'target' => $$params{$target_field},
-                'result' => $res
+                'result' => $res,
+                'type' => $$params{'hold_type'}
             };
             $conn->respond($res);
+            $$conn{'res'} =$res;
         }
     }
     return undef;
@@ -709,11 +712,16 @@ sub uncancel_hold {
     $hold->clear_prev_check_time;
     $hold->clear_shelf_expire_time;
     $hold->clear_current_shelf_lib;
+    $hold->clear_id;
 
-    $e->update_action_hold_request($hold) or return $e->die_event;
-    $e->commit;
+    my $rtarget_list = [$hold->target];
+    my $params = {};
+    $$params{'requestor'} = $hold->requestor;
+    $$params{'hold_type'} = $hold->hold_type;
+    $$params{'pickup_lib'} = $hold->pickup_lib;
+    $$params{'patronid'} = $hold->usr;
 
-    $U->storagereq('open-ils.storage.action.hold_request.copy_targeter', undef, $hold_id);
+    test_and_create_hold_batch($self, $client, $auth, $params, $rtarget_list);
 
     return 1;
 }
