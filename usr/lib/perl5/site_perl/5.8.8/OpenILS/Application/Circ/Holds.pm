@@ -3407,7 +3407,7 @@ sub clear_shelf_cache {
                     "acns" => [{column => "label", alias => "suffix"}],
                     "bre" => ["marc"],
                     "acpl" => ["name"],
-                    "ahr" => ["id"]
+                    "ahr" => ["id", "hold_type"]
                 },
                 "from" => {
                     "ahr" => {

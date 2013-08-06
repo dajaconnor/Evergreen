@@ -177,6 +177,12 @@ function do_clear_holds_from_cache(cache_key) {
                         var hold = hashify_fields(resp.hold_details);
                         hold.action = resp.action;
 
+			if(resp.hold_details.hold_type) {
+				hold.hold_type = resp.hold_details.hold_type;
+			} else {
+				hold.hold_type = "";
+			}
+
                         var tr = dojo.clone(template);
                         any++;
 
