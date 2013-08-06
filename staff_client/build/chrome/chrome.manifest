@@ -1,0 +1,22 @@
+content open_ils_staff_client content/
+locale open_ils_staff_client en-US locale/en-US/
+skin open_ils_staff_client open_ils_staff_client skin/
+locale branding en-US branding/locale/en-US/
+
+overlay chrome://browser/content/browser.xul chrome://open_ils_staff_client/content/firefox/overlay.xul
+locale open_ils_staff_client ar-AR locale/ar-AR/
+locale open_ils_staff_client cs-CZ locale/cs-CZ/
+locale open_ils_staff_client de-DE locale/de-DE/
+locale open_ils_staff_client en-CA locale/en-CA/
+locale open_ils_staff_client en-GB locale/en-GB/
+locale open_ils_staff_client es-ES locale/es-ES/
+locale open_ils_staff_client fi-FI locale/fi-FI/
+locale open_ils_staff_client fr-CA locale/fr-CA/
+locale open_ils_staff_client he-IL locale/he-IL/
+locale open_ils_staff_client hu-HU locale/hu-HU/
+locale open_ils_staff_client hy-AM locale/hy-AM/
+locale open_ils_staff_client oc-FR locale/oc-FR/
+locale open_ils_staff_client pt-BR locale/pt-BR/
+locale open_ils_staff_client ru-RU locale/ru-RU/
+locale open_ils_staff_client sv-SE locale/sv-SE/
+locale open_ils_staff_client tr-TR locale/tr-TR/
