@@ -114,6 +114,7 @@ function set_brief_view() {
         {},
         content_params
     );
+    document.getElementById('top_pane').setAttribute('height', '120');
 }
 
 function set_marc_view() {
@@ -824,6 +825,7 @@ function remove_me() {
     var url = xulG.url_prefix( 'XUL_BIB_BRIEF?docid=' ) + window.escape(docid);
     dump('removing ' + url + '\n');
     try { top_pane.remove_iframe( url ); } catch(E) { dump(E + '\n'); }
+    $('top_pane').removeAttribute('height');
     $('nav').setAttribute('hidden','true');
 }
 
