@@ -3890,15 +3890,29 @@ sub generate_lost_overdue_fines {
     my $self = shift;
     my $circ = $self->circ;
     my $e = $self->editor;
+    my $isBackDated = 0;
 
     # Re-open the transaction so the fine generator can see it
-    if($circ->xact_finish or $circ->stop_fines) {
-        $e->xact_begin;
-        $circ->clear_xact_finish;
-        $circ->clear_stop_fines;
-        $circ->clear_stop_fines_time;
-        $e->update_action_circulation($circ) or return $e->die_event;
-        $e->xact_commit;
+    if ($circ->checkin_time == $circ->checkin_scan_time) {
+        #Check in is not backdated
+        if($circ->xact_finish or $circ->stop_fines) {
+            $e->xact_begin;
+            $circ->clear_xact_finish;
+            $circ->clear_stop_fines;
+            $circ->clear_stop_fines_time;
+            $e->update_action_circulation($circ) or return $e->die_event;
+            $e->xact_commit;
+        }
+    }
+    else {
+        #Check in is backdated
+        $isBackDated = 1;
+        if($circ->xact_finish or $circ->stop_fines) {
+            $e->xact_begin;
+            $circ->clear_xact_finish;
+            $e->update_action_circulation($circ) or return $e->die_event;
+            $e->xact_commit;
+        }
     }
 
     $e->xact_begin; # generate_fines expects an in-xact editor
@@ -3912,6 +3926,14 @@ sub generate_lost_overdue_fines {
     if ($obt and $obt->balance_owed == 0) {
         $circ->xact_finish('now');
         $update = 1;
+    }
+
+    if ($isBackDated == 1) {
+        #Check in is backdated
+        if($circ->xact_finish or $circ->stop_fines) {
+            $circ->clear_stop_fines;
+            $circ->clear_stop_fines_time;
+        }
     }
 
     # Set stop fines if the fine generator didn't have to
