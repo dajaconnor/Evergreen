@@ -354,6 +354,7 @@ sub create_hold {
         'open-ils.storage.action.hold_request.copy_targeter',
         undef, $hold->id ) unless $U->is_true($hold->frozen);
 
+    $U->log_user_activity($recipient->id, $self->get_act_who, 'hold');
     return undef;
 }
 

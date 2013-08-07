@@ -290,6 +290,7 @@ sub run_method {
     
     $circulator->override(1) if $api =~ /override/o;
 
+    my $ops = 0;
     if( $api =~ /checkout\.permit/ ) {
         $circulator->do_permit();
 
@@ -304,6 +305,7 @@ sub run_method {
         unless( $circulator->bail_out ) {
             $circulator->events([]);
             $circulator->do_checkout();
+	    $ops = 1;
         }
 
     } elsif( $circulator->is_res_checkout ) {
@@ -317,12 +319,14 @@ sub run_method {
     } elsif( $api =~ /checkout/ ) {
         $circulator->is_checkout(1);
         $circulator->do_checkout();
+	$ops = 1;
 
     } elsif( $circulator->is_res_checkin ) {
         $circulator->do_reservation_return();
         $circulator->do_checkin() if ($circulator->copy());
     } elsif( $api =~ /checkin/ ) {
         $circulator->do_checkin();
+	$ops = 2;
 
     } elsif( $api =~ /renew/ ) {
         $circulator->is_renewal(1);
@@ -347,6 +351,13 @@ sub run_method {
 
         $circulator->editor->commit;
 
+	if($ops == 1) {
+	    $U->log_user_activity($$args{patron_id}, '', 'checkout');
+	} elsif ($ops == 2) {
+	    if ($circulator->circ) {
+		$U->log_user_activity($circulator->circ->usr, '', 'checkin');
+	    }
+	}
         if ($circulator->generate_lost_overdue) {
             # Generating additional overdue billings has to happen after the 
             # main commit and before the final respond() so the caller can
