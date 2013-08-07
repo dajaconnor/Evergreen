@@ -3649,8 +3649,10 @@ SELECT  usr,
         ARRAY_TO_STRING(ARRAY_ACCUM( CASE WHEN (xact_finish IS NULL AND stop_fines = 'LOST') THEN id ELSE 0 END),',') AS lost,
         ARRAY_TO_STRING(ARRAY_ACCUM( CASE WHEN (xact_finish IS NULL AND stop_fines = 'CLAIMSRETURNED') THEN id ELSE 0 END),',') AS claims_returned,
         ARRAY_TO_STRING(ARRAY_ACCUM( CASE WHEN (xact_finish IS NULL AND stop_fines = 'LONGOVERDUE') THEN id ELSE 0 END),',') AS long_overdue
-  FROM  action.circulation
-  WHERE checkin_time IS NULL
+  FROM (SELECT usr, fine_interval, due_date, stop_fines, xact_finish, id, checkin_time
+        FROM action.circulation
+        WHERE checkin_time IS NULL
+        ORDER BY due_date ASC) AS sorted_ac
   GROUP BY 1
         </oils_persist:source_definition>
         <fields oils_persist:primary="usr">
