@@ -2562,13 +2562,33 @@ sub do_checkin {
         ); 
     }
 
+    # Check to see if there is a hold transit with a cancelled hold
+    my $hold_is_cancelled;
+    my $test_hold;
+    if( $self->transit ) {
+        my $transit = $self->transit;
+        my $test_hold_transit = $self->editor->retrieve_action_hold_transit_copy($transit->id);
+        if($test_hold_transit) {
+            $test_hold = $self->editor->retrieve_action_hold_request($test_hold_transit->hold);
+            $hold_is_cancelled = 1 if ($test_hold->cancel_time or $test_hold->fulfillment_time);
+        }
+    }
+
+    # If the hold is cancelled, and the item is checked in by the owning lib, clear the transit
+    my $transit_is_cleared;
+    if (($hold_is_cancelled && $self->circ_lib == $self->copy->circ_lib)) {
+        $self->bail_on_events($self->editor->event)
+            unless $self->editor->delete_action_transit_copy($self->transit);
+        $transit_is_cleared = 1;
+    }
+
     if( $self->circ ) {
         $self->generate_fines_finish;
         $self->checkin_handle_circ;
         return if $self->bail_out;
         $self->checkin_changed(1);
 
-    } elsif( $self->transit ) {
+    } elsif( $self->transit and !$transit_is_cleared ) {
         my $hold_transit = $self->process_received_transit;
         $self->checkin_changed(1);
 
@@ -2592,7 +2612,8 @@ sub do_checkin {
 
             my $hold;
             if( $hold_transit ) {
-               $hold = $self->editor->retrieve_action_hold_request($hold_transit->hold);
+		#No need to retreive the hold again
+		$hold = $test_hold;
             } else {
                    ($hold) = $U->fetch_open_hold_by_copy($self->copy->id);
             }
@@ -3251,6 +3272,15 @@ sub process_received_transit {
         my $tid = $transit->id; 
         my $loc = $self->circ_lib;
         my $dest = $transit->dest;
+
+	# If item needs to be routed to a different location, update the source & send time
+        my $e = $self->editor;
+        $e->xact_begin;
+        $transit->source($self->circ_lib);
+        $transit->source_send_time('now');
+        $self->bail_on_events($self->editor->event)
+            unless $e->update_action_transit_copy($transit);
+        $e->xact_commit;
 
         $logger->info("circulator: Fowarding transit on copy which is destined ".
             "for a different location. transit=$tid, copy=$copyid, current ".
