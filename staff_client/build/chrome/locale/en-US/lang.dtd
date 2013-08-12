@@ -2461,6 +2461,8 @@
 <!ENTITY staff.circ.copy_status_overlay.last_scanned.caption "Scan Item">
 <!ENTITY staff.circ.copy_status_overlay.copy_status_scan_barcode.label "Barcode:">
 <!ENTITY staff.circ.copy_status_overlay.copy_status_scan_barcode.accesskey "B">
+<!ENTITY staff.patron_search_form.egid.accesskey 'E'>
+<!ENTITY staff.patron_search_form.egid.label 'Evergreen Id:'>
 <!ENTITY staff.circ.copy_status_overlay.copy_status_submit_barcode.label "Submit">
 <!ENTITY staff.circ.copy_status_overlay.copy_status_submit_barcode.accesskey "t">
 <!ENTITY staff.circ.copy_status_overlay.copy_status_upload_file.label "Upload From File">
