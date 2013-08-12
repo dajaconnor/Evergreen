@@ -479,6 +479,12 @@ sub load_rresults {
         );
     }
 
+    # Adds hold count to records in context
+    for my $rec ( @{ $ctx->{records} } ) {
+        $rec->{hold_count} = $U->simplereq(
+            'open-ils.circ', 'open-ils.circ.bre.holds.count', $rec->{id});
+    }
+
     if ($tag_circs) {
         for my $rec (@{$ctx->{records}}) {
             my ($res_rec) = grep { $_->[0] == $rec->{id} } @{$results->{ids}};
