@@ -65,7 +65,6 @@ __PACKAGE__->register_method(
     }
 );
 
-
 sub test_and_create_hold_batch {
     my( $self, $conn, $auth, $params, $target_list, $oargs ) = @_;
 
@@ -113,15 +112,19 @@ sub test_and_create_hold_batch {
             )->run($auth, $ahr, $oargs);
             $res2 = {
                 'target' => $$params{$target_field},
-                'result' => $res2
+                'result' => $res2,
+                'type' => $$params{'hold_type'}
             };
             $conn->respond($res2);
+            $$conn{'res'} =$res2;
         } else {
             $res = {
                 'target' => $$params{$target_field},
-                'result' => $res
+                'result' => $res,
+                'type' => $$params{'hold_type'}
             };
             $conn->respond($res);
+            $$conn{'res'} =$res;
         }
     }
     return undef;
@@ -351,6 +354,7 @@ sub create_hold {
         'open-ils.storage.action.hold_request.copy_targeter',
         undef, $hold->id ) unless $U->is_true($hold->frozen);
 
+    $U->log_user_activity($recipient->id, $self->get_act_who, 'hold');
     return undef;
 }
 
@@ -709,11 +713,16 @@ sub uncancel_hold {
     $hold->clear_prev_check_time;
     $hold->clear_shelf_expire_time;
     $hold->clear_current_shelf_lib;
+    $hold->clear_id;
 
-    $e->update_action_hold_request($hold) or return $e->die_event;
-    $e->commit;
+    my $rtarget_list = [$hold->target];
+    my $params = {};
+    $$params{'requestor'} = $hold->requestor;
+    $$params{'hold_type'} = $hold->hold_type;
+    $$params{'pickup_lib'} = $hold->pickup_lib;
+    $$params{'patronid'} = $hold->usr;
 
-    $U->storagereq('open-ils.storage.action.hold_request.copy_targeter', undef, $hold_id);
+    test_and_create_hold_batch($self, $client, $auth, $params, $rtarget_list);
 
     return 1;
 }
@@ -1331,35 +1340,7 @@ sub retrieve_hold_queue_status_impl {
 
         # fetch cut_in_line and request_time since they're in the order_by
         # and we're asking for distinct values
-        select => {ahr => ['id', 'cut_in_line', 'request_time']},
-        from   => 'ahr',
-        where => {
-            id => { in => {
-                select => { ahcm => ['hold'] },
-                from   => {
-                    'ahcm' => {
-                        'ahcm2' => {
-                            'class' => 'ahcm',
-                            'field' => 'target_copy',
-                            'fkey'  => 'target_copy'
-                        }
-                    }
-                },
-                where => { '+ahcm2' => { hold => $hold->id } },
-                distinct => 1
-            }}
-        },
-        order_by => [
-            {
-                "class" => "ahr",
-                "field" => "cut_in_line",
-                "transform" => "coalesce",
-                "params" => [ 0 ],
-                "direction" => "desc"
-            },
-            { "class" => "ahr", "field" => "request_time" }
-        ],
-        distinct => 1
+        from => [ "action.get_hold_queue_status_by_id", $hold->id ]
     });
 
     if (!@$q_holds) { # none? maybe we don't have a map ...
@@ -3427,7 +3408,7 @@ sub clear_shelf_cache {
                     "acns" => [{column => "label", alias => "suffix"}],
                     "bre" => ["marc"],
                     "acpl" => ["name"],
-                    "ahr" => ["id"]
+                    "ahr" => ["id", "hold_type"]
                 },
                 "from" => {
                     "ahr" => {

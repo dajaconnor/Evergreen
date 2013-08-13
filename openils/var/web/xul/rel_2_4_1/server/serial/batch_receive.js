@@ -8,6 +8,7 @@ dojo.require("openils.XUL");
 dojo.require("openils.PermaCrud");
 
 var batch_receiver;
+var tabindex_count = 0;
 
 function S(k) {
     return dojo.byId("serialStrings").getString("batch_receive." + k).
@@ -438,11 +439,11 @@ function BatchReceiver() {
     this._get_autogen_potentials = function(item_id) {
         var hit_a_wall = false;
 
-        return [openils.Util.objectProperties(this.rows).sort(num_sort).filter(
+        return [openils.Util.objectProperties(this.rows).sort(no_sort).filter(
             function(id) {
                 if (hit_a_wall) {
                     return false;
-                } else if (id <= item_id || self._row_disabled(id)) {
+                } else if (id == item_id || self._row_disabled(id)) {
                     return false;
                 } else if (self._row_field_value(id, "barcode")) {
                     hit_a_wall = true;
@@ -955,7 +956,7 @@ function BatchReceiver() {
             dojo.create(
                 "textbox", {
                     "size": 15,
-                    "tabindex": 10000 + Number(item.id()), /* is this right? */
+                    "tabindex": 10000 + tabindex_count++,
                     "onchange": function() {
                         self.autogen_if_appropriate(this, item.id());
                     }
@@ -1084,6 +1085,7 @@ function BatchReceiver() {
         if (this._user_wants_autogen() && textbox.value) {
             var kvlist = this._get_autogen_potentials(item_id);
             var list = kvlist[0];
+            alert ("list is " + list);
             var question = kvlist[1];
             if (list.length) {
                 if (question && !confirm(S("autogen_barcodes.questionable")))

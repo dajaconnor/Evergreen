@@ -1329,6 +1329,12 @@ sub patron_adv_search {
 	my $opt_boundary = 0;
 	$opt_boundary = $U->ou_ancestor_setting_value($e->requestor->ws_ou,'org.patron_opt_boundary') if user_opt_in_enabled($self);
 
+    #kmig73
+    # set the search_ou to 1 for the consortium
+    if ( $search_ou == undef){
+        $search_ou = 1;
+    }
+
 	return $U->storagereq(
 		"open-ils.storage.actor.user.crazy_search", $search_hash, 
             $search_limit, $search_sort, $include_inactive, $e->requestor->ws_ou, $search_ou, $opt_boundary);

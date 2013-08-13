@@ -290,6 +290,7 @@ sub run_method {
     
     $circulator->override(1) if $api =~ /override/o;
 
+    my $ops = 0;
     if( $api =~ /checkout\.permit/ ) {
         $circulator->do_permit();
 
@@ -304,6 +305,7 @@ sub run_method {
         unless( $circulator->bail_out ) {
             $circulator->events([]);
             $circulator->do_checkout();
+	    $ops = 1;
         }
 
     } elsif( $circulator->is_res_checkout ) {
@@ -317,12 +319,14 @@ sub run_method {
     } elsif( $api =~ /checkout/ ) {
         $circulator->is_checkout(1);
         $circulator->do_checkout();
+	$ops = 1;
 
     } elsif( $circulator->is_res_checkin ) {
         $circulator->do_reservation_return();
         $circulator->do_checkin() if ($circulator->copy());
     } elsif( $api =~ /checkin/ ) {
         $circulator->do_checkin();
+	$ops = 2;
 
     } elsif( $api =~ /renew/ ) {
         $circulator->is_renewal(1);
@@ -347,6 +351,13 @@ sub run_method {
 
         $circulator->editor->commit;
 
+	if($ops == 1) {
+	    $U->log_user_activity($$args{patron_id}, '', 'checkout');
+	} elsif ($ops == 2) {
+	    if ($circulator->circ) {
+		$U->log_user_activity($circulator->circ->usr, '', 'checkin');
+	    }
+	}
         if ($circulator->generate_lost_overdue) {
             # Generating additional overdue billings has to happen after the 
             # main commit and before the final respond() so the caller can
@@ -2551,13 +2562,33 @@ sub do_checkin {
         ); 
     }
 
+    # Check to see if there is a hold transit with a cancelled hold
+    my $hold_is_cancelled;
+    my $test_hold;
+    if( $self->transit ) {
+        my $transit = $self->transit;
+        my $test_hold_transit = $self->editor->retrieve_action_hold_transit_copy($transit->id);
+        if($test_hold_transit) {
+            $test_hold = $self->editor->retrieve_action_hold_request($test_hold_transit->hold);
+            $hold_is_cancelled = 1 if ($test_hold->cancel_time or $test_hold->fulfillment_time);
+        }
+    }
+
+    # If the hold is cancelled, and the item is checked in by the owning lib, clear the transit
+    my $transit_is_cleared;
+    if (($hold_is_cancelled && $self->circ_lib == $self->copy->circ_lib)) {
+        $self->bail_on_events($self->editor->event)
+            unless $self->editor->delete_action_transit_copy($self->transit);
+        $transit_is_cleared = 1;
+    }
+
     if( $self->circ ) {
         $self->generate_fines_finish;
         $self->checkin_handle_circ;
         return if $self->bail_out;
         $self->checkin_changed(1);
 
-    } elsif( $self->transit ) {
+    } elsif( $self->transit and !$transit_is_cleared ) {
         my $hold_transit = $self->process_received_transit;
         $self->checkin_changed(1);
 
@@ -2581,7 +2612,8 @@ sub do_checkin {
 
             my $hold;
             if( $hold_transit ) {
-               $hold = $self->editor->retrieve_action_hold_request($hold_transit->hold);
+		#No need to retreive the hold again
+		$hold = $test_hold;
             } else {
                    ($hold) = $U->fetch_open_hold_by_copy($self->copy->id);
             }
@@ -3241,6 +3273,15 @@ sub process_received_transit {
         my $loc = $self->circ_lib;
         my $dest = $transit->dest;
 
+	# If item needs to be routed to a different location, update the source & send time
+        my $e = $self->editor;
+        $e->xact_begin;
+        $transit->source($self->circ_lib);
+        $transit->source_send_time('now');
+        $self->bail_on_events($self->editor->event)
+            unless $e->update_action_transit_copy($transit);
+        $e->xact_commit;
+
         $logger->info("circulator: Fowarding transit on copy which is destined ".
             "for a different location. transit=$tid, copy=$copyid, current ".
             "location=$loc, destination location=$dest");
@@ -3890,15 +3931,29 @@ sub generate_lost_overdue_fines {
     my $self = shift;
     my $circ = $self->circ;
     my $e = $self->editor;
+    my $isBackDated = 0;
 
     # Re-open the transaction so the fine generator can see it
-    if($circ->xact_finish or $circ->stop_fines) {
-        $e->xact_begin;
-        $circ->clear_xact_finish;
-        $circ->clear_stop_fines;
-        $circ->clear_stop_fines_time;
-        $e->update_action_circulation($circ) or return $e->die_event;
-        $e->xact_commit;
+    if ($circ->checkin_time == $circ->checkin_scan_time) {
+        #Check in is not backdated
+        if($circ->xact_finish or $circ->stop_fines) {
+            $e->xact_begin;
+            $circ->clear_xact_finish;
+            $circ->clear_stop_fines;
+            $circ->clear_stop_fines_time;
+            $e->update_action_circulation($circ) or return $e->die_event;
+            $e->xact_commit;
+        }
+    }
+    else {
+        #Check in is backdated
+        $isBackDated = 1;
+        if($circ->xact_finish or $circ->stop_fines) {
+            $e->xact_begin;
+            $circ->clear_xact_finish;
+            $e->update_action_circulation($circ) or return $e->die_event;
+            $e->xact_commit;
+        }
     }
 
     $e->xact_begin; # generate_fines expects an in-xact editor
@@ -3912,6 +3967,14 @@ sub generate_lost_overdue_fines {
     if ($obt and $obt->balance_owed == 0) {
         $circ->xact_finish('now');
         $update = 1;
+    }
+
+    if ($isBackDated == 1) {
+        #Check in is backdated
+        if($circ->xact_finish or $circ->stop_fines) {
+            $circ->clear_stop_fines;
+            $circ->clear_stop_fines_time;
+        }
     }
 
     # Set stop fines if the fine generator didn't have to

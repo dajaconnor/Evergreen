@@ -393,6 +393,7 @@ sub make_payments {
     $U->simplereq('open-ils.auth', 'open-ils.auth.session.reset_timeout', $auth, 1)
         if $user_id == $e->requestor->id;
 
+    $U->log_user_activity($user_id, '', 'payment');
     return {last_xact_id => $patron->last_xact_id, payments => \@payment_ids};
 }
 
