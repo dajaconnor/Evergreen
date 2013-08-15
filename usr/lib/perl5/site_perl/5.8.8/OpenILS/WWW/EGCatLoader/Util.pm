@@ -439,6 +439,7 @@ sub _get_pref_lib {
         return $self->apache->headers_in->get('OILS-Pref-Lib');
     }
 
+    #the following commented code is for KMAIN-153
     #kmig57 - default search location is not used by KCLS
     # if ($ctx->{user}) {
     #    # See if the user has a search library preference
