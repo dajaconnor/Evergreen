@@ -649,7 +649,7 @@ function uEditFetchUserSettings(userId) {
     /* fetch any user setting types we need + any that offer opt-in */
     userSettingTypes = pcrud.search('cust', {
         '-or' : [
-            {name:['circ.holds_behind_desk', 'circ.collections.exempt', 'opac.hold_notify', 'opac.default_phone', 'opac.default_pickup_location', 'opac.default_sms_carrier', 'opac.default_sms_notify']}, 
+            {name:['circ.holds_behind_desk', 'opac.hold_notify', 'opac.default_phone', 'opac.default_pickup_location', 'opac.default_sms_carrier', 'opac.default_sms_notify']}, 
             {name : {
                 'in': {
                     select : {atevdef : ['opt_in_setting']}, 
@@ -792,9 +792,9 @@ function uEditDrawSettingRow(tbody, dividerRow, template, stype) {
             var cb = new dijit.form.CheckBox({scrollOnFocus:false}, getByName(row, 'widget'));
             cb.attr('value', userSettings[stype.name()]);
             dojo.connect(cb, 'onChange', function(newVal) { userSettingsToUpdate[stype.name()] = newVal; });
-            if(stype.name() == 'circ.collections.exempt') {
+            /* if(stype.name() == 'circ.collections.exempt') {
                 checkCollectionsExemptPerm(cb);
-            }
+            } */
     }
     tbody.insertBefore(row, dividerRow.nextSibling);
     openils.Util.show(row, 'table-row');
@@ -1177,7 +1177,7 @@ function checkClaimsNoCheckoutCountPerm() {
     );
 }
 
-var collectExemptCBox;
+/* var collectExemptCBox;
 function checkCollectionsExemptPerm(cbox) {
     if(cbox) collectExemptCBox = cbox;
     new openils.User().getPermOrgList(
@@ -1191,7 +1191,7 @@ function checkCollectionsExemptPerm(cbox) {
         true, 
         true
     );
-}
+} */
 
 function usePhonePw(newVal) {
     var newPw = false;
@@ -1425,7 +1425,7 @@ function attachWidgetEvents(fmcls, fmfield, widget) {
                     function(newVal) { 
                         checkClaimsReturnCountPerm(); 
                         checkClaimsNoCheckoutCountPerm();
-                        checkCollectionsExemptPerm();
+                        /* checkCollectionsExemptPerm(); */
                     }
                 );
                 return;
