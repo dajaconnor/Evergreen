@@ -46,8 +46,21 @@
                     <a href="javascript:void(0);" onclick="alert(document.getElementById('bb_publish_text').innerHTML);"><img alt="[% l('Sharing Help') %]"
                         src="[% ctx.media_prefix %]/images/question-mark.png" /></a>
                 </td>
+                <script type='text/javascript'>
+                    function notEmpty(elem, msg){
+                        var removedWhiteSpace = elem.value.replace(/\s/g, '');
+                        if(0 == removedWhiteSpace.length){
+                            alert(msg);
+                            elem.value = '';
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
                 <td class="list-create-table-buttons">
-                    <input type="image" alt="[% l('Submit') %]" src="[% ctx.media_prefix %]/images/btnSubmit.png"/>
+                    <input type="image" alt="[% l('Submit') %]" src="[% ctx.media_prefix %]/images/btnSubmit.png" 
+                        onClick="if(notEmpty(document.getElementById('list_create_name'), '[% l('Please enter a valid name for your list.') %]')) return true; return false"
+                    />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="javascript:void(0);"
                         onclick="document.getElementById('create_form').reset(); return false"><img
