@@ -649,7 +649,7 @@ function uEditFetchUserSettings(userId) {
     /* fetch any user setting types we need + any that offer opt-in */
     userSettingTypes = pcrud.search('cust', {
         '-or' : [
-            {name:['circ.holds_behind_desk', 'opac.hold_notify', 'opac.default_phone', 'opac.default_pickup_location', 'opac.default_sms_carrier', 'opac.default_sms_notify']}, 
+            {name:['circ.holds_behind_desk', 'opac.hold_notify', 'opac.default_pickup_location', 'opac.default_sms_carrier', 'opac.default_sms_notify']},
             {name : {
                 'in': {
                     select : {atevdef : ['opt_in_setting']}, 
@@ -783,11 +783,11 @@ function uEditDrawSettingRow(tbody, dividerRow, template, stype) {
             break;
         case 'opac.default_sms_notify':
             if(!orgSettings['sms.enable']) return; // Skip when SMS is disabled
-        case 'opac.default_phone':
+        /* case 'opac.default_phone':
             var tb = new dijit.form.TextBox({scrollOnFocus:false}, getByName(row, 'widget'));
             tb.attr('value', userSettings[stype.name()]);
             dojo.connect(tb, 'onChange', function(newVal) { userSettingsToUpdate[stype.name()] = newVal; });
-            break;
+            break; */
         default:
             var cb = new dijit.form.CheckBox({scrollOnFocus:false}, getByName(row, 'widget'));
             cb.attr('value', userSettings[stype.name()]);
