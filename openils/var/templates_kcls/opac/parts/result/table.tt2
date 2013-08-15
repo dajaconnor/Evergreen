@@ -158,7 +158,12 @@
                                                         [% END %]
 
                                                     </table>
-                                                    [% PROCESS "opac/parts/result/copy_counts.tt2" %]
+                                                    <div>
+                                                        [% l('[quant,_1,hold,holds] on first copy returned of [quant,_2,copy,copies]',
+                                                                rec.hold_count, attrs.copy_counts.count) %]
+                                                        <br/>
+                                                        [% l('[quant,_1,copy,copies] available', attrs.copy_counts.available) %]
+                                                    </div>
                                                     [% IF rec.user_circulated %]
                                                     <div class="result_item_circulated">
                                                         <img src="[% ctx.media_prefix %]/images/green_check.png" alt="[% l('Checked Out Before') %]"/>

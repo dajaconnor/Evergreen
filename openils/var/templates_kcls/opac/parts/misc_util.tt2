@@ -376,28 +376,15 @@
         # Extract the copy count summary
         count_type = (ctx.is_staff) ? 'staff' : 'public';
 
-        # Consortial copy count summary first
-        xpath = '//*[local-name()="counts"]/*[local-name()="count"][@type="' _ count_type _ '"]';
-        args.copy_counts = {};
-        FOR node IN xml.findnodes(xpath);
-            FOR attr IN ['count', 'available', 'unshadow', 'transcendant', 'org_unit']; 
-                depth = node.getAttribute('depth');
-                count_org_unit = node.getAttribute('org_unit');
-                args.copy_counts.$depth.$attr = node.getAttribute(attr);
-                args.org_copy_counts.$count_org_unit.$attr = node.getAttribute(attr);
-            END;
-        END;
-
-        # Get preferred library copy count
-        args.plib_copy_counts = {};
-        count_type = 'pref_lib';
-        xpath = '//*[local-name()="counts"]/*[local-name()="count"][@type="' _ count_type _ '"]';
-        FOR node IN xml.findnodes(xpath);
-            FOR attr IN ['count', 'available', 'unshadow', 'transcendant', 'org_unit']; 
-                depth = node.getAttribute('depth');
-                args.plib_copy_counts.$depth.$attr = node.getAttribute(attr);
-            END;
-        END;
+         # Extract the copy count summary
+         count_type = (ctx.is_staff) ? 'staff' : 'public';
+         xpath = '//*[local-name()="counts"]/*[local-name()="count"][@type="' _ count_type _ '"]';
+         FOR node IN xml.findnodes(xpath);
+             args.copy_counts = {};
+             FOR attr IN ['count', 'available', 'unshadow', 'transcendant'];
+                 args.copy_counts.$attr = node.getAttribute(attr);
+             END;
+         END;
 
         # "mattype" == "custom marc format specifier"
         FOR icon_style IN ['mattype', 'item_type']; 
