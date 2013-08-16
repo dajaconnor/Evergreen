@@ -716,6 +716,7 @@ sub toSQL {
 
     my $flat_plan = $self->flatten;
 
+
     # generate the relevance ranking
     my $rel = '1'; # Default to something simple in case rank_list is empty.
     if (@{$$flat_plan{rank_list}}) {
@@ -750,6 +751,10 @@ sub toSQL {
         # is in use.
     } elsif ($$flat_plan{uses_bre}) {
         $bre_join = 'INNER JOIN biblio.record_entry bre ON m.source = bre.id';
+    }
+    my $mlf_join = '';
+    if ($$flat_plan{uses_mlf}) {
+        $mlf_join = 'JOIN metabib.language_filter AS mlf ON m.source = mlf.source';
     }
     
     my $rank = $rel;
@@ -803,6 +808,7 @@ SELECT  $key AS id,
         $$flat_plan{from}
         $mra_join
         $bre_join
+        $mlf_join
   WHERE 1=1
         $flat_where
   GROUP BY 1
@@ -822,6 +828,7 @@ sub flatten {
     my $where = shift || '';
     my $with = '';
     my $uses_bre = 0;
+    my $uses_mlf = 0;
 
     my @rank_list;
     for my $node ( @{$self->query_nodes} ) {
@@ -982,6 +989,7 @@ sub flatten {
                 }
 
                 $uses_bre = $$subnode{uses_bre};
+                $uses_mlf = $$subnode{uses_mlf};
             }
         } else {
 
@@ -996,6 +1004,7 @@ sub flatten {
 
     my $joiner = "\n" . ${spc} x ( $self->plan_level + 5 ) . ($self->joiner eq '&' ? 'AND ' : 'OR ');
     # for each dynamic filter, build more of the WHERE clause
+
     for my $filter (@{$self->filters}) {
         my $NOT = $filter->negate ? 'NOT ' : '';
         if (grep { $_ eq $filter->name } @{ $self->QueryParser->dynamic_filters }) {
@@ -1009,11 +1018,15 @@ sub flatten {
             my @fargs = @{$filter->args};
             my $fname = $filter->name;
             $fname = 'item_lang' if $fname eq 'language'; #XXX filter aliases 
-
-            $where .= sprintf(
-                "${NOT}COALESCE((mrd.attrs->'%s') IN (%s), false)", $fname, 
-                join(',', map { $self->QueryParser->quote_value($_) } @fargs)
-            );
+            if ($fname eq 'item_lang')
+            {
+                $where .= "$NOT( " . 'mlf.value @@ ' . "\'" . join('|', @fargs) . '\'::tsquery)';
+                $uses_mlf = 1;
+            } else {
+                $where .= sprintf(
+                    "${NOT}COALESCE((mrd.attrs->'%s') IN (%s), false)", $fname, 
+                    join(',', map { $self->QueryParser->quote_value($_) } @fargs));
+            }
 
             warn "flatten(): filter where => $where\n"
                 if $self->QueryParser->debug;
@@ -1161,7 +1174,7 @@ sub flatten {
     }
     warn "flatten(): full filter where => $where\n" if $self->QueryParser->debug;
 
-    return { rank_list => \@rank_list, from => $from, where => $where,  with => $with, uses_bre => $uses_bre };
+    return { rank_list => \@rank_list, from => $from, where => $where,  with => $with, uses_bre => $uses_bre, uses_mlf => $uses_mlf};
 }
 
 
