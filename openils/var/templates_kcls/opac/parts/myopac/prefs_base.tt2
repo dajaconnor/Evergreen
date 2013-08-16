@@ -15,6 +15,9 @@
             </div>
             [% END %]
             <div class="align">
+                <a href='prefs_my_lists'><img src="[% ctx.media_prefix %]/images/sub_prefs_my_lists_off.jpg" /></a>
+            </div>
+            <div class="align">
                 <a href='prefs_settings'><img src="[% ctx.media_prefix %]/images/sub_prefs_search_off.jpg" /></a>
             </div>
         [% ELSIF prefs_page == 'notify' %]
@@ -24,8 +27,26 @@
             <div class="align">
                 <a href='#'><img src="[% ctx.media_prefix %]/images/sub_prefs_notify_on.jpg" /></a>
             </div>
+            <div class="align">
+                <a href='prefs_my_lists'><img src="[% ctx.media_prefix %]/images/sub_prefs_my_lists_off.jpg" /></a>
+            </div>
             <div class="align" >
                 <a href='prefs_settings'><img src="[% ctx.media_prefix %]/images/sub_prefs_search_off.jpg" /></a>
+            </div>
+        [% ELSIF prefs_page == 'settings' %]
+            <div class="align">
+                <a href='prefs'><img src="[% ctx.media_prefix %]/images/sub_prefs_info_off.jpg" /></a>
+            </div>
+            [% IF ctx.opt_in_settings.size > 0 %]
+            <div class="align">
+                <a href='prefs_notify'><img src="[% ctx.media_prefix %]/images/sub_prefs_notify_off.jpg" /></a>
+            </div>
+            [% END %]
+            <div class="align">
+                <a href='prefs_my_lists'><img src="[% ctx.media_prefix %]/images/sub_prefs_my_lists_off.jpg" /></a>
+            </div>
+            <div class="align" >
+                <a href='#'><img src="[% ctx.media_prefix %]/images/sub_prefs_search_on.jpg" /></a>
             </div>
         [% ELSE %]
             <div class="align">
@@ -36,8 +57,11 @@
                 <a href='prefs_notify'><img src="[% ctx.media_prefix %]/images/sub_prefs_notify_off.jpg" /></a>
             </div>
             [% END %]
-            <div class="align" >
-                <a href='#'><img src="[% ctx.media_prefix %]/images/sub_prefs_search_on.jpg" /></a>
+            <div class="align">
+                <a href='#'><img src="[% ctx.media_prefix %]/images/sub_prefs_my_lists_on.jpg" /></a>
+            </div>
+            <div class="align">
+                <a href='prefs_settings'><img src="[% ctx.media_prefix %]/images/sub_prefs_search_off.jpg" /></a>
             </div>
         [% END %]
         </div>
