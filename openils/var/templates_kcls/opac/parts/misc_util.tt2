@@ -223,7 +223,7 @@
         FOR sub IN xml.findnodes('//*[@tag="092" or @tag="099"]/*');
             args.marc_cns.push(sub.textContent);
         END;
-        args.marc_cn = (args.marc_cns.size ) ? args.marc_cns.0 : '';
+        args.marc_cn = (args.marc_cns.size ) ? args.marc_cns.join(" ") : 'N/A';
             
 
         # clean up the ISBN
