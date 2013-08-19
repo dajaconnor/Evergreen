@@ -521,7 +521,12 @@ sub biblio_record_marc_cn {
 
         # Find the contents of the specified subfields
         foreach my $x (@node) {
-            my $cn = $x->findvalue("marc:subfield[$subxpath]");
+            my @list = $x->findnodes("marc:subfield[$subxpath]");
+            my $cn;
+            foreach my $c (@list) {
+              $cn .= $c->textContent();
+              $cn .= ' ';
+            }
             push @res, {$tag => $cn} if ($cn);
         }
     }
