@@ -38,6 +38,7 @@ use Digest::MD5 qw(md5_hex);
 use OpenSRF::Utils::Cache;
 my $apputils = "OpenILS::Application::AppUtils";
 my $U = $apputils;
+my $tz = DateTime::TimeZone::Local->TimeZone();
 
 __PACKAGE__->register_method(
     method    => "test_and_create_hold_batch",
@@ -1108,6 +1109,15 @@ sub set_hold_shelf_expire_time {
             " with closed date, pushing expire time to $expire_time");
     }
 
+    $expire_time->truncate( to => 'day');
+    $expire_time->add(days => 1);
+    my $temp_expire_time = $expire_time->clone();
+    $temp_expire_time->set_time_zone($tz);
+    if($temp_expire_time->is_dst()) {
+        $expire_time->set(hour => '06', minute => '59', second => '00');
+    } else {
+        $expire_time->set(hour => '07', minute => '59', second => '00');
+    }
     $hold->shelf_expire_time($expire_time->strftime('%FT%T%z'));
     return undef;
 }
