@@ -1,0 +1,2 @@
+/openils/bin/authority_control_fields.pl --start_id=1 --end_id=100
+/openils/bin/authority_control_fields.pl --start_id=101 --end_id=200

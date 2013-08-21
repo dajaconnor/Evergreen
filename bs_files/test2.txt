@@ -1,0 +1,2434 @@
+Inside doFile
+Filename: /home/kclsdev/Evergreen/BIB.MRC
+Inside doBibs
+start while in doBibs
+
+id = 146
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f75880)
+str = 2013-08-16T14:41:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3565ac8) record = MARC::Record=HASH(0x3f75010) needImport = 0 
+Keep 146
+
+id = 8
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b170)
+str = 2013-08-19T16:50:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 78
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7bbf0)
+str = 2013-08-16T14:40:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e298) record = MARC::Record=HASH(0x3f7b248) needImport = 0 
+Keep 78
+
+id = 67
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f84798)
+str = 2013-08-20T09:41:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 138
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f83bf8)
+str = 2013-08-16T14:41:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x35659c0) record = MARC::Record=HASH(0x3f847e0) needImport = 0 
+Keep 138
+
+id = 56
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f841c8)
+str = 2013-08-16T14:40:36-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x35f25c8) record = MARC::Record=HASH(0x3f84690) needImport = 0 
+Keep 56
+
+id = 176
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f755e0)
+str = 2013-08-16T14:41:39-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e400) record = MARC::Record=HASH(0x3f75a90) needImport = 0 
+Keep 176
+
+id = 166
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f755f8)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e418) record = MARC::Record=HASH(0x3744cd8) needImport = 0 
+Keep 166
+
+id = 46
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f75718)
+str = 2013-08-20T09:41:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 134
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b530)
+str = 2013-08-16T14:41:18-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e4d8) record = MARC::Record=HASH(0x3f67b08) needImport = 0 
+Keep 134
+
+id = 48
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97528)
+str = 2013-08-16T14:40:32-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e550) record = MARC::Record=HASH(0x3f7b1d0) needImport = 0 
+Keep 48
+
+id = 116
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b9b0)
+str = 2013-08-16T14:41:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e580) record = MARC::Record=HASH(0x3f74f08) needImport = 0 
+Keep 116
+
+id = 181
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b8c0)
+str = 2013-08-16T14:41:41-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e928) record = MARC::Record=HASH(0x3f74ed8) needImport = 0 
+Keep 181
+
+id = 180
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3a80ee8)
+str = 2013-08-20T09:41:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 188
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3744ee8)
+str = 2013-08-20T09:42:21-07
+export_date = 2013-08-17T00:00:00
+
+id = 187
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f86468)
+str = 2013-08-20T15:24:04-07
+export_date = 2013-08-17T00:00:00
+
+id = 45
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7afa8)
+str = 2013-08-20T09:42:22-07
+export_date = 2013-08-17T00:00:00
+
+id = 186
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b620)
+str = 2013-08-16T14:41:44-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371eb20) record = MARC::Record=HASH(0x35e7798) needImport = 0 
+Keep 186
+
+id = 44
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f978a0)
+str = 2013-08-20T09:42:22-07
+export_date = 2013-08-17T00:00:00
+
+id = 82
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97ca8)
+str = 2013-08-16T14:40:50-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371ef70) record = MARC::Record=HASH(0x3f7bbc0) needImport = 0 
+Keep 82
+
+id = 142
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f67970)
+str = 2013-08-16T14:41:22-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37425a0) record = MARC::Record=HASH(0x3f845d0) needImport = 0 
+Keep 142
+
+id = 16
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3744cd8)
+str = 2013-08-20T09:42:22-07
+export_date = 2013-08-17T00:00:00
+
+id = 174
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f84138)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371ef88) record = MARC::Record=HASH(0x35ec7a8) needImport = 0 
+Keep 174
+
+id = 77
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f83f70)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3742648) record = MARC::Record=HASH(0x3a80f78) needImport = 0 
+Keep 77
+
+id = 189
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f85d00)
+str = 2013-08-20T09:42:23-07
+export_date = 2013-08-17T00:00:00
+
+id = 13
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f84000)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744378) record = MARC::Record=HASH(0x3f97d38) needImport = 0 
+Keep 13
+
+id = 196
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b110)
+str = 2013-08-20T09:42:23-07
+export_date = 2013-08-17T00:00:00
+
+id = 185
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f977c8)
+str = 2013-08-16T14:41:43-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37426f0) record = MARC::Record=HASH(0x3f84618) needImport = 0 
+Keep 185
+
+id = 167
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x371e928)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37445e8) record = MARC::Record=HASH(0x3f7ba10) needImport = 0 
+Keep 167
+
+id = 120
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3a80f90)
+str = 2013-08-20T09:42:23-07
+export_date = 2013-08-17T00:00:00
+
+id = 17
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7adc8)
+str = 2013-08-20T09:42:24-07
+export_date = 2013-08-17T00:00:00
+
+id = 178
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f843c0)
+str = 2013-08-16T14:41:40-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37447c8) record = MARC::Record=HASH(0x3f67b08) needImport = 0 
+Keep 178
+
+id = 130
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f74e90)
+str = 2013-08-16T14:41:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3742750) record = MARC::Record=HASH(0x3f7af78) needImport = 0 
+Keep 130
+
+id = 193
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b560)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744690) record = MARC::Record=HASH(0x3f7b008) needImport = 0 
+Keep 193
+
+id = 101
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b578)
+str = 2013-08-16T14:41:01-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3a80c90) record = MARC::Record=HASH(0x3f86888) needImport = 0 
+Keep 101
+
+id = 195
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f74f08)
+str = 2013-08-16T14:41:49-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3742660) record = MARC::Record=HASH(0x3f7b428) needImport = 0 
+Keep 195
+
+id = 190
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f84a98)
+str = 2013-08-20T09:42:24-07
+export_date = 2013-08-17T00:00:00
+
+id = 54
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f67bf8)
+str = 2013-08-16T14:40:35-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744438) record = MARC::Record=HASH(0x3f7bad0) needImport = 0 
+Keep 54
+
+id = 47
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3a80c78)
+str = 2013-08-20T09:42:25-07
+export_date = 2013-08-17T00:00:00
+
+id = 148
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f83e50)
+str = 2013-08-16T14:41:25-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744c90) record = MARC::Record=HASH(0x3a812c0) needImport = 0 
+Keep 148
+
+id = 175
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f840a8)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3a811a0) record = MARC::Record=HASH(0x3f84408) needImport = 0 
+Keep 175
+
+id = 28
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f86930)
+str = 2013-08-16T14:40:23-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744768) record = MARC::Record=HASH(0x3f7bbd8) needImport = 0 
+Keep 28
+
+id = 36
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f677d8)
+str = 2013-08-20T09:42:25-07
+export_date = 2013-08-17T00:00:00
+
+id = 15
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97af8)
+str = 2013-08-20T09:42:25-07
+export_date = 2013-08-17T00:00:00
+
+id = 125
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97198)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37449c0) record = MARC::Record=HASH(0x3f753b8) needImport = 0 
+Keep 125
+
+id = 151
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f86018)
+str = 2013-08-16T14:41:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744d80) record = MARC::Record=HASH(0x3f86570) needImport = 0 
+Keep 151
+
+id = 4
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f755b0)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37446a8) record = MARC::Record=HASH(0x3f86a20) needImport = 0 
+Keep 4
+
+id = 30
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x35e1b00)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744c60) record = MARC::Record=HASH(0x3f77a38) needImport = 0 
+Keep 30
+
+id = 119
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7ae40)
+str = 2013-08-20T09:42:26-07
+export_date = 2013-08-17T00:00:00
+
+id = 153
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b3e0)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744ba0) record = MARC::Record=HASH(0x3f83be0) needImport = 0 
+Keep 153
+
+id = 200
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f83d48)
+str = 2013-08-16T14:41:51-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744420) record = MARC::Record=HASH(0x3f868a0) needImport = 0 
+Keep 200
+
+id = 73
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97408)
+str = 2013-08-16T14:40:45-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744cc0) record = MARC::Record=HASH(0x3f85c88) needImport = 0 
+Keep 73
+
+id = 40
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97900)
+str = 2013-08-20T09:42:26-07
+export_date = 2013-08-17T00:00:00
+
+id = 53
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b6b0)
+str = 2013-08-20T09:42:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 62
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7aeb8)
+str = 2013-08-20T09:42:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 123
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77738)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37446c0) record = MARC::Record=HASH(0x3f84048) needImport = 0 
+Keep 123
+
+id = 23
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7bae8)
+str = 2013-08-16T14:40:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37448e8) record = MARC::Record=HASH(0x3f67778) needImport = 0 
+Keep 23
+
+id = 20
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f756e8)
+str = 2013-08-20T09:42:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 25
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f862b8)
+str = 2013-08-20T09:42:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 58
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f67808)
+str = 2013-08-16T14:40:37-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744f48) record = MARC::Record=HASH(0x3f77948) needImport = 0 
+Keep 58
+
+id = 1
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77918)
+str = 2013-08-16T14:40:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744e10) record = MARC::Record=HASH(0x3f7b938) needImport = 0 
+Keep 1
+
+id = 26
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f86258)
+str = 2013-08-20T09:42:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 60
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3744f18)
+str = 2013-08-20T09:42:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 165
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f974e0)
+str = 2013-08-16T14:41:33-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744eb8) record = MARC::Record=HASH(0x3f868b8) needImport = 0 
+Keep 165
+
+id = 21
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f75928)
+str = 2013-08-16T14:40:19-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371ebb0) record = MARC::Record=HASH(0x37444c8) needImport = 0 
+Keep 21
+
+id = 152
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3744948)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f75850) record = MARC::Record=HASH(0x3f7ba40) needImport = 0 
+Keep 152
+
+id = 75
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77780)
+str = 2013-08-16T14:40:46-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744b58) record = MARC::Record=HASH(0x3a80d68) needImport = 0 
+Keep 75
+
+id = 124
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f84918)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3745230) record = MARC::Record=HASH(0x3f7b0e0) needImport = 0 
+Keep 124
+
+id = 5
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f866a8)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744618) record = MARC::Record=HASH(0x3f778e8) needImport = 0 
+Keep 5
+
+id = 197
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b950)
+str = 2013-08-20T09:42:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 114
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f83b98)
+str = 2013-08-16T14:41:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f674d8) record = MARC::Record=HASH(0x3f75988) needImport = 0 
+Keep 114
+
+id = 43
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f85eb0)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744498) record = MARC::Record=HASH(0x3f7b5a8) needImport = 0 
+Keep 43
+
+id = 191
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f86480)
+str = 2013-08-16T14:41:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e9e8) record = MARC::Record=HASH(0x3f86210) needImport = 0 
+Keep 191
+
+id = 156
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b620)
+str = 2013-08-16T14:41:29-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744d38) record = MARC::Record=HASH(0x3744798) needImport = 0 
+Keep 156
+
+id = 11
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3744330)
+str = 2013-08-20T09:42:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 126
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97768)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f841e0) record = MARC::Record=HASH(0x3f75640) needImport = 0 
+Keep 126
+
+id = 194
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97fc0)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37447e0) record = MARC::Record=HASH(0x3f77a50) needImport = 0 
+Keep 194
+
+id = 39
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3744c78)
+str = 2013-08-20T09:42:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 3
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7bc38)
+str = 2013-08-16T14:40:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744b28) record = MARC::Record=HASH(0x3a81038) needImport = 0 
+Keep 3
+
+id = 61
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97480)
+str = 2013-08-20T09:42:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 87
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f753d0)
+str = 2013-08-20T09:42:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 14
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3a81080)
+str = 2013-08-16T14:40:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744510) record = MARC::Record=HASH(0x3f67778) needImport = 0 
+Keep 14
+
+id = 66
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77ae0)
+str = 2013-08-20T09:42:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 89
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f84600)
+str = 2013-08-16T14:40:54-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f975a0) record = MARC::Record=HASH(0x3f75988) needImport = 0 
+Keep 89
+
+id = 50
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f84960)
+str = 2013-08-20T09:42:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 154
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f778a0)
+str = 2013-08-16T14:41:28-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37444b0) record = MARC::Record=HASH(0x3f85eb0) needImport = 0 
+Keep 154
+
+id = 57
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f970f0)
+str = 2013-08-20T09:42:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 51
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97bd0)
+str = 2013-08-16T14:40:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3741b08) record = MARC::Record=HASH(0x3f7af60) needImport = 0 
+Keep 51
+
+id = 31
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x37444b0)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f7b338) record = MARC::Record=HASH(0x3f86bd0) needImport = 0 
+Keep 31
+
+id = 35
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f86270)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37445a0) record = MARC::Record=HASH(0x3742708) needImport = 0 
+Keep 35
+
+id = 65
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3744d20)
+str = 2013-08-20T09:42:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 76
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77a08)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x371e298) record = MARC::Record=HASH(0x3f97ac8) needImport = 0 
+Keep 76
+
+id = 69
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x371efa0)
+str = 2013-08-20T09:42:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 37
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b668)
+str = 2013-08-20T09:42:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 85
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77a20)
+str = 2013-08-20T09:42:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 173
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97348)
+str = 2013-08-20T09:42:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 34
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77948)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x37445b8) record = MARC::Record=HASH(0x3f97c60) needImport = 0 
+Keep 34
+
+id = 81
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f85e68)
+str = 2013-08-20T09:42:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 12
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f97828)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744918) record = MARC::Record=HASH(0x3f866a8) needImport = 0 
+Keep 12
+
+id = 42
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7ae10)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3745128) record = MARC::Record=HASH(0x37447b0) needImport = 0 
+Keep 42
+Inside doFile
+Filename: /home/kclsdev/Evergreen/AUTH.MRC
+Inside doAuths
+Updating auth: 1
+Updating auth: 2
+Updating auth: 3
+Updating auth: 4
+Updating auth: 5
+Updating auth: 6
+Updating auth: 7
+Updating auth: 8
+Updating auth: 9
+Updating auth: 10
+Updating auth: 11
+Updating auth: 12
+Updating auth: 13
+Updating auth: 14
+Updating auth: 15
+Updating auth: 16
+Updating auth: 17
+Updating auth: 18
+Updating auth: 19
+Updating auth: 20
+Updating auth: 21
+Updating auth: 22
+Updating auth: 23
+Updating auth: 24
+Updating auth: 25
+Updating auth: 26
+Updating auth: 27
+Updating auth: 28
+Updating auth: 29
+Updating auth: 30
+Updating auth: 31
+Updating auth: 32
+Updating auth: 33
+Updating auth: 34
+Updating auth: 35
+Updating auth: 36
+Updating auth: 37
+Updating auth: 38
+Updating auth: 39
+Updating auth: 40
+Updating auth: 41
+Updating auth: 42
+Updating auth: 43
+Updating auth: 44
+Updating auth: 45
+Updating auth: 46
+Updating auth: 47
+Updating auth: 48
+Updating auth: 49
+Updating auth: 50
+Updating auth: 51
+Updating auth: 52
+Updating auth: 53
+Updating auth: 54
+Updating auth: 55
+Updating auth: 56
+Updating auth: 57
+Updating auth: 58
+Updating auth: 59
+Updating auth: 60
+Updating auth: 61
+Updating auth: 62
+Updating auth: 63
+Updating auth: 64
+Updating auth: 65
+Updating auth: 66
+Updating auth: 67
+Updating auth: 68
+Updating auth: 69
+Updating auth: 70
+Updating auth: 71
+Updating auth: 72
+Updating auth: 73
+Updating auth: 74
+Updating auth: 75
+Updating auth: 76
+Updating auth: 77
+Updating auth: 78
+Updating auth: 79
+Updating auth: 80
+Updating auth: 81
+Updating auth: 82
+Updating auth: 83
+Updating auth: 84
+Updating auth: 85
+Updating auth: 86
+Updating auth: 87
+Updating auth: 88
+Updating auth: 89
+Updating auth: 90
+Updating auth: 91
+Updating auth: 92
+Updating auth: 93
+Updating auth: 94
+Updating auth: 95
+Updating auth: 96
+Updating auth: 97
+Updating auth: 98
+Updating auth: 99
+Updating auth: 100
+Updating auth: 101
+Updating auth: 102
+Updating auth: 103
+Updating auth: 104
+Updating auth: 105
+Updating auth: 106
+Updating auth: 107
+Updating auth: 108
+Updating auth: 109
+Updating auth: 110
+Updating auth: 111
+Updating auth: 112
+Updating auth: 113
+Updating auth: 114
+Updating auth: 115
+Updating auth: 116
+Updating auth: 117
+Updating auth: 118
+Updating auth: 119
+Updating auth: 120
+Updating auth: 121
+Updating auth: 122
+Updating auth: 123
+Updating auth: 124
+Updating auth: 125
+Updating auth: 126
+Updating auth: 127
+Updating auth: 128
+Updating auth: 129
+Updating auth: 130
+Updating auth: 131
+Updating auth: 132
+Updating auth: 133
+Updating auth: 134
+Updating auth: 135
+Updating auth: 136
+Updating auth: 137
+Updating auth: 138
+Updating auth: 139
+Updating auth: 140
+Updating auth: 141
+Updating auth: 142
+Updating auth: 143
+Updating auth: 144
+Updating auth: 145
+Updating auth: 146
+Updating auth: 147
+Updating auth: 148
+Updating auth: 149
+Updating auth: 150
+Updating auth: 151
+Updating auth: 152
+Updating auth: 153
+Updating auth: 154
+Updating auth: 155
+Updating auth: 156
+Updating auth: 157
+Updating auth: 158
+Updating auth: 159
+Updating auth: 160
+Updating auth: 161
+Updating auth: 162
+Updating auth: 163
+Updating auth: 164
+Updating auth: 165
+Updating auth: 166
+Updating auth: 167
+Updating auth: 168
+Updating auth: 169
+Updating auth: 170
+Updating auth: 171
+Updating auth: 172
+Updating auth: 173
+Updating auth: 174
+Updating auth: 175
+Updating auth: 176
+Updating auth: 177
+Updating auth: 178
+Updating auth: 179
+Updating auth: 180
+Updating auth: 181
+Updating auth: 182
+Updating auth: 183
+Updating auth: 184
+Updating auth: 185
+Updating auth: 186
+Updating auth: 187
+Updating auth: 188
+Updating auth: 189
+Updating auth: 190
+Updating auth: 191
+Updating auth: 192
+Updating auth: 193
+Updating auth: 194
+Updating auth: 195
+Updating auth: 196
+Updating auth: 197
+Updating auth: 198
+Updating auth: 199
+Updating auth: 200
+Updating auth: 201
+Updating auth: 202
+Updating auth: 203
+Updating auth: 204
+Updating auth: 205
+Updating auth: 206
+Updating auth: 207
+Updating auth: 208
+Updating auth: 209
+Updating auth: 210
+Updating auth: 211
+Updating auth: 212
+Updating auth: 213
+Updating auth: 214
+Updating auth: 215
+Updating auth: 216
+Updating auth: 217
+Updating auth: 218
+Updating auth: 219
+Updating auth: 220
+Updating auth: 221
+Updating auth: 222
+Updating auth: 223
+Updating auth: 224
+Updating auth: 225
+Updating auth: 226
+Updating auth: 227
+Updating auth: 228
+Updating auth: 229
+Updating auth: 230
+Updating auth: 231
+Updating auth: 232
+Updating auth: 233
+Updating auth: 234
+Updating auth: 235
+Updating auth: 236
+Updating auth: 237
+Updating auth: 238
+Updating auth: 239
+Updating auth: 240
+Updating auth: 241
+Updating auth: 242
+Updating auth: 243
+Updating auth: 244
+Updating auth: 245
+Updating auth: 246
+Updating auth: 247
+Updating auth: 248
+Updating auth: 249
+Updating auth: 250
+Updating auth: 251
+Updating auth: 252
+Updating auth: 253
+Updating auth: 254
+Updating auth: 255
+Updating auth: 256
+Updating auth: 257
+Updating auth: 258
+Updating auth: 259
+Updating auth: 260
+Updating auth: 261
+Updating auth: 262
+Updating auth: 263
+Updating auth: 264
+Updating auth: 265
+Updating auth: 266
+Updating auth: 267
+Updating auth: 268
+Updating auth: 269
+Updating auth: 270
+Updating auth: 271
+Updating auth: 272
+Updating auth: 273
+Updating auth: 274
+Updating auth: 275
+Updating auth: 276
+Updating auth: 277
+Updating auth: 278
+Updating auth: 279
+Updating auth: 280
+Updating auth: 281
+Updating auth: 282
+Updating auth: 283
+Updating auth: 284
+Updating auth: 285
+Updating auth: 286
+Updating auth: 287
+Updating auth: 288
+Updating auth: 289
+Updating auth: 290
+Updating auth: 291
+Updating auth: 292
+Updating auth: 293
+Updating auth: 294
+Updating auth: 295
+Updating auth: 296
+Updating auth: 297
+Updating auth: 298
+Updating auth: 299
+Updating auth: 300
+Updating auth: 301
+Updating auth: 302
+Updating auth: 303
+Updating auth: 304
+Updating auth: 305
+Updating auth: 306
+Updating auth: 307
+Updating auth: 308
+Updating auth: 309
+Updating auth: 310
+Updating auth: 311
+Updating auth: 312
+Updating auth: 313
+Updating auth: 314
+Updating auth: 315
+Updating auth: 316
+Updating auth: 317
+Updating auth: 318
+Updating auth: 319
+Updating auth: 320
+Updating auth: 321
+Updating auth: 322
+Updating auth: 323
+Updating auth: 324
+Updating auth: 325
+Updating auth: 326
+Updating auth: 327
+Updating auth: 328
+Updating auth: 329
+Updating auth: 330
+Updating auth: 331
+Updating auth: 332
+Updating auth: 333
+Updating auth: 334
+Updating auth: 335
+Updating auth: 336
+Updating auth: 337
+Updating auth: 338
+Updating auth: 339
+Updating auth: 340
+Updating auth: 341
+Updating auth: 342
+Updating auth: 343
+Updating auth: 344
+Updating auth: 345
+Updating auth: 346
+Updating auth: 347
+Updating auth: 348
+Updating auth: 349
+Updating auth: 350
+Updating auth: 351
+Updating auth: 352
+Updating auth: 353
+Updating auth: 354
+Updating auth: 355
+Updating auth: 356
+Updating auth: 357
+Updating auth: 358
+Updating auth: 359
+Updating auth: 360
+Updating auth: 361
+Updating auth: 362
+Updating auth: 363
+Updating auth: 364
+Updating auth: 365
+Updating auth: 366
+Updating auth: 367
+Updating auth: 368
+Updating auth: 369
+Updating auth: 370
+Updating auth: 371
+Updating auth: 372
+Updating auth: 373
+Updating auth: 374
+Updating auth: 375
+Updating auth: 376
+Updating auth: 377
+Updating auth: 378
+Updating auth: 379
+Updating auth: 380
+Updating auth: 381
+Updating auth: 382
+Updating auth: 383
+Updating auth: 384
+Updating auth: 385
+Updating auth: 386
+Updating auth: 387
+Updating auth: 388
+Updating auth: 389
+Updating auth: 390
+Updating auth: 391
+Updating auth: 392
+Updating auth: 393
+Updating auth: 394
+Updating auth: 395
+Updating auth: 396
+Updating auth: 397
+Updating auth: 398
+Updating auth: 399
+Updating auth: 400
+Updating auth: 401
+Updating auth: 402
+Updating auth: 403
+Updating auth: 404
+Updating auth: 405
+Updating auth: 406
+Updating auth: 407
+Updating auth: 408
+Updating auth: 409
+Updating auth: 410
+Updating auth: 411
+Updating auth: 412
+Updating auth: 413
+Updating auth: 414
+Updating auth: 415
+Updating auth: 416
+Updating auth: 417
+Updating auth: 418
+Updating auth: 419
+Updating auth: 420
+Updating auth: 421
+Updating auth: 422
+Updating auth: 423
+Updating auth: 424
+Updating auth: 425
+Updating auth: 426
+Updating auth: 427
+Updating auth: 428
+Updating auth: 429
+Updating auth: 430
+Updating auth: 431
+Updating auth: 432
+Updating auth: 433
+Updating auth: 434
+Updating auth: 435
+Updating auth: 436
+Updating auth: 437
+Updating auth: 438
+Updating auth: 439
+Updating auth: 440
+Updating auth: 441
+Updating auth: 442
+Updating auth: 443
+Updating auth: 444
+Updating auth: 445
+Updating auth: 446
+Updating auth: 447
+Updating auth: 448
+Updating auth: 449
+Updating auth: 450
+Updating auth: 451
+Updating auth: 452
+Updating auth: 453
+Updating auth: 454
+Updating auth: 455
+Updating auth: 456
+Updating auth: 457
+Updating auth: 458
+Updating auth: 459
+Updating auth: 460
+Updating auth: 461
+Updating auth: 462
+Updating auth: 463
+Updating auth: 464
+Updating auth: 465
+Updating auth: 466
+Updating auth: 467
+Updating auth: 468
+Updating auth: 469
+Updating auth: 470
+Updating auth: 471
+Updating auth: 472
+Updating auth: 473
+Updating auth: 474
+Updating auth: 475
+Updating auth: 476
+Updating auth: 477
+Updating auth: 478
+Updating auth: 479
+Updating auth: 480
+Updating auth: 481
+Updating auth: 482
+Updating auth: 483
+Updating auth: 484
+Updating auth: 485
+Updating auth: 486
+Updating auth: 487
+Updating auth: 488
+Updating auth: 489
+Updating auth: 490
+Updating auth: 491
+Updating auth: 492
+Updating auth: 493
+Updating auth: 494
+Updating auth: 495
+Updating auth: 496
+Updating auth: 497
+Updating auth: 498
+Updating auth: 499
+Updating auth: 500
+Updating auth: 501
+Updating auth: 502
+Updating auth: 503
+Updating auth: 504
+Updating auth: 505
+Updating auth: 506
+Updating auth: 507
+Updating auth: 508
+Updating auth: 509
+Updating auth: 510
+Updating auth: 511
+Updating auth: 512
+Updating auth: 513
+Updating auth: 514
+Updating auth: 515
+Updating auth: 516
+Updating auth: 517
+Updating auth: 518
+Updating auth: 519
+Updating auth: 520
+Updating auth: 521
+Updating auth: 522
+Updating auth: 523
+Updating auth: 524
+Updating auth: 525
+Updating auth: 526
+Updating auth: 527
+Updating auth: 528
+Updating auth: 529
+Updating auth: 530
+Updating auth: 531
+Updating auth: 532
+Updating auth: 533
+Updating auth: 534
+Updating auth: 535
+Updating auth: 536
+Updating auth: 537
+Updating auth: 538
+Updating auth: 539
+Updating auth: 540
+Updating auth: 541
+Updating auth: 542
+Updating auth: 543
+Updating auth: 544
+Updating auth: 545
+Updating auth: 546
+Updating auth: 547
+Updating auth: 548
+Updating auth: 549
+Updating auth: 550
+Updating auth: 551
+Updating auth: 552
+Updating auth: 553
+Updating auth: 554
+Updating auth: 555
+Updating auth: 556
+Updating auth: 557
+Updating auth: 558
+Updating auth: 559
+Updating auth: 560
+Updating auth: 561
+Updating auth: 562
+Updating auth: 563
+Updating auth: 564
+Updating auth: 565
+Updating auth: 566
+Updating auth: 567
+Updating auth: 568
+Updating auth: 569
+Updating auth: 570
+Updating auth: 571
+Updating auth: 572
+Updating auth: 573
+Updating auth: 574
+Updating auth: 575
+Updating auth: 576
+Updating auth: 577
+Updating auth: 578
+Updating auth: 579
+Updating auth: 580
+Updating auth: 581
+Updating auth: 582
+Updating auth: 583
+Updating auth: 584
+Updating auth: 585
+Updating auth: 586
+Updating auth: 587
+Updating auth: 588
+Updating auth: 589
+Updating auth: 590
+Updating auth: 591
+Updating auth: 592
+Updating auth: 593
+Updating auth: 594
+Updating auth: 595
+Updating auth: 596
+Updating auth: 597
+Updating auth: 598
+Updating auth: 599
+Updating auth: 600
+Updating auth: 601
+Updating auth: 602
+Updating auth: 603
+Updating auth: 604
+Updating auth: 605
+Updating auth: 606
+Updating auth: 607
+Updating auth: 608
+Updating auth: 609
+Updating auth: 610
+Updating auth: 611
+Updating auth: 612
+Updating auth: 613
+Updating auth: 614
+Updating auth: 615
+Updating auth: 616
+Updating auth: 617
+Updating auth: 618
+Updating auth: 619
+Updating auth: 620
+Updating auth: 621
+Updating auth: 622
+Updating auth: 623
+Updating auth: 624
+Updating auth: 625
+Updating auth: 626
+Updating auth: 627
+Updating auth: 628
+Updating auth: 629
+Updating auth: 630
+Updating auth: 631
+Updating auth: 632
+Updating auth: 633
+Updating auth: 634
+Updating auth: 635
+Updating auth: 636
+Updating auth: 637
+Updating auth: 638
+Updating auth: 639
+Updating auth: 640
+Updating auth: 641
+Updating auth: 642
+Updating auth: 643
+Updating auth: 644
+Updating auth: 645
+Updating auth: 646
+Updating auth: 647
+Updating auth: 648
+Updating auth: 649
+Updating auth: 650
+Updating auth: 651
+Updating auth: 652
+Updating auth: 653
+Updating auth: 654
+Updating auth: 655
+Updating auth: 656
+Updating auth: 657
+Updating auth: 658
+Updating auth: 659
+Updating auth: 660
+Updating auth: 661
+Updating auth: 662
+Updating auth: 663
+Updating auth: 664
+Updating auth: 665
+Updating auth: 666
+Updating auth: 667
+Updating auth: 668
+Updating auth: 669
+Updating auth: 670
+Updating auth: 671
+Updating auth: 672
+Updating auth: 673
+Updating auth: 674
+Updating auth: 675
+Updating auth: 676
+Updating auth: 677
+Updating auth: 678
+Updating auth: 679
+Updating auth: 680
+Updating auth: 681
+Updating auth: 682
+Updating auth: 683
+Updating auth: 684
+Updating auth: 685
+Updating auth: 686
+Updating auth: 687
+Updating auth: 688
+Updating auth: 689
+Updating auth: 690
+Updating auth: 691
+Updating auth: 692
+Updating auth: 693
+Updating auth: 694
+Updating auth: 695
+Updating auth: 696
+Updating auth: 697
+Updating auth: 698
+Updating auth: 699
+Updating auth: 700
+Updating auth: 701
+Updating auth: 702
+Updating auth: 703
+Updating auth: 704
+Updating auth: 705
+Updating auth: 706
+Updating auth: 707
+Updating auth: 708
+Updating auth: 709
+Updating auth: 710
+Updating auth: 711
+Updating auth: 712
+Updating auth: 713
+Updating auth: 714
+Updating auth: 715
+Updating auth: 716
+Updating auth: 717
+Updating auth: 718
+Updating auth: 719
+Updating auth: 720
+Updating auth: 721
+Updating auth: 722
+Updating auth: 723
+Updating auth: 724
+Updating auth: 725
+Updating auth: 726
+Updating auth: 727
+Updating auth: 728
+Updating auth: 729
+Updating auth: 730
+Updating auth: 731
+Updating auth: 732
+Updating auth: 733
+Updating auth: 734
+Updating auth: 735
+Updating auth: 736
+Updating auth: 737
+Updating auth: 738
+Updating auth: 739
+Updating auth: 740
+Updating auth: 741
+Updating auth: 742
+Updating auth: 743
+Updating auth: 744
+Updating auth: 745
+Updating auth: 746
+Updating auth: 747
+Updating auth: 748
+Updating auth: 749
+Updating auth: 750
+Updating auth: 751
+Updating auth: 752
+Updating auth: 753
+Updating auth: 754
+Updating auth: 755
+Updating auth: 756
+Updating auth: 757
+Updating auth: 758
+Updating auth: 759
+Updating auth: 760
+Updating auth: 761
+Updating auth: 762
+Updating auth: 763
+Updating auth: 764
+Updating auth: 765
+Updating auth: 766
+Updating auth: 767
+Updating auth: 768
+Updating auth: 769
+Updating auth: 770
+Updating auth: 771
+Updating auth: 772
+Updating auth: 773
+Updating auth: 774
+Updating auth: 775
+Updating auth: 776
+Updating auth: 777
+Updating auth: 778
+Updating auth: 779
+Updating auth: 780
+Updating auth: 781
+Updating auth: 782
+Updating auth: 783
+Updating auth: 784
+Updating auth: 785
+Updating auth: 786
+Updating auth: 787
+Updating auth: 788
+Updating auth: 789
+Updating auth: 790
+Updating auth: 791
+Updating auth: 792
+Updating auth: 793
+Updating auth: 794
+Updating auth: 795
+Updating auth: 796
+Updating auth: 797
+Updating auth: 798
+Updating auth: 799
+Updating auth: 800
+Updating auth: 801
+Updating auth: 802
+Updating auth: 803
+Updating auth: 804
+Updating auth: 805
+Updating auth: 806
+Updating auth: 807
+Updating auth: 808
+Updating auth: 809
+Updating auth: 810
+Updating auth: 811
+Updating auth: 812
+Updating auth: 813
+Updating auth: 814
+Updating auth: 815
+Updating auth: 816
+Updating auth: 817
+Updating auth: 818
+Updating auth: 819
+Updating auth: 820
+Updating auth: 821
+Updating auth: 822
+Updating auth: 823
+Updating auth: 824
+Updating auth: 825
+Updating auth: 826
+Updating auth: 827
+Updating auth: 828
+Updating auth: 829
+Updating auth: 830
+Updating auth: 831
+Updating auth: 832
+Updating auth: 833
+Updating auth: 834
+Updating auth: 835
+Updating auth: 836
+Updating auth: 837
+Updating auth: 838
+Updating auth: 839
+Updating auth: 840
+Updating auth: 841
+Updating auth: 842
+Updating auth: 843
+Updating auth: 844
+Updating auth: 845
+Updating auth: 846
+Updating auth: 847
+Updating auth: 848
+Updating auth: 849
+Updating auth: 850
+Updating auth: 851
+Updating auth: 852
+Updating auth: 853
+Updating auth: 854
+Updating auth: 855
+Updating auth: 856
+Updating auth: 857
+Updating auth: 858
+Updating auth: 859
+Updating auth: 860
+Updating auth: 861
+Updating auth: 862
+Updating auth: 863
+Updating auth: 864
+Updating auth: 865
+Updating auth: 866
+Updating auth: 867
+Updating auth: 868
+Updating auth: 869
+Updating auth: 870
+Updating auth: 871
+Updating auth: 872
+Updating auth: 873
+Updating auth: 874
+Updating auth: 875
+Updating auth: 876
+Updating auth: 877
+Updating auth: 878
+Updating auth: 879
+Updating auth: 880
+Updating auth: 881
+Updating auth: 882
+Updating auth: 883
+Updating auth: 884
+Updating auth: 885
+Updating auth: 886
+Updating auth: 887
+Updating auth: 888
+Updating auth: 889
+Updating auth: 890
+Updating auth: 891
+Updating auth: 892
+Updating auth: 893
+Updating auth: 894
+Updating auth: 895
+Updating auth: 896
+Updating auth: 897
+Updating auth: 898
+Updating auth: 899
+Updating auth: 900
+Updating auth: 901
+Updating auth: 902
+Updating auth: 903
+Updating auth: 904
+Updating auth: 905
+Updating auth: 906
+Updating auth: 907
+Updating auth: 908
+Updating auth: 909
+Updating auth: 910
+Updating auth: 911
+Updating auth: 912
+Updating auth: 913
+Updating auth: 914
+Updating auth: 915
+Updating auth: 916
+Updating auth: 917
+Updating auth: 918
+Updating auth: 919
+Updating auth: 920
+Updating auth: 921
+Updating auth: 922
+Updating auth: 923
+Updating auth: 924
+Updating auth: 925
+Updating auth: 926
+Updating auth: 927
+Updating auth: 928
+Updating auth: 929
+Updating auth: 930
+Updating auth: 931
+Updating auth: 932
+Updating auth: 933
+Updating auth: 934
+Updating auth: 935
+Updating auth: 936
+Updating auth: 937
+Updating auth: 938
+Updating auth: 939
+Updating auth: 940
+Updating auth: 941
+Updating auth: 942
+Updating auth: 943
+Updating auth: 944
+Updating auth: 945
+Updating auth: 946
+Updating auth: 947
+Updating auth: 948
+Updating auth: 949
+Updating auth: 950
+Updating auth: 951
+Updating auth: 952
+Updating auth: 953
+Updating auth: 954
+Updating auth: 955
+Updating auth: 956
+Updating auth: 957
+Updating auth: 958
+Updating auth: 959
+Updating auth: 960
+Updating auth: 961
+Updating auth: 962
+Updating auth: 963
+Updating auth: 964
+Updating auth: 965
+Updating auth: 966
+Updating auth: 967
+Updating auth: 968
+Updating auth: 969
+Updating auth: 970
+Updating auth: 971
+Updating auth: 972
+Updating auth: 973
+Updating auth: 974
+Updating auth: 975
+Updating auth: 976
+Updating auth: 977
+Updating auth: 978
+Updating auth: 979
+Updating auth: 980
+Updating auth: 981
+Updating auth: 982
+Updating auth: 983
+Updating auth: 984
+Updating auth: 985
+Updating auth: 986
+Updating auth: 987
+Updating auth: 988
+Updating auth: 989
+Updating auth: 990
+Updating auth: 991
+Updating auth: 992
+Updating auth: 993
+Updating auth: 994
+Updating auth: 995
+Updating auth: 996
+Updating auth: 997
+Updating auth: 998
+Updating auth: 999
+Updating auth: 1000
+Updating auth: 1001
+Updating auth: 1002
+Updating auth: 1003
+Updating auth: 1004
+Updating auth: 1005
+Updating auth: 1006
+Updating auth: 1007
+Updating auth: 1008
+Updating auth: 1009
+Updating auth: 1010
+Updating auth: 1011
+Updating auth: 1012
+Updating auth: 1013
+Updating auth: 1014
+Updating auth: 1015
+Updating auth: 1016
+Updating auth: 1017
+Updating auth: 1018
+Updating auth: 1019
+Updating auth: 1020
+Updating auth: 1021
+Updating auth: 1022
+Updating auth: 1023
+Updating auth: 1024
+Updating auth: 1025
+Updating auth: 1026
+Updating auth: 1027
+Updating auth: 1028
+Updating auth: 1029
+Updating auth: 1030
+Updating auth: 1031
+Updating auth: 1032
+Updating auth: 1033
+Updating auth: 1034
+Updating auth: 1035
+Updating auth: 1036
+Updating auth: 1037
+Updating auth: 1038
+Updating auth: 1039
+Updating auth: 1040
+Updating auth: 1041
+Updating auth: 1042
+Updating auth: 1043
+Updating auth: 1044
+Updating auth: 1045
+Updating auth: 1046
+Updating auth: 1047
+Updating auth: 1048
+Updating auth: 1049
+Updating auth: 1050
+Updating auth: 1051
+Updating auth: 1052
+Updating auth: 1053
+Updating auth: 1054
+Updating auth: 1055
+Updating auth: 1056
+Updating auth: 1057
+Updating auth: 1058
+Updating auth: 1059
+Updating auth: 1060
+Updating auth: 1061
+Updating auth: 1062
+Updating auth: 1063
+Updating auth: 1064
+Updating auth: 1065
+Updating auth: 1066
+Updating auth: 1067
+Updating auth: 1068
+Updating auth: 1069
+Updating auth: 1070
+Updating auth: 1071
+Updating auth: 1072
+Updating auth: 1073
+Updating auth: 1074
+Updating auth: 1075
+Updating auth: 1076
+Updating auth: 1077
+Updating auth: 1078
+Updating auth: 1079
+Updating auth: 1080
+Updating auth: 1081
+Updating auth: 1082
+Updating auth: 1083
+Updating auth: 1084
+Updating auth: 1085
+Updating auth: 1086
+Updating auth: 1087
+Updating auth: 1088
+Updating auth: 1089
+Updating auth: 1090
+Updating auth: 1091
+Updating auth: 1092
+Updating auth: 1093
+Updating auth: 1094
+Updating auth: 1095
+Updating auth: 1096
+Updating auth: 1097
+Updating auth: 1098
+Updating auth: 1099
+Updating auth: 1100
+Updating auth: 1101
+Updating auth: 1102
+Updating auth: 1103
+Updating auth: 1104
+Updating auth: 1105
+Updating auth: 1106
+Updating auth: 1107
+Updating auth: 1108
+Updating auth: 1109
+Updating auth: 1110
+Updating auth: 1111
+Updating auth: 1112
+Updating auth: 1113
+Updating auth: 1114
+Updating auth: 1115
+Updating auth: 1116
+Updating auth: 1117
+Updating auth: 1118
+Updating auth: 1119
+Updating auth: 1120
+Updating auth: 1121
+Updating auth: 1122
+Updating auth: 1123
+Updating auth: 1124
+Updating auth: 1125
+Updating auth: 1126
+Updating auth: 1127
+Updating auth: 1128
+Updating auth: 1129
+Updating auth: 1130
+Updating auth: 1131
+Updating auth: 1132
+Updating auth: 1133
+Updating auth: 1134
+Updating auth: 1135
+Updating auth: 1136
+Updating auth: 1137
+Updating auth: 1138
+Updating auth: 1139
+Updating auth: 1140
+Updating auth: 1141
+Updating auth: 1142
+Updating auth: 1143
+Updating auth: 1144
+Updating auth: 1145
+Updating auth: 1146
+Updating auth: 1147
+Updating auth: 1148
+Updating auth: 1149
+Updating auth: 1150
+Updating auth: 1151
+Updating auth: 1152
+Updating auth: 1153
+Updating auth: 1154
+Updating auth: 1155
+Updating auth: 1156
+Updating auth: 1157
+Updating auth: 1158
+Updating auth: 1159
+Updating auth: 1160
+Updating auth: 1161
+Updating auth: 1162
+Updating auth: 1163
+Updating auth: 1164
+Updating auth: 1165
+Updating auth: 1166
+Updating auth: 1167
+Updating auth: 1168
+Updating auth: 1169
+Updating auth: 1170
+Updating auth: 1171
+Updating auth: 1172
+Updating auth: 1173
+Updating auth: 1174
+Updating auth: 1175
+Updating auth: 1176
+Updating auth: 1177
+Updating auth: 1178
+Updating auth: 1179
+Inside doFile
+Filename: /home/kclsdev/Evergreen/BIB.MRC
+Inside doBibs
+start while in doBibs
+
+id = 146
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a6a60)
+str = 2013-08-16T14:41:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x40b2b98) record = MARC::Record=HASH(0x46a4e48) needImport = 0 
+Keep 146
+
+id = 8
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5b20)
+str = 2013-08-19T16:50:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 78
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a78a0)
+str = 2013-08-16T14:40:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f83c10) record = MARC::Record=HASH(0x46a6ef8) needImport = 0 
+Keep 78
+
+id = 67
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9658)
+str = 2013-08-20T09:41:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 138
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b8ab8)
+str = 2013-08-16T14:41:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x43d21d0) record = MARC::Record=HASH(0x46b96a0) needImport = 0 
+Keep 138
+
+id = 56
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b8c80)
+str = 2013-08-16T14:40:36-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f86a68) record = MARC::Record=HASH(0x46b9700) needImport = 0 
+Keep 56
+
+id = 176
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5760)
+str = 2013-08-16T14:41:39-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3566248) record = MARC::Record=HASH(0x46a50b8) needImport = 0 
+Keep 176
+
+id = 166
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a56e8)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x467f1a8) record = MARC::Record=HASH(0x46a1cf0) needImport = 0 
+Keep 166
+
+id = 46
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5c10)
+str = 2013-08-20T09:41:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 134
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5178)
+str = 2013-08-16T14:41:18-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469b170) record = MARC::Record=HASH(0x46a4db8) needImport = 0 
+Keep 134
+
+id = 48
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9408)
+str = 2013-08-16T14:40:32-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x35e19c8) record = MARC::Record=HASH(0x46a5130) needImport = 0 
+Keep 48
+
+id = 116
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a75b8)
+str = 2013-08-16T14:41:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469b230) record = MARC::Record=HASH(0x46a5988) needImport = 0 
+Keep 116
+
+id = 181
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7498)
+str = 2013-08-16T14:41:41-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x40ada38) record = MARC::Record=HASH(0x46a71e0) needImport = 0 
+Keep 181
+
+id = 180
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x469e1b0)
+str = 2013-08-20T09:41:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 188
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a1750)
+str = 2013-08-20T09:42:21-07
+export_date = 2013-08-17T00:00:00
+
+id = 187
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c3060)
+str = 2013-08-20T15:24:04-07
+export_date = 2013-08-17T00:00:00
+
+id = 45
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a6ca0)
+str = 2013-08-20T09:42:22-07
+export_date = 2013-08-17T00:00:00
+
+id = 186
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7258)
+str = 2013-08-16T14:41:44-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3744d20) record = MARC::Record=HASH(0x46a5a90) needImport = 0 
+Keep 186
+
+id = 44
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9558)
+str = 2013-08-20T09:42:22-07
+export_date = 2013-08-17T00:00:00
+
+id = 82
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x469e1e0)
+str = 2013-08-16T14:40:50-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x43f62a8) record = MARC::Record=HASH(0x46a7870) needImport = 0 
+Keep 82
+
+id = 142
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a1d50)
+str = 2013-08-16T14:41:22-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f78410) record = MARC::Record=HASH(0x46a70d8) needImport = 0 
+Keep 142
+
+id = 16
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a1cf0)
+str = 2013-08-20T09:42:22-07
+export_date = 2013-08-17T00:00:00
+
+id = 174
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7330)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f7bd58) record = MARC::Record=HASH(0x46a5148) needImport = 0 
+Keep 174
+
+id = 77
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b8d88)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4694c38) record = MARC::Record=HASH(0x469e138) needImport = 0 
+Keep 77
+
+id = 189
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a15d0)
+str = 2013-08-20T09:42:23-07
+export_date = 2013-08-17T00:00:00
+
+id = 13
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5af0)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e8b8) record = MARC::Record=HASH(0x46c9a20) needImport = 0 
+Keep 13
+
+id = 196
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a6e50)
+str = 2013-08-20T09:42:23-07
+export_date = 2013-08-17T00:00:00
+
+id = 185
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x43d21d0)
+str = 2013-08-16T14:41:43-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4694bd8) record = MARC::Record=HASH(0x46b94d8) needImport = 0 
+Keep 185
+
+id = 167
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x40ada38)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e270) record = MARC::Record=HASH(0x46a5070) needImport = 0 
+Keep 167
+
+id = 120
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a1dc8)
+str = 2013-08-20T09:42:23-07
+export_date = 2013-08-17T00:00:00
+
+id = 17
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7240)
+str = 2013-08-20T09:42:24-07
+export_date = 2013-08-17T00:00:00
+
+id = 178
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9280)
+str = 2013-08-16T14:41:40-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x467eb00) record = MARC::Record=HASH(0x46c9498) needImport = 0 
+Keep 178
+
+id = 130
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7798)
+str = 2013-08-16T14:41:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a16c0) record = MARC::Record=HASH(0x46a5490) needImport = 0 
+Keep 130
+
+id = 193
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7108)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x468ded0) record = MARC::Record=HASH(0x46a17c8) needImport = 0 
+Keep 193
+
+id = 101
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b98f8)
+str = 2013-08-16T14:41:01-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a1c18) record = MARC::Record=HASH(0x46c3210) needImport = 0 
+Keep 101
+
+id = 195
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5988)
+str = 2013-08-16T14:41:49-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4662268) record = MARC::Record=HASH(0x46c2d78) needImport = 0 
+Keep 195
+
+id = 190
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9220)
+str = 2013-08-20T09:42:24-07
+export_date = 2013-08-17T00:00:00
+
+id = 54
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a4dd0)
+str = 2013-08-16T14:40:35-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e2b8) record = MARC::Record=HASH(0x46c9b28) needImport = 0 
+Keep 54
+
+id = 47
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9430)
+str = 2013-08-20T09:42:25-07
+export_date = 2013-08-17T00:00:00
+
+id = 148
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b8d10)
+str = 2013-08-16T14:41:25-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e858) record = MARC::Record=HASH(0x469ee40) needImport = 0 
+Keep 148
+
+id = 175
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b94c0)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a1600) record = MARC::Record=HASH(0x46a7528) needImport = 0 
+Keep 175
+
+id = 28
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a71c8)
+str = 2013-08-16T14:40:23-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a10c0) record = MARC::Record=HASH(0x46c2a30) needImport = 0 
+Keep 28
+
+id = 36
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c95a0)
+str = 2013-08-20T09:42:25-07
+export_date = 2013-08-17T00:00:00
+
+id = 15
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9708)
+str = 2013-08-20T09:42:25-07
+export_date = 2013-08-17T00:00:00
+
+id = 125
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c36f0)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e360) record = MARC::Record=HASH(0x46a58b0) needImport = 0 
+Keep 125
+
+id = 151
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c2c10)
+str = 2013-08-16T14:41:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469eb88) record = MARC::Record=HASH(0x46c9270) needImport = 0 
+Keep 151
+
+id = 4
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x469ec48)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a15b8) record = MARC::Record=HASH(0x46c3840) needImport = 0 
+Keep 4
+
+id = 30
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5d18)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4690bf0) record = MARC::Record=HASH(0x46d2508) needImport = 0 
+Keep 30
+
+id = 119
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9ea0)
+str = 2013-08-20T09:42:26-07
+export_date = 2013-08-17T00:00:00
+
+id = 153
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7018)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e978) record = MARC::Record=HASH(0x46b8aa0) needImport = 0 
+Keep 153
+
+id = 200
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a57f0)
+str = 2013-08-16T14:41:51-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469bb00) record = MARC::Record=HASH(0x46c3378) needImport = 0 
+Keep 200
+
+id = 73
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c92a0)
+str = 2013-08-16T14:40:45-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a1a98) record = MARC::Record=HASH(0x46b91a8) needImport = 0 
+Keep 73
+
+id = 40
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c2cd0)
+str = 2013-08-20T09:42:26-07
+export_date = 2013-08-17T00:00:00
+
+id = 53
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5628)
+str = 2013-08-20T09:42:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 62
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5a78)
+str = 2013-08-20T09:42:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 123
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c3810)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469b788) record = MARC::Record=HASH(0x46a77e0) needImport = 0 
+Keep 123
+
+id = 23
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c96c0)
+str = 2013-08-16T14:40:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469eca8) record = MARC::Record=HASH(0x46a4ff8) needImport = 0 
+Keep 23
+
+id = 20
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5be0)
+str = 2013-08-20T09:42:27-07
+export_date = 2013-08-17T00:00:00
+
+id = 25
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c2eb0)
+str = 2013-08-20T09:42:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 58
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a1f18)
+str = 2013-08-16T14:40:37-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e570) record = MARC::Record=HASH(0x46d2418) needImport = 0 
+Keep 58
+
+id = 1
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46d2400)
+str = 2013-08-16T14:40:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e600) record = MARC::Record=HASH(0x46a7570) needImport = 0 
+Keep 1
+
+id = 26
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c2e50)
+str = 2013-08-20T09:42:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 60
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b94f0)
+str = 2013-08-20T09:42:28-07
+export_date = 2013-08-17T00:00:00
+
+id = 165
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x466e190)
+str = 2013-08-16T14:41:33-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e210) record = MARC::Record=HASH(0x46a6f70) needImport = 0 
+Keep 165
+
+id = 21
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9778)
+str = 2013-08-16T14:40:19-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f78200) record = MARC::Record=HASH(0x469be90) needImport = 0 
+Keep 21
+
+id = 152
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x469ed50)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a6a30) record = MARC::Record=HASH(0x46b9028) needImport = 0 
+Keep 152
+
+id = 75
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46d2538)
+str = 2013-08-16T14:40:46-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x468e1d0) record = MARC::Record=HASH(0x46a1270) needImport = 0 
+Keep 75
+
+id = 124
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c31c8)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469ed80) record = MARC::Record=HASH(0x46a5ce8) needImport = 0 
+Keep 124
+
+id = 5
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9448)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a1840) record = MARC::Record=HASH(0x46a5cd0) needImport = 0 
+Keep 5
+
+id = 197
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7198)
+str = 2013-08-20T09:42:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 114
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7600)
+str = 2013-08-16T14:41:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a1468) record = MARC::Record=HASH(0x46a7900) needImport = 0 
+Keep 114
+
+id = 43
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a75e8)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a4e30) record = MARC::Record=HASH(0x46a1bd0) needImport = 0 
+Keep 43
+
+id = 191
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c3078)
+str = 2013-08-16T14:41:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x449bc20) record = MARC::Record=HASH(0x46b8f38) needImport = 0 
+Keep 191
+
+id = 156
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7258)
+str = 2013-08-16T14:41:29-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a1c00) record = MARC::Record=HASH(0x4650a28) needImport = 0 
+Keep 156
+
+id = 11
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f7b7a0)
+str = 2013-08-20T09:42:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 126
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c3798)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46b8fc8) record = MARC::Record=HASH(0x46b9268) needImport = 0 
+Keep 126
+
+id = 194
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9ca8)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a19a8) record = MARC::Record=HASH(0x46c3600) needImport = 0 
+Keep 194
+
+id = 39
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a1168)
+str = 2013-08-20T09:42:29-07
+export_date = 2013-08-17T00:00:00
+
+id = 3
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46950a0)
+str = 2013-08-16T14:40:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e3c0) record = MARC::Record=HASH(0x46c3978) needImport = 0 
+Keep 3
+
+id = 61
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9868)
+str = 2013-08-20T09:42:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 87
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9240)
+str = 2013-08-20T09:42:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 14
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a4d58)
+str = 2013-08-16T14:40:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46946b0) record = MARC::Record=HASH(0x46a4ff8) needImport = 0 
+Keep 14
+
+id = 66
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46d25b0)
+str = 2013-08-20T09:42:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 89
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9478)
+str = 2013-08-16T14:40:54-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a59b8) record = MARC::Record=HASH(0x46a7900) needImport = 0 
+Keep 89
+
+id = 50
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9378)
+str = 2013-08-20T09:42:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 154
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a7738)
+str = 2013-08-16T14:41:28-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f77768) record = MARC::Record=HASH(0x46a75e8) needImport = 0 
+Keep 154
+
+id = 57
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b92c8)
+str = 2013-08-20T09:42:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 51
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46b9688)
+str = 2013-08-16T14:40:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x43f6a88) record = MARC::Record=HASH(0x46c9df8) needImport = 0 
+Keep 51
+
+id = 31
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3f77768)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a79a8) record = MARC::Record=HASH(0x46c37e0) needImport = 0 
+Keep 31
+
+id = 35
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c9720)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469e390) record = MARC::Record=HASH(0x4694680) needImport = 0 
+Keep 35
+
+id = 65
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a11c8)
+str = 2013-08-20T09:42:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 76
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46d24d8)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f83c10) record = MARC::Record=HASH(0x46c96d8) needImport = 0 
+Keep 76
+
+id = 69
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x43f64a0)
+str = 2013-08-20T09:42:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 37
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c98b8)
+str = 2013-08-20T09:42:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 85
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46d24f0)
+str = 2013-08-20T09:42:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 173
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a6e20)
+str = 2013-08-20T09:42:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 34
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46d2418)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x46a1318) record = MARC::Record=HASH(0x46a6a78) needImport = 0 
+Keep 34
+
+id = 81
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46c3330)
+str = 2013-08-20T09:42:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 12
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5730)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x469eb40) record = MARC::Record=HASH(0x46b9448) needImport = 0 
+Keep 12
+
+id = 42
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x46a5880)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x466def0) record = MARC::Record=HASH(0x4688ee0) needImport = 0 
+Keep 42

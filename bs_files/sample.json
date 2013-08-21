@@ -1,0 +1,63 @@
+{
+"export":
+	{
+	"last_run_date":"2013-08-17 00:00:00-00",
+	"output":"/path/to/file.mrc",
+	"sources": [ 1, 2 ],
+	"recipients": ["user@domain.tld"]
+	},
+"evergreen":
+	{
+	"osrf_config":"/openils/conf/opensrf_core.xml",
+	"authentication":
+		{
+		"username" : "admin",
+		"password" : "admin",
+		"workstation" : "BR1-PC30121",
+		"type" : "Branch"
+		}
+	},
+"email":
+	{
+	"smtp":
+		{
+		"host" : "192.168.0.202",
+    		"port" : 5432,
+		"user" : "evergreen",
+		"password" : "evergreen",
+    		"encryption" : "tls|ssl",
+    		"from" :
+		       { 
+		       "name" : "SENDER NAME",
+		       "email" : "user@domain.tld"
+		       }
+		}
+	},
+"ftp":
+	{
+	"host":"209.90.107.218",
+	"username":"USERNAME",
+	"password":"PASSWORD",
+        "passive":1,
+	"upload_dir":"in",
+	"download":
+		{
+		"source_dir":"out",
+		"destination_dir":"/path/to/directory",
+		"delete_files":false
+		}
+	},
+"import":
+	{
+	"working_dir":"/home/kclsdev/Evergreen",
+	"print_import":true,
+	"print_keep":true,
+	"print_delete":true,
+	"cleanup":true,
+	"auth_control":
+		{
+		"path":"/openils/bin/authority_control_fields.pl",
+		"days_back":0
+		}
+	}
+}

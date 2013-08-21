@@ -1,0 +1,20 @@
+This readme will tell you how to run the linking.  
+
+First you must modify authority_control_fields_batcher.pl with your database information and the size
+of the batches you wish to run.
+
+Then you will run authority_control_fields_batcher.pl, which will create batches.  
+
+	./authority_control_fields_batcher.pl > batches		
+
+Then you will run disbatcher.pl, which will run through the batches.
+
+	./disbatcher.pl -n 2 -f /home/kclsdev/24kcls_evergreen/linking/batches
+
+	The options are -n for number to run, 
+		-f is the batch file you created with authority_control_fields_batcher.pl
+		-v is for verbose
+
+The authority and bib records should now be linked.
+
+Enjoy.

@@ -1,0 +1,2486 @@
+Inside doFile
+Filename: /home/kclsdev/Evergreen/BIB.MRC
+Inside doBibs
+start while in doBibs
+
+id = 146
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c7f0)
+str = 2013-08-16T14:41:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f5c9c8) record = MARC::Record=HASH(0x496bf80) needImport = 0 
+Keep 146
+
+id = 8
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4971fc0)
+str = 2013-08-21T13:10:13-07
+export_date = 2013-08-17T00:00:00
+
+id = 78
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972b00)
+str = 2013-08-16T14:40:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x41151c8) record = MARC::Record=HASH(0x4972098) needImport = 0 
+Keep 78
+
+id = 67
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x495e8b0)
+str = 2013-08-21T13:10:16-07
+export_date = 2013-08-17T00:00:00
+
+id = 138
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972b78)
+str = 2013-08-16T14:41:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f5c8c0) record = MARC::Record=HASH(0x497b110) needImport = 0 
+Keep 138
+
+id = 56
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497af78)
+str = 2013-08-16T14:40:36-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3fe9498) record = MARC::Record=HASH(0x496c1d8) needImport = 0 
+Keep 56
+
+id = 176
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c718)
+str = 2013-08-16T14:41:39-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115330) record = MARC::Record=HASH(0x496ca00) needImport = 0 
+Keep 176
+
+id = 166
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498dcd8)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115348) record = MARC::Record=HASH(0x497a8a0) needImport = 0 
+Keep 166
+
+id = 46
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4477918)
+str = 2013-08-21T13:10:16-07
+export_date = 2013-08-17T00:00:00
+
+id = 134
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x495e688)
+str = 2013-08-16T14:41:18-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115408) record = MARC::Record=HASH(0x496c7a8) needImport = 0 
+Keep 134
+
+id = 48
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d5e8)
+str = 2013-08-16T14:40:32-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115480) record = MARC::Record=HASH(0x4972698) needImport = 0 
+Keep 48
+
+id = 116
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498dca8)
+str = 2013-08-16T14:41:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x41154b0) record = MARC::Record=HASH(0x497a888) needImport = 0 
+Keep 116
+
+id = 181
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c700)
+str = 2013-08-16T14:41:41-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115858) record = MARC::Record=HASH(0x3ffa0e8) needImport = 0 
+Keep 181
+
+id = 180
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972500)
+str = 2013-08-21T13:10:17-07
+export_date = 2013-08-17T00:00:00
+
+id = 188
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c640)
+str = 2013-08-21T13:10:17-07
+export_date = 2013-08-17T00:00:00
+
+id = 187
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497cd20)
+str = 2013-08-21T13:10:18-07
+export_date = 2013-08-17T00:00:00
+
+id = 45
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497cdc8)
+str = 2013-08-21T13:10:18-07
+export_date = 2013-08-17T00:00:00
+
+id = 186
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972338)
+str = 2013-08-16T14:41:44-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115a50) record = MARC::Record=HASH(0x498db28) needImport = 0 
+Keep 186
+
+id = 44
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x413c730)
+str = 2013-08-21T13:10:19-07
+export_date = 2013-08-17T00:00:00
+
+id = 82
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4971cf0)
+str = 2013-08-16T14:40:50-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115ea0) record = MARC::Record=HASH(0x497a8d0) needImport = 0 
+Keep 82
+
+id = 142
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497c840)
+str = 2013-08-16T14:41:22-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x41394e0) record = MARC::Record=HASH(0x497b338) needImport = 0 
+Keep 142
+
+id = 16
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x44779d8)
+str = 2013-08-21T13:10:19-07
+export_date = 2013-08-17T00:00:00
+
+id = 174
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x413cb98)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115eb8) record = MARC::Record=HASH(0x497ac48) needImport = 0 
+Keep 174
+
+id = 77
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497a9f0)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4139588) record = MARC::Record=HASH(0x49720b0) needImport = 0 
+Keep 77
+
+id = 189
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497cb10)
+str = 2013-08-21T13:10:19-07
+export_date = 2013-08-17T00:00:00
+
+id = 13
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3fde0e0)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c028) record = MARC::Record=HASH(0x49728f0) needImport = 0 
+Keep 13
+
+id = 196
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497b4d0)
+str = 2013-08-21T13:10:20-07
+export_date = 2013-08-17T00:00:00
+
+id = 185
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c2f8)
+str = 2013-08-16T14:41:43-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4139630) record = MARC::Record=HASH(0x498ddb0) needImport = 0 
+Keep 185
+
+id = 167
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x3fe93c0)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c298) record = MARC::Record=HASH(0x496c868) needImport = 0 
+Keep 167
+
+id = 120
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x495ea90)
+str = 2013-08-21T13:10:20-07
+export_date = 2013-08-17T00:00:00
+
+id = 17
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d270)
+str = 2013-08-21T13:10:20-07
+export_date = 2013-08-17T00:00:00
+
+id = 178
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497c8d0)
+str = 2013-08-16T14:41:40-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c478) record = MARC::Record=HASH(0x498dd50) needImport = 0 
+Keep 178
+
+id = 130
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x495e5e0)
+str = 2013-08-16T14:41:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4139690) record = MARC::Record=HASH(0x4971db0) needImport = 0 
+Keep 130
+
+id = 193
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x413cb98)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c340) record = MARC::Record=HASH(0x4477918) needImport = 0 
+Keep 193
+
+id = 101
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497b320)
+str = 2013-08-16T14:41:01-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x44779f0) record = MARC::Record=HASH(0x495e640) needImport = 0 
+Keep 101
+
+id = 195
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x495ea90)
+str = 2013-08-16T14:41:49-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x41395a0) record = MARC::Record=HASH(0x49729c8) needImport = 0 
+Keep 195
+
+id = 190
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d1c8)
+str = 2013-08-16T14:41:46-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115a38) record = MARC::Record=HASH(0x497d140) needImport = 1 
+Import 190
+
+id = 54
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d3d8)
+str = 2013-08-16T14:40:35-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c0e8) record = MARC::Record=HASH(0x496c628) needImport = 0 
+Keep 54
+
+id = 47
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498de40)
+str = 2013-08-16T14:40:32-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c310) record = MARC::Record=HASH(0x4986dd0) needImport = 1 
+Import 47
+
+id = 148
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972428)
+str = 2013-08-16T14:41:25-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c940) record = MARC::Record=HASH(0x4972200) needImport = 0 
+Keep 148
+
+id = 175
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c6a0)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4477f00) record = MARC::Record=HASH(0x496c778) needImport = 0 
+Keep 175
+
+id = 28
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497cb70)
+str = 2013-08-16T14:40:23-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c418) record = MARC::Record=HASH(0x497ab28) needImport = 0 
+Keep 28
+
+id = 36
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d1b0)
+str = 2013-08-16T14:40:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c328) record = MARC::Record=HASH(0x4973e50) needImport = 1 
+Import 36
+
+id = 15
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4477d98)
+str = 2013-08-16T14:40:17-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x41159d8) record = MARC::Record=HASH(0x496c100) needImport = 1 
+Import 15
+
+id = 125
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4139690)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c670) record = MARC::Record=HASH(0x413c4c0) needImport = 0 
+Keep 125
+
+id = 151
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x41158d0)
+str = 2013-08-16T14:41:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413ca30) record = MARC::Record=HASH(0x496c250) needImport = 0 
+Keep 151
+
+id = 4
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4477d98)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c358) record = MARC::Record=HASH(0x4974918) needImport = 0 
+Keep 4
+
+id = 30
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4974810)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c910) record = MARC::Record=HASH(0x4975cf8) needImport = 0 
+Keep 30
+
+id = 119
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4976568)
+str = 2013-08-16T14:41:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4477978) record = MARC::Record=HASH(0x498dc00) needImport = 1 
+Import 119
+
+id = 153
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497b0b0)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c850) record = MARC::Record=HASH(0x4974768) needImport = 0 
+Keep 153
+
+id = 200
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496be00)
+str = 2013-08-16T14:41:51-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c0d0) record = MARC::Record=HASH(0x497b350) needImport = 0 
+Keep 200
+
+id = 73
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d198)
+str = 2013-08-16T14:40:45-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c970) record = MARC::Record=HASH(0x4974210) needImport = 0 
+Keep 73
+
+id = 40
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972080)
+str = 2013-08-16T14:40:29-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x495e5f8) record = MARC::Record=HASH(0x413c4c0) needImport = 1 
+Import 40
+
+id = 53
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4971ca8)
+str = 2013-08-16T14:40:35-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x497aee8) record = MARC::Record=HASH(0x498d840) needImport = 1 
+Import 53
+
+id = 62
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972b30)
+str = 2013-08-16T14:40:39-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c568) record = MARC::Record=HASH(0x4974840) needImport = 1 
+Import 62
+
+id = 123
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4976040)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c370) record = MARC::Record=HASH(0x49761c0) needImport = 0 
+Keep 123
+
+id = 23
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x413c790)
+str = 2013-08-16T14:40:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c598) record = MARC::Record=HASH(0x497a8b8) needImport = 0 
+Keep 23
+
+id = 20
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4975de8)
+str = 2013-08-16T14:40:19-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4477de0) record = MARC::Record=HASH(0x498df00) needImport = 1 
+Import 20
+
+id = 25
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4974930)
+str = 2013-08-16T14:40:21-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x495e610) record = MARC::Record=HASH(0x497aa50) needImport = 1 
+Import 25
+
+id = 58
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4975dd0)
+str = 2013-08-16T14:40:37-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413cbf8) record = MARC::Record=HASH(0x4477de0) needImport = 0 
+Keep 58
+
+id = 1
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x495e460)
+str = 2013-08-16T14:40:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413cac0) record = MARC::Record=HASH(0x496c8f8) needImport = 0 
+Keep 1
+
+id = 26
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497a750)
+str = 2013-08-16T14:40:22-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115960) record = MARC::Record=HASH(0x4976010) needImport = 1 
+Import 26
+
+id = 60
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4974af8)
+str = 2013-08-16T14:40:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413cbe0) record = MARC::Record=HASH(0x4972aa0) needImport = 1 
+Import 60
+
+id = 165
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49ae388)
+str = 2013-08-16T14:41:33-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413cb68) record = MARC::Record=HASH(0x496c568) needImport = 0 
+Keep 165
+
+id = 21
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x413c970)
+str = 2013-08-16T14:40:19-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115ae0) record = MARC::Record=HASH(0x497ae58) needImport = 0 
+Keep 21
+
+id = 152
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4976838)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x498dde0) record = MARC::Record=HASH(0x4974b28) needImport = 0 
+Keep 152
+
+id = 75
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49724e8)
+str = 2013-08-16T14:40:46-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c808) record = MARC::Record=HASH(0x497c8a0) needImport = 0 
+Keep 75
+
+id = 124
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49729c8)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413cee0) record = MARC::Record=HASH(0x4975c08) needImport = 0 
+Keep 124
+
+id = 5
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c1d8)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c2c8) record = MARC::Record=HASH(0x4974af8) needImport = 0 
+Keep 5
+
+id = 197
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x495e868)
+str = 2013-08-16T14:41:50-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4477d08) record = MARC::Record=HASH(0x49b4670) needImport = 1 
+Import 197
+
+id = 114
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49728d8)
+str = 2013-08-16T14:41:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x495e448) record = MARC::Record=HASH(0x4eee680) needImport = 0 
+Keep 114
+
+id = 43
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4115af8)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c148) record = MARC::Record=HASH(0x496c148) needImport = 0 
+Keep 43
+
+id = 191
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c5e0)
+str = 2013-08-16T14:41:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4115918) record = MARC::Record=HASH(0x49bd830) needImport = 0 
+Keep 191
+
+id = 156
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972500)
+str = 2013-08-16T14:41:29-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c9e8) record = MARC::Record=HASH(0x49adad0) needImport = 0 
+Keep 156
+
+id = 11
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d6f0)
+str = 2013-08-16T14:40:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c628) record = MARC::Record=HASH(0x497a858) needImport = 1 
+Import 11
+
+id = 126
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49ae058)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x497acc0) record = MARC::Record=HASH(0x49adad0) needImport = 0 
+Keep 126
+
+id = 194
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49ae388)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c490) record = MARC::Record=HASH(0x49add10) needImport = 0 
+Keep 194
+
+id = 39
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d4c8)
+str = 2013-08-16T14:40:28-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c2e0) record = MARC::Record=HASH(0x4976370) needImport = 1 
+Import 39
+
+id = 3
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49ae370)
+str = 2013-08-16T14:40:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c7d8) record = MARC::Record=HASH(0x413cac0) needImport = 0 
+Keep 3
+
+id = 61
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4973e50)
+str = 2013-08-16T14:40:39-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c3a0) record = MARC::Record=HASH(0x49b4118) needImport = 1 
+Import 61
+
+id = 87
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4974000)
+str = 2013-08-16T14:40:53-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4139570) record = MARC::Record=HASH(0x413c3d0) needImport = 1 
+Import 87
+
+id = 14
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49ae670)
+str = 2013-08-16T14:40:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c1c0) record = MARC::Record=HASH(0x49ae8c8) needImport = 0 
+Keep 14
+
+id = 66
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c178)
+str = 2013-08-16T14:40:41-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4477a98) record = MARC::Record=HASH(0x49ae7a8) needImport = 1 
+Import 66
+
+id = 89
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497cff0)
+str = 2013-08-16T14:40:54-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4477f60) record = MARC::Record=HASH(0x413c130) needImport = 0 
+Keep 89
+
+id = 50
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x496c400)
+str = 2013-08-16T14:40:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c6a0) record = MARC::Record=HASH(0x4974750) needImport = 1 
+Import 50
+
+id = 154
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49be160)
+str = 2013-08-16T14:41:28-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c160) record = MARC::Record=HASH(0x4972080) needImport = 0 
+Keep 154
+
+id = 57
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49742e8)
+str = 2013-08-16T14:40:37-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4139660) record = MARC::Record=HASH(0x49761d8) needImport = 1 
+Import 57
+
+id = 51
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49be040)
+str = 2013-08-16T14:40:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4138a48) record = MARC::Record=HASH(0x497ab28) needImport = 0 
+Keep 51
+
+id = 31
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4976010)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x496c268) record = MARC::Record=HASH(0x49aea48) needImport = 0 
+Keep 31
+
+id = 35
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49adb78)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c250) record = MARC::Record=HASH(0x3fddb58) needImport = 0 
+Keep 35
+
+id = 65
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x413c9d0)
+str = 2013-08-16T14:40:41-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x498d8e8) record = MARC::Record=HASH(0x495ea30) needImport = 1 
+Import 65
+
+id = 76
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49b42e0)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x496c6e8) record = MARC::Record=HASH(0x49adda0) needImport = 0 
+Keep 76
+
+id = 69
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497ae58)
+str = 2013-08-16T14:40:43-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c898) record = MARC::Record=HASH(0x49be280) needImport = 1 
+Import 69
+
+id = 37
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4974330)
+str = 2013-08-16T14:40:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x496bf98) record = MARC::Record=HASH(0x49ae088) needImport = 1 
+Import 37
+
+id = 85
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497cff0)
+str = 2013-08-16T14:40:52-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x495e5c8) record = MARC::Record=HASH(0x496c9b8) needImport = 1 
+Import 85
+
+id = 173
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4985ee0)
+str = 2013-08-16T14:41:37-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4478068) record = MARC::Record=HASH(0x4139120) needImport = 1 
+Import 173
+
+id = 34
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x498d1b0)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c268) record = MARC::Record=HASH(0x49ae100) needImport = 0 
+Keep 34
+
+id = 81
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x497b638)
+str = 2013-08-16T14:40:50-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x497ca20) record = MARC::Record=HASH(0x49ae400) needImport = 1 
+Import 81
+
+id = 12
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x49adf68)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413c5c8) record = MARC::Record=HASH(0x49761c0) needImport = 0 
+Keep 12
+
+id = 42
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4976628)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x413cdd8) record = MARC::Record=HASH(0x496c388) needImport = 0 
+Keep 42
+Inside doFile
+Filename: /home/kclsdev/Evergreen/AUTH.MRC
+Inside doAuths
+Created new auth 1
+Created new auth 2
+Created new auth 3
+Created new auth 4
+Created new auth 5
+Created new auth 6
+Created new auth 7
+Created new auth 8
+Created new auth 9
+Created new auth 10
+Created new auth 11
+Created new auth 12
+Created new auth 13
+Created new auth 14
+Created new auth 15
+Created new auth 16
+Created new auth 17
+Created new auth 18
+Created new auth 19
+Created new auth 20
+Created new auth 21
+Created new auth 22
+Created new auth 23
+Created new auth 24
+Created new auth 25
+Created new auth 26
+Created new auth 27
+Created new auth 28
+Created new auth 29
+Created new auth 30
+Created new auth 31
+Created new auth 32
+Created new auth 33
+Created new auth 34
+Created new auth 35
+Created new auth 36
+Created new auth 37
+Created new auth 38
+Created new auth 39
+Created new auth 40
+Created new auth 41
+Created new auth 42
+Created new auth 43
+Created new auth 44
+Created new auth 45
+Created new auth 46
+Created new auth 47
+Created new auth 48
+Created new auth 49
+Created new auth 50
+Created new auth 51
+Created new auth 52
+Created new auth 53
+Created new auth 54
+Created new auth 55
+Created new auth 56
+Created new auth 57
+Created new auth 58
+Created new auth 59
+Created new auth 60
+Created new auth 61
+Created new auth 62
+Created new auth 63
+Created new auth 64
+Created new auth 65
+Created new auth 66
+Created new auth 67
+Created new auth 68
+Created new auth 69
+Created new auth 70
+Created new auth 71
+Created new auth 72
+Created new auth 73
+Created new auth 74
+Created new auth 75
+Created new auth 76
+Created new auth 77
+Created new auth 78
+Created new auth 79
+Created new auth 80
+Created new auth 81
+Created new auth 82
+Created new auth 83
+Created new auth 84
+Created new auth 85
+Created new auth 86
+Created new auth 87
+Created new auth 88
+Created new auth 89
+Created new auth 90
+Created new auth 91
+Created new auth 92
+Created new auth 93
+Created new auth 94
+Created new auth 95
+Created new auth 96
+Created new auth 97
+Created new auth 98
+Created new auth 99
+Created new auth 100
+Created new auth 101
+Created new auth 102
+Created new auth 103
+Created new auth 104
+Created new auth 105
+Created new auth 106
+Created new auth 107
+Created new auth 108
+Created new auth 109
+Created new auth 110
+Created new auth 111
+Created new auth 112
+Created new auth 113
+Created new auth 114
+Created new auth 115
+Created new auth 116
+Created new auth 117
+Created new auth 118
+Created new auth 119
+Created new auth 120
+Created new auth 121
+Created new auth 122
+Created new auth 123
+Created new auth 124
+Created new auth 125
+Created new auth 126
+Created new auth 127
+Created new auth 128
+Created new auth 129
+Created new auth 130
+Created new auth 131
+Created new auth 132
+Created new auth 133
+Created new auth 134
+Created new auth 135
+Created new auth 136
+Created new auth 137
+Created new auth 138
+Created new auth 139
+Created new auth 140
+Created new auth 141
+Created new auth 142
+Created new auth 143
+Created new auth 144
+Created new auth 145
+Created new auth 146
+Created new auth 147
+Created new auth 148
+Created new auth 149
+Created new auth 150
+Created new auth 151
+Created new auth 152
+Created new auth 153
+Created new auth 154
+Created new auth 155
+Created new auth 156
+Created new auth 157
+Created new auth 158
+Created new auth 159
+Created new auth 160
+Created new auth 161
+Created new auth 162
+Created new auth 163
+Created new auth 164
+Created new auth 165
+Created new auth 166
+Created new auth 167
+Created new auth 168
+Created new auth 169
+Created new auth 170
+Created new auth 171
+Created new auth 172
+Created new auth 173
+Created new auth 174
+Created new auth 175
+Created new auth 176
+Created new auth 177
+Created new auth 178
+Created new auth 179
+Created new auth 180
+Created new auth 181
+Created new auth 182
+Created new auth 183
+Created new auth 184
+Created new auth 185
+Created new auth 186
+Created new auth 187
+Created new auth 188
+Created new auth 189
+Created new auth 190
+Created new auth 191
+Created new auth 192
+Created new auth 193
+Created new auth 194
+Created new auth 195
+Created new auth 196
+Created new auth 197
+Created new auth 198
+Created new auth 199
+Created new auth 200
+Created new auth 201
+Created new auth 202
+Created new auth 203
+Created new auth 204
+Created new auth 205
+Created new auth 206
+Created new auth 207
+Created new auth 208
+Created new auth 209
+Created new auth 210
+Created new auth 211
+Created new auth 212
+Created new auth 213
+Created new auth 214
+Created new auth 215
+Created new auth 216
+Created new auth 217
+Created new auth 218
+Created new auth 219
+Created new auth 220
+Created new auth 221
+Created new auth 222
+Created new auth 223
+Created new auth 224
+Created new auth 225
+Created new auth 226
+Created new auth 227
+Created new auth 228
+Created new auth 229
+Created new auth 230
+Created new auth 231
+Created new auth 232
+Created new auth 233
+Created new auth 234
+Created new auth 235
+Created new auth 236
+Created new auth 237
+Created new auth 238
+Created new auth 239
+Created new auth 240
+Created new auth 241
+Created new auth 242
+Created new auth 243
+Created new auth 244
+Created new auth 245
+Created new auth 246
+Created new auth 247
+Created new auth 248
+Created new auth 249
+Created new auth 250
+Created new auth 251
+Created new auth 252
+Created new auth 253
+Created new auth 254
+Created new auth 255
+Created new auth 256
+Created new auth 257
+Created new auth 258
+Created new auth 259
+Created new auth 260
+Created new auth 261
+Created new auth 262
+Created new auth 263
+Created new auth 264
+Created new auth 265
+Created new auth 266
+Created new auth 267
+Created new auth 268
+Created new auth 269
+Created new auth 270
+Created new auth 271
+Created new auth 272
+Created new auth 273
+Created new auth 274
+Created new auth 275
+Created new auth 276
+Created new auth 277
+Created new auth 278
+Created new auth 279
+Created new auth 280
+Created new auth 281
+Created new auth 282
+Created new auth 283
+Created new auth 284
+Created new auth 285
+Created new auth 286
+Created new auth 287
+Created new auth 288
+Created new auth 289
+Created new auth 290
+Created new auth 291
+Created new auth 292
+Created new auth 293
+Created new auth 294
+Created new auth 295
+Created new auth 296
+Created new auth 297
+Created new auth 298
+Created new auth 299
+Created new auth 300
+Created new auth 301
+Created new auth 302
+Created new auth 303
+Created new auth 304
+Created new auth 305
+Created new auth 306
+Created new auth 307
+Created new auth 308
+Created new auth 309
+Created new auth 310
+Created new auth 311
+Created new auth 312
+Created new auth 313
+Created new auth 314
+Created new auth 315
+Created new auth 316
+Created new auth 317
+Created new auth 318
+Created new auth 319
+Created new auth 320
+Created new auth 321
+Created new auth 322
+Created new auth 323
+Created new auth 324
+Created new auth 325
+Created new auth 326
+Created new auth 327
+Created new auth 328
+Created new auth 329
+Created new auth 330
+Created new auth 331
+Created new auth 332
+Created new auth 333
+Created new auth 334
+Created new auth 335
+Created new auth 336
+Created new auth 337
+Created new auth 338
+Created new auth 339
+Created new auth 340
+Created new auth 341
+Created new auth 342
+Created new auth 343
+Created new auth 344
+Created new auth 345
+Created new auth 346
+Created new auth 347
+Created new auth 348
+Created new auth 349
+Created new auth 350
+Created new auth 351
+Created new auth 352
+Created new auth 353
+Created new auth 354
+Created new auth 355
+Created new auth 356
+Created new auth 357
+Created new auth 358
+Created new auth 359
+Created new auth 360
+Created new auth 361
+Created new auth 362
+Created new auth 363
+Created new auth 364
+Created new auth 365
+Created new auth 366
+Created new auth 367
+Created new auth 368
+Created new auth 369
+Created new auth 370
+Created new auth 371
+Created new auth 372
+Created new auth 373
+Created new auth 374
+Created new auth 375
+Created new auth 376
+Created new auth 377
+Created new auth 378
+Created new auth 379
+Created new auth 380
+Created new auth 381
+Created new auth 382
+Created new auth 383
+Created new auth 384
+Created new auth 385
+Created new auth 386
+Created new auth 387
+Created new auth 388
+Created new auth 389
+Created new auth 390
+Created new auth 391
+Created new auth 392
+Created new auth 393
+Created new auth 394
+Created new auth 395
+Created new auth 396
+Created new auth 397
+Created new auth 398
+Created new auth 399
+Created new auth 400
+Created new auth 401
+Created new auth 402
+Created new auth 403
+Created new auth 404
+Created new auth 405
+Created new auth 406
+Created new auth 407
+Created new auth 408
+Created new auth 409
+Created new auth 410
+Created new auth 411
+Created new auth 412
+Created new auth 413
+Created new auth 414
+Created new auth 415
+Created new auth 416
+Created new auth 417
+Created new auth 418
+Created new auth 419
+Created new auth 420
+Created new auth 421
+Created new auth 422
+Created new auth 423
+Created new auth 424
+Created new auth 425
+Created new auth 426
+Created new auth 427
+Created new auth 428
+Created new auth 429
+Created new auth 430
+Created new auth 431
+Created new auth 432
+Created new auth 433
+Created new auth 434
+Created new auth 435
+Created new auth 436
+Created new auth 437
+Created new auth 438
+Created new auth 439
+Created new auth 440
+Created new auth 441
+Created new auth 442
+Created new auth 443
+Created new auth 444
+Created new auth 445
+Created new auth 446
+Created new auth 447
+Created new auth 448
+Created new auth 449
+Created new auth 450
+Created new auth 451
+Created new auth 452
+Created new auth 453
+Created new auth 454
+Created new auth 455
+Created new auth 456
+Created new auth 457
+Created new auth 458
+Created new auth 459
+Created new auth 460
+Created new auth 461
+Created new auth 462
+Created new auth 463
+Created new auth 464
+Created new auth 465
+Created new auth 466
+Created new auth 467
+Created new auth 468
+Created new auth 469
+Created new auth 470
+Created new auth 471
+Created new auth 472
+Created new auth 473
+Created new auth 474
+Created new auth 475
+Created new auth 476
+Created new auth 477
+Created new auth 478
+Created new auth 479
+Created new auth 480
+Created new auth 481
+Created new auth 482
+Created new auth 483
+Created new auth 484
+Created new auth 485
+Created new auth 486
+Created new auth 487
+Created new auth 488
+Created new auth 489
+Created new auth 490
+Created new auth 491
+Created new auth 492
+Created new auth 493
+Created new auth 494
+Created new auth 495
+Created new auth 496
+Created new auth 497
+Created new auth 498
+Created new auth 499
+Created new auth 500
+Created new auth 501
+Created new auth 502
+Created new auth 503
+Created new auth 504
+Created new auth 505
+Created new auth 506
+Created new auth 507
+Created new auth 508
+Created new auth 509
+Created new auth 510
+Created new auth 511
+Created new auth 512
+Created new auth 513
+Created new auth 514
+Created new auth 515
+Created new auth 516
+Created new auth 517
+Created new auth 518
+Created new auth 519
+Created new auth 520
+Created new auth 521
+Created new auth 522
+Created new auth 523
+Created new auth 524
+Created new auth 525
+Created new auth 526
+Created new auth 527
+Created new auth 528
+Created new auth 529
+Created new auth 530
+Created new auth 531
+Created new auth 532
+Created new auth 533
+Created new auth 534
+Created new auth 535
+Created new auth 536
+Created new auth 537
+Created new auth 538
+Created new auth 539
+Created new auth 540
+Created new auth 541
+Created new auth 542
+Created new auth 543
+Created new auth 544
+Created new auth 545
+Created new auth 546
+Created new auth 547
+Created new auth 548
+Created new auth 549
+Created new auth 550
+Created new auth 551
+Created new auth 552
+Created new auth 553
+Created new auth 554
+Created new auth 555
+Created new auth 556
+Created new auth 557
+Created new auth 558
+Created new auth 559
+Created new auth 560
+Created new auth 561
+Created new auth 562
+Created new auth 563
+Created new auth 564
+Created new auth 565
+Created new auth 566
+Created new auth 567
+Created new auth 568
+Created new auth 569
+Created new auth 570
+Created new auth 571
+Created new auth 572
+Created new auth 573
+Created new auth 574
+Created new auth 575
+Created new auth 576
+Created new auth 577
+Created new auth 578
+Created new auth 579
+Created new auth 580
+Created new auth 581
+Created new auth 582
+Created new auth 583
+Created new auth 584
+Created new auth 585
+Created new auth 586
+Created new auth 587
+Created new auth 588
+Created new auth 589
+Created new auth 590
+Created new auth 591
+Created new auth 592
+Created new auth 593
+Created new auth 594
+Created new auth 595
+Created new auth 596
+Created new auth 597
+Created new auth 598
+Created new auth 599
+Created new auth 600
+Created new auth 601
+Created new auth 602
+Created new auth 603
+Created new auth 604
+Created new auth 605
+Created new auth 606
+Created new auth 607
+Created new auth 608
+Created new auth 609
+Created new auth 610
+Created new auth 611
+Created new auth 612
+Created new auth 613
+Created new auth 614
+Created new auth 615
+Created new auth 616
+Created new auth 617
+Created new auth 618
+Created new auth 619
+Created new auth 620
+Created new auth 621
+Created new auth 622
+Created new auth 623
+Created new auth 624
+Created new auth 625
+Created new auth 626
+Created new auth 627
+Created new auth 628
+Created new auth 629
+Created new auth 630
+Created new auth 631
+Created new auth 632
+Created new auth 633
+Created new auth 634
+Created new auth 635
+Created new auth 636
+Created new auth 637
+Created new auth 638
+Created new auth 639
+Created new auth 640
+Created new auth 641
+Created new auth 642
+Created new auth 643
+Created new auth 644
+Created new auth 645
+Created new auth 646
+Created new auth 647
+Created new auth 648
+Created new auth 649
+Created new auth 650
+Created new auth 651
+Created new auth 652
+Created new auth 653
+Created new auth 654
+Created new auth 655
+Created new auth 656
+Created new auth 657
+Created new auth 658
+Created new auth 659
+Created new auth 660
+Created new auth 661
+Created new auth 662
+Created new auth 663
+Created new auth 664
+Created new auth 665
+Created new auth 666
+Created new auth 667
+Created new auth 668
+Created new auth 669
+Created new auth 670
+Created new auth 671
+Created new auth 672
+Created new auth 673
+Created new auth 674
+Created new auth 675
+Created new auth 676
+Created new auth 677
+Created new auth 678
+Created new auth 679
+Created new auth 680
+Created new auth 681
+Created new auth 682
+Created new auth 683
+Created new auth 684
+Created new auth 685
+Created new auth 686
+Created new auth 687
+Created new auth 688
+Created new auth 689
+Created new auth 690
+Created new auth 691
+Created new auth 692
+Created new auth 693
+Created new auth 694
+Created new auth 695
+Created new auth 696
+Created new auth 697
+Created new auth 698
+Created new auth 699
+Created new auth 700
+Created new auth 701
+Created new auth 702
+Created new auth 703
+Created new auth 704
+Created new auth 705
+Created new auth 706
+Created new auth 707
+Created new auth 708
+Created new auth 709
+Created new auth 710
+Created new auth 711
+Created new auth 712
+Created new auth 713
+Created new auth 714
+Created new auth 715
+Created new auth 716
+Created new auth 717
+Created new auth 718
+Created new auth 719
+Created new auth 720
+Created new auth 721
+Created new auth 722
+Created new auth 723
+Created new auth 724
+Created new auth 725
+Created new auth 726
+Created new auth 727
+Created new auth 728
+Created new auth 729
+Created new auth 730
+Created new auth 731
+Created new auth 732
+Created new auth 733
+Created new auth 734
+Created new auth 735
+Created new auth 736
+Created new auth 737
+Created new auth 738
+Created new auth 739
+Created new auth 740
+Created new auth 741
+Created new auth 742
+Created new auth 743
+Created new auth 744
+Created new auth 745
+Created new auth 746
+Created new auth 747
+Created new auth 748
+Created new auth 749
+Created new auth 750
+Created new auth 751
+Created new auth 752
+Created new auth 753
+Created new auth 754
+Created new auth 755
+Created new auth 756
+Created new auth 757
+Created new auth 758
+Created new auth 759
+Created new auth 760
+Created new auth 761
+Created new auth 762
+Created new auth 763
+Created new auth 764
+Created new auth 765
+Created new auth 766
+Created new auth 767
+Created new auth 768
+Created new auth 769
+Created new auth 770
+Created new auth 771
+Created new auth 772
+Created new auth 773
+Created new auth 774
+Created new auth 775
+Created new auth 776
+Created new auth 777
+Created new auth 778
+Created new auth 779
+Created new auth 780
+Created new auth 781
+Created new auth 782
+Created new auth 783
+Created new auth 784
+Created new auth 785
+Created new auth 786
+Created new auth 787
+Created new auth 788
+Created new auth 789
+Created new auth 790
+Created new auth 791
+Created new auth 792
+Created new auth 793
+Created new auth 794
+Created new auth 795
+Created new auth 796
+Created new auth 797
+Created new auth 798
+Created new auth 799
+Created new auth 800
+Created new auth 801
+Created new auth 802
+Created new auth 803
+Created new auth 804
+Created new auth 805
+Created new auth 806
+Created new auth 807
+Created new auth 808
+Created new auth 809
+Created new auth 810
+Created new auth 811
+Created new auth 812
+Created new auth 813
+Created new auth 814
+Created new auth 815
+Created new auth 816
+Created new auth 817
+Created new auth 818
+Created new auth 819
+Created new auth 820
+Created new auth 821
+Created new auth 822
+Created new auth 823
+Created new auth 824
+Created new auth 825
+Created new auth 826
+Created new auth 827
+Created new auth 828
+Created new auth 829
+Created new auth 830
+Created new auth 831
+Created new auth 832
+Created new auth 833
+Created new auth 834
+Created new auth 835
+Created new auth 836
+Created new auth 837
+Created new auth 838
+Created new auth 839
+Created new auth 840
+Created new auth 841
+Created new auth 842
+Created new auth 843
+Created new auth 844
+Created new auth 845
+Created new auth 846
+Created new auth 847
+Created new auth 848
+Created new auth 849
+Created new auth 850
+Created new auth 851
+Created new auth 852
+Created new auth 853
+Created new auth 854
+Created new auth 855
+Created new auth 856
+Created new auth 857
+Created new auth 858
+Created new auth 859
+Created new auth 860
+Created new auth 861
+Created new auth 862
+Created new auth 863
+Created new auth 864
+Created new auth 865
+Created new auth 866
+Created new auth 867
+Created new auth 868
+Created new auth 869
+Created new auth 870
+Created new auth 871
+Created new auth 872
+Created new auth 873
+Created new auth 874
+Created new auth 875
+Created new auth 876
+Created new auth 877
+Created new auth 878
+Created new auth 879
+Created new auth 880
+Created new auth 881
+Created new auth 882
+Created new auth 883
+Created new auth 884
+Created new auth 885
+Created new auth 886
+Created new auth 887
+Created new auth 888
+Created new auth 889
+Created new auth 890
+Created new auth 891
+Created new auth 892
+Created new auth 893
+Created new auth 894
+Created new auth 895
+Created new auth 896
+Created new auth 897
+Created new auth 898
+Created new auth 899
+Created new auth 900
+Created new auth 901
+Created new auth 902
+Created new auth 903
+Created new auth 904
+Created new auth 905
+Created new auth 906
+Created new auth 907
+Created new auth 908
+Created new auth 909
+Created new auth 910
+Created new auth 911
+Created new auth 912
+Created new auth 913
+Created new auth 914
+Created new auth 915
+Created new auth 916
+Created new auth 917
+Created new auth 918
+Created new auth 919
+Created new auth 920
+Created new auth 921
+Created new auth 922
+Created new auth 923
+Created new auth 924
+Created new auth 925
+Created new auth 926
+Created new auth 927
+Created new auth 928
+Created new auth 929
+Created new auth 930
+Created new auth 931
+Created new auth 932
+Created new auth 933
+Created new auth 934
+Created new auth 935
+Created new auth 936
+Created new auth 937
+Created new auth 938
+Created new auth 939
+Created new auth 940
+Created new auth 941
+Created new auth 942
+Created new auth 943
+Created new auth 944
+Created new auth 945
+Created new auth 946
+Created new auth 947
+Created new auth 948
+Created new auth 949
+Created new auth 950
+Created new auth 951
+Created new auth 952
+Created new auth 953
+Created new auth 954
+Created new auth 955
+Created new auth 956
+Created new auth 957
+Created new auth 958
+Created new auth 959
+Created new auth 960
+Created new auth 961
+Created new auth 962
+Created new auth 963
+Created new auth 964
+Created new auth 965
+Created new auth 966
+Created new auth 967
+Created new auth 968
+Created new auth 969
+Created new auth 970
+Created new auth 971
+Created new auth 972
+Created new auth 973
+Created new auth 974
+Created new auth 975
+Created new auth 976
+Created new auth 977
+Created new auth 978
+Created new auth 979
+Created new auth 980
+Created new auth 981
+Created new auth 982
+Created new auth 983
+Created new auth 984
+Created new auth 985
+Created new auth 986
+Created new auth 987
+Created new auth 988
+Created new auth 989
+Created new auth 990
+Created new auth 991
+Created new auth 992
+Created new auth 993
+Created new auth 994
+Created new auth 995
+Created new auth 996
+Created new auth 997
+Created new auth 998
+Created new auth 999
+Created new auth 1000
+Created new auth 1001
+Created new auth 1002
+Created new auth 1003
+Created new auth 1004
+Created new auth 1005
+Created new auth 1006
+Created new auth 1007
+Created new auth 1008
+Created new auth 1009
+Created new auth 1010
+Created new auth 1011
+Created new auth 1012
+Created new auth 1013
+Created new auth 1014
+Created new auth 1015
+Created new auth 1016
+Created new auth 1017
+Created new auth 1018
+Created new auth 1019
+Created new auth 1020
+Created new auth 1021
+Created new auth 1022
+Created new auth 1023
+Created new auth 1024
+Created new auth 1025
+Created new auth 1026
+Created new auth 1027
+Created new auth 1028
+Created new auth 1029
+Created new auth 1030
+Created new auth 1031
+Created new auth 1032
+Created new auth 1033
+Created new auth 1034
+Created new auth 1035
+Created new auth 1036
+Created new auth 1037
+Created new auth 1038
+Created new auth 1039
+Created new auth 1040
+Created new auth 1041
+Created new auth 1042
+Created new auth 1043
+Created new auth 1044
+Created new auth 1045
+Created new auth 1046
+Created new auth 1047
+Created new auth 1048
+Created new auth 1049
+Created new auth 1050
+Created new auth 1051
+Created new auth 1052
+Created new auth 1053
+Created new auth 1054
+Created new auth 1055
+Created new auth 1056
+Created new auth 1057
+Created new auth 1058
+Created new auth 1059
+Created new auth 1060
+Created new auth 1061
+Created new auth 1062
+Created new auth 1063
+Created new auth 1064
+Created new auth 1065
+Created new auth 1066
+Created new auth 1067
+Created new auth 1068
+Created new auth 1069
+Created new auth 1070
+Created new auth 1071
+Created new auth 1072
+Created new auth 1073
+Created new auth 1074
+Created new auth 1075
+Created new auth 1076
+Created new auth 1077
+Created new auth 1078
+Created new auth 1079
+Created new auth 1080
+Created new auth 1081
+Created new auth 1082
+Created new auth 1083
+Created new auth 1084
+Created new auth 1085
+Created new auth 1086
+Created new auth 1087
+Created new auth 1088
+Created new auth 1089
+Created new auth 1090
+Created new auth 1091
+Created new auth 1092
+Created new auth 1093
+Created new auth 1094
+Created new auth 1095
+Created new auth 1096
+Created new auth 1097
+Created new auth 1098
+Created new auth 1099
+Created new auth 1100
+Created new auth 1101
+Created new auth 1102
+Created new auth 1103
+Created new auth 1104
+Created new auth 1105
+Created new auth 1106
+Created new auth 1107
+Created new auth 1108
+Created new auth 1109
+Created new auth 1110
+Created new auth 1111
+Created new auth 1112
+Created new auth 1113
+Created new auth 1114
+Created new auth 1115
+Created new auth 1116
+Created new auth 1117
+Created new auth 1118
+Created new auth 1119
+Created new auth 1120
+Created new auth 1121
+Created new auth 1122
+Created new auth 1123
+Created new auth 1124
+Created new auth 1125
+Created new auth 1126
+Created new auth 1127
+Created new auth 1128
+Created new auth 1129
+Created new auth 1130
+Created new auth 1131
+Created new auth 1132
+Created new auth 1133
+Created new auth 1134
+Created new auth 1135
+Created new auth 1136
+Created new auth 1137
+Created new auth 1138
+Created new auth 1139
+Created new auth 1140
+Created new auth 1141
+Created new auth 1142
+Created new auth 1143
+Created new auth 1144
+Created new auth 1145
+Created new auth 1146
+Created new auth 1147
+Created new auth 1148
+Created new auth 1149
+Created new auth 1150
+Created new auth 1151
+Created new auth 1152
+Created new auth 1153
+Created new auth 1154
+Created new auth 1155
+Created new auth 1156
+Created new auth 1157
+Created new auth 1158
+Created new auth 1159
+Created new auth 1160
+Created new auth 1161
+Created new auth 1162
+Created new auth 1163
+Created new auth 1164
+Created new auth 1165
+Created new auth 1166
+Created new auth 1167
+Created new auth 1168
+Created new auth 1169
+Created new auth 1170
+Created new auth 1171
+Created new auth 1172
+Created new auth 1173
+Created new auth 1174
+Created new auth 1175
+Created new auth 1176
+Created new auth 1177
+Created new auth 1178
+Created new auth 1179
+Inside doFile
+Filename: /home/kclsdev/Evergreen/BIB.MRC
+Inside doBibs
+start while in doBibs
+
+id = 146
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d41c8)
+str = 2013-08-16T14:41:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4aa96d0) record = MARC::Record=HASH(0x50cb280) needImport = 0 
+Keep 146
+
+id = 8
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbd48)
+str = 2013-08-21T13:10:13-07
+export_date = 2013-08-17T00:00:00
+
+id = 78
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb640)
+str = 2013-08-16T14:40:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x49b4940) record = MARC::Record=HASH(0x50d4660) needImport = 0 
+Keep 78
+
+id = 67
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50caec0)
+str = 2013-08-21T13:10:16-07
+export_date = 2013-08-17T00:00:00
+
+id = 138
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d5068)
+str = 2013-08-16T14:41:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4dc8e08) record = MARC::Record=HASH(0x50dc688) needImport = 0 
+Keep 138
+
+id = 56
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50dc298)
+str = 2013-08-16T14:40:36-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x49adf50) record = MARC::Record=HASH(0x50dc010) needImport = 0 
+Keep 56
+
+id = 176
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d40f0)
+str = 2013-08-16T14:41:39-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x3f5d148) record = MARC::Record=HASH(0x50cb2f8) needImport = 0 
+Keep 176
+
+id = 166
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed1d8)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bcbd8) record = MARC::Record=HASH(0x50dc058) needImport = 0 
+Keep 166
+
+id = 46
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c01f0)
+str = 2013-08-21T13:10:16-07
+export_date = 2013-08-17T00:00:00
+
+id = 134
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c4798)
+str = 2013-08-16T14:41:18-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bd2c8) record = MARC::Record=HASH(0x50cbc88) needImport = 0 
+Keep 134
+
+id = 48
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb8f8)
+str = 2013-08-16T14:40:32-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x49b43d0) record = MARC::Record=HASH(0x50d4c18) needImport = 0 
+Keep 48
+
+id = 116
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed1a8)
+str = 2013-08-16T14:41:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b7460) record = MARC::Record=HASH(0x50cb808) needImport = 0 
+Keep 116
+
+id = 181
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d40d8)
+str = 2013-08-16T14:41:41-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4de10a0) record = MARC::Record=HASH(0x50cbb38) needImport = 0 
+Keep 181
+
+id = 180
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4498)
+str = 2013-08-21T13:10:17-07
+export_date = 2013-08-17T00:00:00
+
+id = 188
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbb50)
+str = 2013-08-21T13:10:17-07
+export_date = 2013-08-17T00:00:00
+
+id = 187
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d8df0)
+str = 2013-08-21T13:10:18-07
+export_date = 2013-08-17T00:00:00
+
+id = 45
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d8e98)
+str = 2013-08-21T13:10:18-07
+export_date = 2013-08-17T00:00:00
+
+id = 186
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4a20)
+str = 2013-08-16T14:41:44-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x495e2e0) record = MARC::Record=HASH(0x50ed028) needImport = 0 
+Keep 186
+
+id = 44
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ab730)
+str = 2013-08-21T13:10:19-07
+export_date = 2013-08-17T00:00:00
+
+id = 82
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d45d0)
+str = 2013-08-16T14:40:50-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4dece30) record = MARC::Record=HASH(0x50dbbc0) needImport = 0 
+Keep 82
+
+id = 142
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb1c0)
+str = 2013-08-16T14:41:22-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4477fc0) record = MARC::Record=HASH(0x50dc5e0) needImport = 0 
+Keep 142
+
+id = 16
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbc40)
+str = 2013-08-21T13:10:19-07
+export_date = 2013-08-17T00:00:00
+
+id = 174
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50db998)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4976748) record = MARC::Record=HASH(0x50cb7a8) needImport = 0 
+Keep 174
+
+id = 77
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d8be0)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b0f60) record = MARC::Record=HASH(0x50c3f70) needImport = 0 
+Keep 77
+
+id = 189
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbce8)
+str = 2013-08-21T13:10:19-07
+export_date = 2013-08-17T00:00:00
+
+id = 13
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c46a8)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b1818) record = MARC::Record=HASH(0x50d4eb8) needImport = 0 
+Keep 13
+
+id = 196
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ec6b0)
+str = 2013-08-21T13:10:20-07
+export_date = 2013-08-17T00:00:00
+
+id = 185
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d5038)
+str = 2013-08-16T14:41:43-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b4e40) record = MARC::Record=HASH(0x50dc4d8) needImport = 0 
+Keep 185
+
+id = 167
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c0598)
+str = 2013-08-16T14:41:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bca58) record = MARC::Record=HASH(0x50d4240) needImport = 0 
+Keep 167
+
+id = 120
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb0a0)
+str = 2013-08-21T13:10:20-07
+export_date = 2013-08-17T00:00:00
+
+id = 17
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed190)
+str = 2013-08-21T13:10:20-07
+export_date = 2013-08-17T00:00:00
+
+id = 178
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb0b8)
+str = 2013-08-16T14:41:40-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bc950) record = MARC::Record=HASH(0x50d8a30) needImport = 0 
+Keep 178
+
+id = 130
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c0eb0)
+str = 2013-08-16T14:41:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c04d8) record = MARC::Record=HASH(0x50dbf38) needImport = 0 
+Keep 130
+
+id = 193
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50db998)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c3eb0) record = MARC::Record=HASH(0x50dc760) needImport = 0 
+Keep 193
+
+id = 101
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d8f28)
+str = 2013-08-16T14:41:01-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c4048) record = MARC::Record=HASH(0x50c46d8) needImport = 0 
+Keep 101
+
+id = 195
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb0a0)
+str = 2013-08-16T14:41:49-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c0820) record = MARC::Record=HASH(0x50d4d98) needImport = 0 
+Keep 195
+
+id = 190
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ec8c0)
+str = 2013-08-21T13:10:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 54
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d92a0)
+str = 2013-08-16T14:40:35-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50a4df0) record = MARC::Record=HASH(0x50d4b58) needImport = 0 
+Keep 54
+
+id = 47
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed538)
+str = 2013-08-21T13:10:30-07
+export_date = 2013-08-17T00:00:00
+
+id = 148
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4888)
+str = 2013-08-16T14:41:25-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c3e80) record = MARC::Record=HASH(0x50ec800) needImport = 0 
+Keep 148
+
+id = 175
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ec818)
+str = 2013-08-16T14:41:38-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c43a8) record = MARC::Record=HASH(0x50cba78) needImport = 0 
+Keep 175
+
+id = 28
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ecb60)
+str = 2013-08-16T14:40:23-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c0dc0) record = MARC::Record=HASH(0x50ecc98) needImport = 0 
+Keep 28
+
+id = 36
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c0b68)
+str = 2013-08-21T13:10:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 15
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d9360)
+str = 2013-08-21T13:10:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 125
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50dc088)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c3c88) record = MARC::Record=HASH(0x50cb8f8) needImport = 0 
+Keep 125
+
+id = 151
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4a98)
+str = 2013-08-16T14:41:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c0b20) record = MARC::Record=HASH(0x50d4870) needImport = 0 
+Keep 151
+
+id = 4
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed238)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bce90) record = MARC::Record=HASH(0x50cbbe0) needImport = 0 
+Keep 4
+
+id = 30
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d40f0)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c0e08) record = MARC::Record=HASH(0x50cb910) needImport = 0 
+Keep 30
+
+id = 119
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d42a0)
+str = 2013-08-21T13:10:31-07
+export_date = 2013-08-17T00:00:00
+
+id = 153
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb010)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50a50a8) record = MARC::Record=HASH(0x50cbe38) needImport = 0 
+Keep 153
+
+id = 200
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed0a0)
+str = 2013-08-16T14:41:51-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50a7ef0) record = MARC::Record=HASH(0x50d9768) needImport = 0 
+Keep 200
+
+id = 73
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d8d30)
+str = 2013-08-16T14:40:45-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bc8a8) record = MARC::Record=HASH(0x50db9b0) needImport = 0 
+Keep 73
+
+id = 40
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d9798)
+str = 2013-08-21T13:10:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 53
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d8f88)
+str = 2013-08-21T13:10:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 62
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50caf38)
+str = 2013-08-21T13:10:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 123
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d94b0)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b78f8) record = MARC::Record=HASH(0x50d8af0) needImport = 0 
+Keep 123
+
+id = 23
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ecad0)
+str = 2013-08-16T14:40:20-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bd100) record = MARC::Record=HASH(0x50d4ab0) needImport = 0 
+Keep 23
+
+id = 20
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ecdb8)
+str = 2013-08-21T13:10:32-07
+export_date = 2013-08-17T00:00:00
+
+id = 25
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50eca58)
+str = 2013-08-21T13:10:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 58
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c42b8)
+str = 2013-08-16T14:40:37-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c08f8) record = MARC::Record=HASH(0x4a9f458) needImport = 0 
+Keep 58
+
+id = 1
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed538)
+str = 2013-08-16T14:40:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bd688) record = MARC::Record=HASH(0x50d9318) needImport = 0 
+Keep 1
+
+id = 26
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d91c8)
+str = 2013-08-21T13:10:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 60
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50b7610)
+str = 2013-08-21T13:10:33-07
+export_date = 2013-08-17T00:00:00
+
+id = 165
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb880)
+str = 2013-08-16T14:41:33-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c3bf8) record = MARC::Record=HASH(0x50d8f40) needImport = 0 
+Keep 165
+
+id = 21
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c0f70)
+str = 2013-08-16T14:40:19-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4dd4028) record = MARC::Record=HASH(0x50c0100) needImport = 0 
+Keep 21
+
+id = 152
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb670)
+str = 2013-08-16T14:41:27-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50ed2e0) record = MARC::Record=HASH(0x50d4630) needImport = 0 
+Keep 152
+
+id = 75
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb760)
+str = 2013-08-16T14:40:46-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c00b8) record = MARC::Record=HASH(0x50eced8) needImport = 0 
+Keep 75
+
+id = 124
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50f4eb8)
+str = 2013-08-16T14:41:13-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c3bc8) record = MARC::Record=HASH(0x50c4408) needImport = 0 
+Keep 124
+
+id = 5
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbc58)
+str = 2013-08-16T14:40:11-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50bcc68) record = MARC::Record=HASH(0x50cb1a8) needImport = 0 
+Keep 5
+
+id = 197
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d48d0)
+str = 2013-08-21T13:10:34-07
+export_date = 2013-08-17T00:00:00
+
+id = 114
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4cf0)
+str = 2013-08-16T14:41:09-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c4660) record = MARC::Record=HASH(0x50c4240) needImport = 0 
+Keep 114
+
+id = 43
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4840)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50929b0) record = MARC::Record=HASH(0x50ec908) needImport = 0 
+Keep 43
+
+id = 191
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed178)
+str = 2013-08-16T14:41:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4972260) record = MARC::Record=HASH(0x50ed238) needImport = 0 
+Keep 191
+
+id = 156
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbbe0)
+str = 2013-08-16T14:41:29-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50ab868) record = MARC::Record=HASH(0x50cb730) needImport = 0 
+Keep 156
+
+id = 11
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ed1a8)
+str = 2013-08-21T13:10:34-07
+export_date = 2013-08-17T00:00:00
+
+id = 126
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50dbce0)
+str = 2013-08-16T14:41:14-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50dc040) record = MARC::Record=HASH(0x50cb8c8) needImport = 0 
+Keep 126
+
+id = 194
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50b75f8)
+str = 2013-08-16T14:41:48-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b0c60) record = MARC::Record=HASH(0x50bd100) needImport = 0 
+Keep 194
+
+id = 39
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50b1068)
+str = 2013-08-21T13:10:35-07
+export_date = 2013-08-17T00:00:00
+
+id = 3
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d8eb0)
+str = 2013-08-16T14:40:10-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c07a8) record = MARC::Record=HASH(0x50c4108) needImport = 0 
+Keep 3
+
+id = 61
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d9198)
+str = 2013-08-21T13:10:35-07
+export_date = 2013-08-17T00:00:00
+
+id = 87
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50dc8e0)
+str = 2013-08-21T13:10:35-07
+export_date = 2013-08-17T00:00:00
+
+id = 14
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ec740)
+str = 2013-08-16T14:40:16-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x5088ea8) record = MARC::Record=HASH(0x50ece18) needImport = 0 
+Keep 14
+
+id = 66
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50dc850)
+str = 2013-08-21T13:10:36-07
+export_date = 2013-08-17T00:00:00
+
+id = 89
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbe38)
+str = 2013-08-16T14:40:54-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c4330) record = MARC::Record=HASH(0x50c4240) needImport = 0 
+Keep 89
+
+id = 50
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ecc08)
+str = 2013-08-21T13:10:36-07
+export_date = 2013-08-17T00:00:00
+
+id = 154
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50dbe60)
+str = 2013-08-16T14:41:28-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4972338) record = MARC::Record=HASH(0x50c43f0) needImport = 0 
+Keep 154
+
+id = 57
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cbb98)
+str = 2013-08-21T13:10:37-07
+export_date = 2013-08-17T00:00:00
+
+id = 51
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c0be0)
+str = 2013-08-16T14:40:34-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x4ded640) record = MARC::Record=HASH(0x50b7538) needImport = 0 
+Keep 51
+
+id = 31
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4972338)
+str = 2013-08-16T14:40:24-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50dc6b8) record = MARC::Record=HASH(0x50d4228) needImport = 0 
+Keep 31
+
+id = 35
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c0820)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b7a90) record = MARC::Record=HASH(0x50dbf08) needImport = 0 
+Keep 35
+
+id = 65
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c4018)
+str = 2013-08-21T13:10:37-07
+export_date = 2013-08-17T00:00:00
+
+id = 76
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50f5320)
+str = 2013-08-16T14:40:47-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50d40c0) record = MARC::Record=HASH(0x50dc7f0) needImport = 0 
+Keep 76
+
+id = 69
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x4ded058)
+str = 2013-08-21T13:10:38-07
+export_date = 2013-08-17T00:00:00
+
+id = 37
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4330)
+str = 2013-08-21T13:10:38-07
+export_date = 2013-08-17T00:00:00
+
+id = 85
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c4750)
+str = 2013-08-21T13:10:38-07
+export_date = 2013-08-17T00:00:00
+
+id = 173
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50cb220)
+str = 2013-08-21T13:10:39-07
+export_date = 2013-08-17T00:00:00
+
+id = 34
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50bd418)
+str = 2013-08-16T14:40:26-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b7448) record = MARC::Record=HASH(0x50f50e0) needImport = 0 
+Keep 34
+
+id = 81
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50d4db0)
+str = 2013-08-21T13:10:39-07
+export_date = 2013-08-17T00:00:00
+
+id = 12
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50c3b50)
+str = 2013-08-16T14:40:15-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50b1398) record = MARC::Record=HASH(0x50d4ea0) needImport = 0 
+Keep 12
+
+id = 42
+bre = Fieldmapper::biblio::record_entry=ARRAY(0x50ab730)
+str = 2013-08-16T14:40:30-07
+export_date = 2013-08-17T00:00:00
+input = MARC::Record=HASH(0x50c01a8) record = MARC::Record=HASH(0x50ecba8) needImport = 0 
+Keep 42
