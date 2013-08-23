@@ -1,7 +1,7 @@
 {
 "export":
 	{
-	"last_run_date":"2013-08-17 00:00:00-00",
+	"last_run_date":"2013-08-22 15:21:00-00",
 	"output":"/path/to/file.mrc",
 	"sources": [ 1, 2 ],
 	"recipients": ["user@domain.tld"]
@@ -49,7 +49,7 @@
 	},
 "import":
 	{
-	"working_dir":"/home/kclsdev/Evergreen",
+	"working_dir":"/home/kclsdev/24kcls_evergreen",
 	"print_import":true,
 	"print_keep":true,
 	"print_delete":true,

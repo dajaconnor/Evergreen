@@ -61,7 +61,7 @@ my $result = GetOptions("lower-bound=i" => \$lower_bound,
 #my $dsn = "dbi:Pg:database=" . $egdbi->database;
 
 #my $dsn = "dbi:Pg:database=rel_2_4_1_20130821_auth_v3";
-my $dsn = "dbi:Pg:database=rel_2_4_1_20130816_200bib_kcls_v4";
+my $dsn = "dbi:Pg:database=rel_2_4_1_20130816_200bib_kcls_v6";
 
 #if ($egdbi->host) {
 #    $dsn .= ";host=" . $egdbi->host;
