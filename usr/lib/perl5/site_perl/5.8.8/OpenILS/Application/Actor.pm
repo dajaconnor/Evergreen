@@ -194,6 +194,13 @@ sub user_settings {
         my($e, $user_id, $setting) = @_;
         my $val = $e->search_actor_user_setting({usr => $user_id, name => $setting})->[0];
         return undef unless $val; # XXX this should really return undef, but needs testing
+        
+        # Allows this setting to load correctly in the staff client
+        if ($val->name eq 'history.circ.retention_start'){
+			
+			return 't';
+		}
+        
         return OpenSRF::Utils::JSON->JSON2perl($val->value);
     }
 
