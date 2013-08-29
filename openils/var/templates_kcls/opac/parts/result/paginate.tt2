@@ -17,7 +17,7 @@
                     [%  class = 'search_page_nav_link';
                         href = '#';
                         IF page > 0;
-                            href = mkurl('', {page => page - 1});
+                            href = mkurl(ctx.opac_root _ '/results', {page => page - 1});
                         ELSE; class = class _ ' invisible'; END;
                     %]
                     <a class='[% class %]' href='[% href %]' 
@@ -33,7 +33,7 @@
                                     IF pageitr == page; %]
                                         <span class='results-paginator-selected'>[% pageitr + 1%]</span>
                                     [% ELSE %]
-                                        <a href="[% mkurl('', {page => pageitr}) %]">[% pageitr + 1%]</a>
+                                        <a href="[% mkurl(ctx.opac_root _ '/results', {page => pageitr}) %]">[% pageitr + 1%]</a>
                                 [%  END;
                                     added = added + 1;
                                     IF added == 8; LAST; END;
@@ -45,7 +45,7 @@
                     [%  class = 'search_page_nav_link';
                         href = '#';
                         IF (page + 1) < page_count;
-                            href = mkurl('', {page => page + 1});
+                            href = mkurl(ctx.opac_root _ '/results', {page => page + 1});
                         ELSE; class = class _ ' invisible'; END;
                     %]
                     <a class='[% class %]' href='[% href %]' 

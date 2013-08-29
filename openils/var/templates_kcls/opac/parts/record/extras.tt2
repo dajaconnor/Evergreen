@@ -43,10 +43,10 @@
             <div class="rdetail_extras_link">
                 [%  
                     IF tab_is_active(name);
-                        href = mkurl('', {}, ['expand']);
+                        href = mkurl(ctx.opac_root _ '/record/' _ ctx.bre_id, {}, ['expand']);
                         img_url = ctx.media_prefix _ '/images/kcls_rdetail_arrow_down.png';
                     ELSE;
-                        href = mkurl('', {expand => name}) _ '#' _ name; 
+                        href = mkurl(ctx.opac_root _ '/record/' _ ctx.bre_id, {expand => name}) _ '#' _ name; 
                         img_url = ctx.media_prefix _ '/images/kcls_rdetail_arrow.png';
                     END;
                 %]
