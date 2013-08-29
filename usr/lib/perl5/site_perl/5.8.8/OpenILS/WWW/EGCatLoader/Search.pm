@@ -442,8 +442,10 @@ sub load_rresults {
         # redirect to the record detail page for the last record in the results
         my $rec_id = pop @$rec_ids;
         $cgi->delete('find_last');
-        my $url = $cgi->url(-full => 1, -path => 1, -query => 1);
+#       my $url = $cgi->url(-full => 1, -path => 1, -query => 1);
+        my $url = $cgi->url(-relative => 1, -path => 1, -query => 1);
         $url =~ s|/results|/record/$rec_id|;
+        $url = "oils://remote/" . $url;
         return $self->generic_redirect($url);
     }
 
