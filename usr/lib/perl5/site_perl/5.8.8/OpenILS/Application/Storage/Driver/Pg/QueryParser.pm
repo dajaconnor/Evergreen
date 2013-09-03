@@ -923,12 +923,12 @@ sub flatten {
                 $where .= "$NOT(" . $talias . ".id IS NOT NULL";
                 if (@{$node->phrases}) {
                     $where .= ' AND ' . join(' AND ', map {
-                        "${talias}.value ~* ".$self->QueryParser->quote_phrase_value($_, 1)
+                        "${talias}.value ~* search_normalize(".$self->QueryParser->quote_phrase_value($_, 1).")"
                     } @{$node->phrases});
                 } else {
                     for my $atom (@{$node->only_real_atoms}) {
                         next unless $atom->{content} && $atom->{content} =~ /(^\^|\$$)/;
-                        $where .= " AND ${talias}.value ~* ".$self->QueryParser->quote_phrase_value($atom->{content});
+                        $where .= " AND ${talias}.value ~* search_normalize(".$self->QueryParser->quote_phrase_value($atom->{content}).")";
                     }
                 }
                 $where .= ')';
