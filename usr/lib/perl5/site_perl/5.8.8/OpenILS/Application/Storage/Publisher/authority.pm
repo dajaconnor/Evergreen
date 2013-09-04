@@ -341,4 +341,163 @@ sub authority_id_find {
     return $list;
 }
 
+## Grabs all bibs (title by author in a string) with ids of bibs and 
+# authorities using a list of authority ID's
+
+__PACKAGE__->register_method(
+	api_name        => 'open-ils.storage.authority.get_linked_bibs',
+	method          => 'get_linked_bibs',
+	api_level       => 1,
+	stream          => 1,
+);
+
+sub get_linked_bibs {
+	
+	my $self = shift;
+	my $client = shift;
+	my $auth_ids_ref = shift;
+	
+	my @holder_array = ();
+	my $id_string = '';
+	my $length = scalar @{ $auth_ids_ref };
+	
+	if ($length > 0){
+	
+		foreach my $id (@{ $auth_ids_ref }){
+		
+			$id_string .= $id . ',';
+		}
+		
+		# Remove last comma
+		chop($id_string);
+	
+		# Build SQL statement
+		my $select = <<"	SQL";
+			SELECT abl.authority AS auth_id, bre.id AS bre_id, bre.marc AS marc FROM biblio.record_entry bre
+			JOIN authority.bib_linking abl ON (bre.id = abl.bib)
+			WHERE abl.authority in ($id_string);
+	SQL
+
+		@holder_array = @{ authority::full_rec->db_Main->selectall_arrayref( $select ) };
+
+		foreach my $row (@holder_array){
+			
+			${$row}[2] = get_display_string(${$row}[2]);
+		}
+	}
+	
+	return \@holder_array;
+}
+
+sub get_display_string {
+	
+	my $marc_xml = shift;
+	
+	# Grab and cleanup title
+	my $title = get_marc_value($marc_xml, 245, 'a');
+		
+	my @split_array = split(/\//, $title);
+	$title = $split_array[0];
+	$title =~ s/\[(.*?)]//g;
+	$title =~ s/ ://g;
+	
+	# Grab and cleanup author
+	my $author = get_marc_value($marc_xml, 100, 'a');
+	
+	# DVD's should grab editor
+	if ($author eq "Not Found" || $author eq ""){
+		
+		$author = get_marc_value($marc_xml, 700, 'a');
+	}
+	
+	my $return_string = $title . " by " . $author;
+	
+	if ($author eq "Not Found"){
+		
+		$return_string = $title;
+	}
+	
+	return $return_string;
+}
+
+sub get_marc_value {
+	
+	my $xml = shift;
+	my $value = shift;
+	my $code = shift;
+	my $return_value = "Not Found";
+	
+	if($xml =~ m/<datafield tag="$value"(.*?)datafield>/) {
+		
+		my $datafield = $1;
+		
+		if ($code && $datafield =~ m/<subfield code="$code">(.*?)</){
+			
+			$return_value = $1;
+		}
+			
+		elsif($datafield =~ m/<subfield code="a">(.*?)</) {
+			
+			$return_value = $1;
+		}
+	}
+	
+	if ($return_value eq "Not Found" || $return_value eq ""){
+		
+		Try::Tiny::try {
+			
+			local $SIG{ALRM} = sub { die "alarm\n" };
+			alarm 5;
+			$return_value = get_marc_value_use_marc($xml, $value, $code);
+			alarm 0;
+		}
+		
+		Try::Tiny::catch {
+			
+			$log->debug("get_marc_value timed out!");
+		};
+	}
+	
+	return $return_value;
+}
+
+sub get_marc_value_use_marc {
+	
+	my $xml = shift;
+	my $value = shift;
+	my $code = shift;
+	my $return_value;
+	
+	if($xml =~ m/"<record(.*?)record>"/) {
+			
+		$xml = "<record" . $1 . "record>";
+	
+		my $r = MARC::Record->new_from_xml($xml);
+	
+		if ($value == 100){
+		
+			$return_value = $r->author();
+		}
+		
+		if ($value == 245){
+			
+			$return_value = $r->title_proper();
+		}
+		
+		else{
+			
+			if ($code){
+				
+				$return_value = $r->subfield("$value",$code);
+			}
+			else{
+			
+				$return_value = $r->subfield("$value","a");
+			}
+		}
+	}
+		
+	return $return_value;
+}
+
 1;

@@ -16,6 +16,7 @@ dojo.require('openils.XUL');
 dojo.require('openils.widget.OrgUnitFilteringSelect');
 dojo.require("openils.widget.PCrudAutocompleteBox");
 dojo.require("MARC.FixedFields");
+
 dojo.requireLocalization("openils.authority", "authority");
 var auth_strings = dojo.i18n.getLocalization("openils.authority", "authority");
 
@@ -100,7 +101,8 @@ function displayAuthorities(data) {
         dojo.place(
             '<div class="authEntry" id="auth' + auth.id + '">' +
             '<div class="text" id="authLabel' + auth.id + '">' +
-            '<span class="text">' + auth.text + '</span></div><div class="authority-control-set"><span>ID: ' +
+            '<span class="text" onclick="toggleBibsForAuthority('+ 
+					auth.id + ');">' + auth.text + '</span></div><div class="authority-control-set"><span>ID: ' +
             auth.id + '</span></div>' +
             '<div class="authority-control-set">Control Set: <span class="acs-name">' +
             fetch_control_set(auth.thesaurus).name() +
@@ -194,8 +196,8 @@ function displayAuthorities(data) {
         auth_mb.placeAt(dojo.create("div", null, "auth" + auth.id, "first"), "first");
         auth_menu.startup();
     });
-
-    showBibCount(idArr);
+	
+	getAssociatedBibs(idArr);
 }
 
 function viewMARC(recId) {
@@ -250,33 +252,85 @@ function confirmDelete(recId) {
     }
 }
 
-function showBibCount(authIds) {
-    /* Decorate the list with # of bibs linked to each authority record */
-    var ses = new OpenSRF.ClientSession('open-ils.cat');
-    var req = ses.request('open-ils.cat.authority.records.count_linked_bibs', authIds);
-    var linkedIds = [];
-    req.oncomplete = function(r) {
-        var msg = r.recv().content();
-        dojo.forEach(msg, function(auth) {
-                linkedIds.push(auth.authority);
-                dojo.place('<span class="bibcount">' + auth.bibs + '</span> ', 'authLabel' + auth.authority, 'first');
-            }
-        );
+function getAssociatedBibs(authIds) {
+	
+	var ses = new OpenSRF.ClientSession('open-ils.cat');
+    var req = ses.request('open-ils.cat.authority.records.titled_linked_bibs', authIds);
 
-        /* Assign counts of 0 for every non-linked authority */
-        dojo.forEach(authIds, function (id) {
-            var found = false;
-            dojo.forEach(linkedIds, function (lid) {
-                if (id == lid) {
-                    found = true;
-                }
-            });
-            if (!found) {
-                dojo.place('<span class="bibcount">0</span> ', 'authLabel' + id, 'first');
-            }
-        });
+    req.oncomplete = function(r) {
+		
+        var msg = r.recv().content();
+        
+        for (var i in authIds){
+			
+			if (authIds[i] in msg){
+				
+				var count = 0;
+				
+				for (var bib in msg[authIds[i]]){
+					
+					count ++;
+					
+					dojo.place('<div class="bibrecord forAuth' + 
+					authIds[i] + '"><a href="/eg/opac/record/' + authIds[i] + '" target="_blank"> - ' + msg[authIds[i]][bib] + 
+					'</a></div> ', 
+					'auth' + authIds[i], 
+					'last');
+				}
+				
+				dojo.place('<span class="bibcount" id="bibcount' + authIds[i] + 
+					'" onclick="toggleBibsForAuthority('+ 
+					authIds[i] + ');">&#9658; ' + count + 
+					'</span>', 
+					'authLabel' + authIds[i], 'first');
+			}
+			
+			else{
+			
+				dojo.place('<span class="bibcount">0</span> ', 'authLabel' + authIds[i], 'first');
+				dojo.place('<div class="bibrecord"><span>-</span></div> ', 'auth' + authIds[i], 'last');
+			}
+		}
     }
     req.send();
+}
+
+function toggleBibsForAuthority(authId){
+	
+	var bibs = document.getElementsByClassName("forAuth" + authId);
+	var show = true;
+	
+	for (var i in bibs){
+		
+		if (bibs[i] != undefined && bibs[i].style != undefined){
+			
+			if (bibs[i].style.visibility == "" || bibs[i].style.visibility == "hidden"){
+				
+				bibs[i].style.visibility = "visible";
+				show = true;
+			}
+			
+			else{
+				
+				bibs[i].style.visibility = "hidden";
+				show = false;
+			}
+		}
+	}
+
+	var textToChange = document.getElementById("bibcount" + authId).innerHTML;
+
+	if (show){
+
+		var changedText = textToChange.replace(textToChange.substring(0,1), String.fromCharCode(9660));
+	}
+
+	else{
+
+		var changedText = textToChange.replace(textToChange.substring(0,1), String.fromCharCode(9658));
+	}
+
+	document.getElementById("bibcount" + authId).innerHTML = changedText;
 }
 
 function loadMarcEditor(pcrud, rec) {

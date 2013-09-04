@@ -8,6 +8,9 @@ use OpenILS::Application::AppUtils;
 use OpenILS::Utils::Fieldmapper;
 use OpenILS::Const qw/:const/;
 use OpenILS::Event;
+use Try::Tiny;
+use MARC::Record;
+use MARC::File::XML ( BinaryEncoding => 'UTF-8' );
 my $U = 'OpenILS::Application::AppUtils';
 my $MARC_NAMESPACE = 'http://www.loc.gov/MARC21/slim';
 
@@ -225,6 +228,49 @@ sub count_linked_bibs {
 
     return $link_count;
 }
+
+__PACKAGE__->register_method(
+    method    => 'titled_linked_bibs',
+    api_name  => 'open-ils.cat.authority.records.titled_linked_bibs',
+    signature => q/
+        Returns titles of all bib records linked to each authority record in the input list
+        @param records Array of authority records to return counts
+        @return A list of hashes containing the authority record ID ("id") and linked bib count ("bibs")
+    /
+);
+
+sub titled_linked_bibs {
+    my( $self, $conn, $records ) = @_;
+
+	# Returns array_ref auth_id, bib_id, display_text_for_bib
+	my $response = $U->storagereq(
+	'open-ils.storage.authority.get_linked_bibs', $records);
+
+	# This is a hash of hashes {auth_id => {bib_id => display_text_for_bib}}
+	my %linked_bibs;
+	
+	foreach my $bib (@{$response}){
+		
+		# add to auth's array if it's already there
+		if ($linked_bibs{${$bib}[0]}){
+			
+			my %oldAuth = $linked_bibs{${$bib}[0]};
+			
+			$oldAuth{${$bib}[1]} = ${$bib}[2];
+		}
+		
+		# otherwise, make a new auth object
+		else{
+			
+			my %newAuth = (${$bib}[1] => ${$bib}[2]);
+			$linked_bibs{${$bib}[0]} = \%newAuth;
+		}
+	}
+	
+	return \%linked_bibs;
+}
+
+
 
 __PACKAGE__->register_method(
     "method" => "retrieve_acs",
