@@ -123,6 +123,10 @@ function populate_list() {
 
         rows = {};
         list.clear();
+        xulG.patron.standing_penalties().sort(function(a, b) {
+            return util.date.db_date2Date(a.set_date()).getTime() -
+                   util.date.db_date2Date(b.set_date()).getTime()
+        });
         for (var i = 0; i < xulG.patron.standing_penalties().length; i++) {
             var row_params = {
                 'row' : {
@@ -409,6 +413,7 @@ function handle_archive_penalty(ev) {
 }
 
 function handle_retrieve_archived_penalties() {
+    archived_ausp = [];
     try {
         document.getElementById('archived_progress').hidden = false;
         archived_list.clear(); archived_rows = {};
@@ -432,6 +437,7 @@ function handle_retrieve_archived_penalties() {
             {
                 async : true,
                 streaming : true,
+//              order_by : {'ausp':'set date DESC'},
                 onerror : function(r) {
                     try {
                         var res = openils.Util.readResponse(r,true);
@@ -442,20 +448,26 @@ function handle_retrieve_archived_penalties() {
                 },
                 oncomplete : function() {
                     document.getElementById('archived_progress').hidden = true;
-                },
-                onresponse : function(r) {
-                    try {
-                        var my_ausp = openils.Util.readResponse(r);
+                    archived_ausp.sort(function (a, b) {
+                        return a.set_date() > b.set_date();
+                    });
+                    for (var i = 0; i < archived_ausp.length; i++) {
                         var row_params = {
                             'row' : {
                                 'my' : {
-                                    'ausp' : my_ausp,
-                                    'csp' : my_ausp.standing_penalty(),
+                                    'ausp' : archived_ausp[i],
+                                    'csp' : archived_ausp[i].standing_penalty(),
                                     'au' : xulG.patron,
                                 }
                             }
                         };
-                        archived_rows[ my_ausp.id() ] = archived_list.append( row_params );
+                        archived_rows[ archived_ausp[i].id() ] = archived_list.append( row_params );
+                    };
+                },
+                onresponse : function(r) {
+                    try {
+                        var my_ausp = openils.Util.readResponse(r);
+                        archived_ausp.push(my_ausp);
                     } catch(E) {
                         error.standard_unexpected_error_alert(patronStrings.getString('staff.patron.standing_penalty.retrieve_error'),E);
                     }
