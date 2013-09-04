@@ -775,6 +775,10 @@ main.menu.prototype = {
                 ['oncommand'],
                 function(event) { open_eg_web_page('conify/global/config/standing_penalty', null, event); }
             ],
+            'cmd_local_admin_patron_messages' : [
+                ['oncommand'],
+                function(event) { open_eg_web_page('conify/global/config/patron_messages', null, event); }
+            ],
             'cmd_local_admin_grp_penalty_threshold' : [
                 ['oncommand'],
                 function(event) { open_eg_web_page('conify/global/permission/grp_penalty_threshold', null, event); }
