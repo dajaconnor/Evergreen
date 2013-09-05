@@ -4459,6 +4459,7 @@ __PACKAGE__->register_method(
 sub get_barcodes {
 	my( $self, $client, $auth, $org_id, $context, $barcode ) = @_;
 	my $e = new_editor(authtoken => $auth);
+	
     return $e->event unless $e->checkauth;
     return $e->event unless $e->allowed('STAFF_LOGIN', $org_id);
 
@@ -4778,6 +4779,36 @@ sub filter_group_entry_crud {
         $entry->grp($entry->grp->id); # for consistency
         return $entry;
     }
+}
+
+# Handles stored messages for patrons
+
+__PACKAGE__->register_method(
+    method    => "patron_message_list",
+    api_name  => "open-ils.actor.patron_message_list",
+    signature => q/
+		Grabs a list of all pre-defined messages that can be sent to a patron.
+		/
+);
+
+# Gets the list of default messages
+sub patron_message_list {
+
+	my $message_ref = $U->storagereq('open-ils.storage.direct.action.patron_message_list');
+	my @message = @$message_ref;
+	my $stringtoSend;
+
+	foreach (@message) {
+
+		my @sub_message = @$_;
+
+		foreach (@sub_message) {
+
+			$stringtoSend .= $_ . "&SPLIT&";
+		}
+	}
+
+	return $stringtoSend;
 }
 
 1;

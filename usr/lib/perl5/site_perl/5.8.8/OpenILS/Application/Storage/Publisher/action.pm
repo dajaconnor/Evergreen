@@ -2334,4 +2334,32 @@ sub metarecord_hold_capture {
 	$self->title_hold_capture($hold,$titles) if (ref $titles and @$titles);
 }
 
+sub patron_message_list {
+
+	# Grab self, client
+	my $self = shift;
+	my $client = shift;
+
+	$logger->debug("PATRONPROBLEM");
+
+	# Build SQL statement
+	my $select = <<"	SQL";
+		SELECT message, weight FROM config.patron_message;
+	SQL
+
+	# Load and execute statement
+	my $sth = action::survey->db_Main->prepare_cached($select);
+
+	$sth->execute();
+
+	return $sth->fetchall_arrayref;
+}
+
+__PACKAGE__->register_method(
+	api_name        => 'open-ils.storage.direct.action.patron_message_list',
+	method          => 'patron_message_list',
+	api_level       => 1,
+	stream          => 1,
+);
+
 1;
