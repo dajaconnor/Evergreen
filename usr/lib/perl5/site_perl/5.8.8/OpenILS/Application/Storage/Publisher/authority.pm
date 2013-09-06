@@ -302,7 +302,42 @@ sub authority_in_db_browse_or_search {
         /,
         {}, @args
     );
+    return $list;
+}
 
+__PACKAGE__->register_method(
+    api_name	=> "open-ils.storage.authority.id_find",
+    method		=> "authority_id_find",
+    api_level	=> 1,
+    argc        => 5,
+    signature   => {
+        desc => q/Use stored procedures to perform authorities-based
+        browses or searches/,
+        params => [
+            {name => "method", type => "string", desc => q/
+                The name of a method within the authority schema to call.  This
+                is an API call on a private service for a reason.  Do not pass
+                unfiltered user input into this API call, especially in this
+                parameter./},
+            {name => "what", type => "string", desc => q/
+                What to search. Could be an axis name, an authority tag
+                number, or a bib tag number/},
+            {name => "term", type => "string", desc => "Search term"},
+            {name => "page", type => "number", desc => "Zero-based page number"},
+            {name => "page_size", type => "number",
+                desc => "Number of records per page"}
+        ],
+        return => {
+            desc => "A list of authority record IDs",
+            type => "array"
+        }
+    }
+);
+
+sub authority_id_find {
+    my ($self, $shift, $method, @args) = @_;
+    return unless $method =~ /^\w+$/;
+    my $list = ["@args[1]"];
     return $list;
 }
 

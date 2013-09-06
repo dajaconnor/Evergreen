@@ -26,6 +26,7 @@
     <command id="cmd_cat_main" />
     <command id="cmd_create_marc" />
     <command id="cmd_authority_manage" />
+    <command id="cmd_find_authority_by_id" />
     <command id="cmd_url_verify" />
     <command id="cmd_circ_checkout" />
     <command id="cmd_patron_search" />
@@ -454,6 +455,7 @@
         <menuitem label="&staff.main.menu.cat.retrieve_last_record.label;" accesskey="&staff.main.menu.cat.retrieve_last_record.accesskey;" command="cmd_retrieve_last_record"/>
         <menuseparator />
         <menuitem label="&staff.main.menu.cat.authority_manage.label;" accesskey="&staff.main.menu.cat.authority_manage.accesskey;" command="cmd_authority_manage"/>
+        <menuitem label="&staff.main.menu.cat.find_authority_by_id.label;" accesskey="&staff.main.menu.cat.find_authority_by_id.accesskey;" command="cmd_find_authority_by_id"/>
         <menuseparator />
         <menuitem label="&staff.main.menu.cat.url_verify.label;" accesskey="&staff.main.menu.cat.url_verify.accesskey;" command="cmd_url_verify"/>
     </menupopup>

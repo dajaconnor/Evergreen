@@ -1584,9 +1584,11 @@ sub string_browse {
     my $next = join('/', $base,$format,$axis,$site,$string,$page + 1,$page_size);
 
     unless ($string and $axis and grep { $axis eq $_ } keys %browse_types) {
-        warn "something's wrong...";
-        warn " >>> format: $format -> axis: $axis -> site: $site -> string: $string -> page: $page -> page_size: $page_size ";
-        return undef;
+        unless ($axis eq "authority.id") {
+            warn "something's wrong...";
+            warn " >>> format: $format -> axis: $axis -> site: $site -> string: $string -> page: $page -> page_size: $page_size ";
+            return undef;
+        }
     }
 
     $string = decode_utf8($string);
@@ -1620,7 +1622,9 @@ sub string_browse {
     }
 
     (my $norm_format = $format) =~ s/(-full|-uris)$//o;
-
+    if($axis eq 'authority.id') {
+        $axis = 'authority.title';
+    };
     my ($header,$content) = $browse_types{$axis}{$norm_format}->($tree,$prev,$next,$format,$unapi,$base,$site);
     print $header.$content;
     return Apache2::Const::OK;
@@ -1703,7 +1707,6 @@ sub string_startwith {
     }
 
     (my $norm_format = $format) =~ s/(-full|-uris)$//o;
-
     my ($header,$content) = $browse_types{$axis}{$norm_format}->($tree,$prev,$next,$format,$unapi,$base,$site);
     print $header.$content;
     return Apache2::Const::OK;

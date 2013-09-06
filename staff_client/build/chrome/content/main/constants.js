@@ -394,6 +394,7 @@ var urls = {
     'AUDIO_event_ASSET_COPY_NOT_FOUND' : '/xul/rel_2_4_1/server/skin/media/audio/redalert.wav',
 
     'AUTHORITY_MANAGE' : 'cat/authority/list',
+    'FIND_AUTHORITY_BY_ID' : 'cat/authority/list_id',
     'MANAGE_MULTI_HOME_ITEMS' : 'oils://remote/xul/rel_2_4_1/server/cat/manage_multi_home_items.xul',
     'XUL_AUTH_SIMPLE' : 'oils://remote/xul/rel_2_4_1/server/main/simple_auth.xul',
     'XUL_BIB_BRIEF' : 'oils://remote/xul/rel_2_4_1/server/cat/bib_brief.xul',

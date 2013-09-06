@@ -1347,6 +1347,17 @@ main.menu.prototype = {
                 }
             ],
 
+            'cmd_find_authority_by_id' : [
+                ['oncommand'],
+                function(event) {
+                    open_eg_web_page(
+                        urls.FIND_AUTHORITY_BY_ID,
+                        "menu.cmd_find_authority_by_id.tab",
+                        event
+                    );
+                }
+            ],
+
             'cmd_marc_batch_edit' : [
                 ['oncommand'],
                 function(event) {
