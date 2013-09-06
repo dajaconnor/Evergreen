@@ -2405,8 +2405,9 @@
 <!ENTITY staff.circ.copy_status_overlay.sel_record_bucket.accesskey "">
 <!ENTITY staff.circ.copy_status_overlay.sel_opac.label "Show in Catalog">
 <!ENTITY staff.circ.copy_status_overlay.sel_opac.accesskey "S">
-<!ENTITY staff.circ.copy_status_overlay.sel_opac_holds.label "Show Holds on Bib">
+<!ENTITY staff.circ.copy_status_overlay.sel_opac_holds.label "View Holds">
 <!ENTITY staff.circ.copy_status_overlay.sel_opac_holds.accesskey "H">
+<!ENTITY staff.circ.copy_status_overlay.sel_opac_copy_browser.label "Holdings Maintenance">
 <!ENTITY staff.circ.copy_status_overlay.sel_copy_details.label "Show Item Details">
 <!ENTITY staff.circ.copy_status_overlay.sel_copy_details.accesskey "I">
 <!ENTITY staff.circ.copy_status_overlay.sel_patron.label "Show Last Few Circulations">
