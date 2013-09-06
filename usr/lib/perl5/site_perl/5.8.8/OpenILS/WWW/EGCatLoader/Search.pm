@@ -30,6 +30,8 @@ sub _prepare_biblio_search_basics {
             $qtype = 'title';
         }
 
+		$logger->debug("kmain384 query before: " . $query);
+
         # This stuff probably will need refined or rethought to better handle
         # the weird things Real Users will surely type in.
         $contains = "" unless defined $contains; # silence warning
@@ -41,15 +43,32 @@ sub _prepare_biblio_search_basics {
             $query =~ s/"//g;
             $query = ('"' . $query . '"') if index $query, ' ';
         } elsif ($contains eq 'exact') {
-            $query =~ s/[\^\$]//g;
+			$query =~ s/"//g;
+			
+			# This allows searches that end with $ or start with ^
+			if ($query =~ m/^\^/ && $query =~ m/\$$/ ){
+				
+				$query =~ s/^\^//g;
+				$query =~ s/\$$//g;
+			}
+            
+            $query =~ s/\^/\^/g;
+            $query =~ s/\$/\$/g;
+            #$query = '$VERY_UNIQUE_STRING$' . $query . '$VERY_UNIQUE_STRING$';
             $query = '^' . $query . '$';
         } elsif ($contains eq 'starts') {
             $query =~ s/"//g;
-            $query =~ s/[\^\$]//g;
+            $query =~ s/^\^//g;
+            $query =~ s/\$$//g;
+            $query =~ s/\^/\^/g;
+            $query =~ s/\$/\$/g;
+            #$query = '$VERY_UNIQUE_STRING$' . $query . '$VERY_UNIQUE_STRING$';
             $query = '^' . $query;
             $query = ('"' . $query . '"') if index $query, ' ';
         }
         $query = "$qtype:$query" unless $qtype eq 'keyword' and $i == 0;
+
+		$logger->debug("kmain384 query after: " . $query);
 
         $bool = ($bool and $bool eq 'or') ? '||' : '&&';
         $full_query = $full_query ? "($full_query $bool $query)" : $query;
