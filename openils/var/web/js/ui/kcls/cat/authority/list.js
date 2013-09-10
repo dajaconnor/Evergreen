@@ -272,7 +272,7 @@ function getAssociatedBibs(authIds) {
 					count ++;
 					
 					dojo.place('<div class="bibrecord forAuth' + 
-					authIds[i] + '"><a href="/eg/opac/record/' + authIds[i] + '" target="_blank"> - ' + msg[authIds[i]][bib] + 
+					authIds[i] + '"><a href="/eg/opac/record/' + bib + '" target="_blank"> - ' + msg[authIds[i]][bib] + 
 					'</a></div> ', 
 					'auth' + authIds[i], 
 					'last');
