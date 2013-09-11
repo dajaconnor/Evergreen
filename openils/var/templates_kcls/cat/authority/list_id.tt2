@@ -7,7 +7,6 @@
     .authEntry > *:first-child { float: left; width: 20%; }
     .authEntry > .text { float: left; width: 48%; }
     .authEntry > .authority-control-set { float: right; width: 16%; ; font-style: italic; }
-    .authEntry > .bibrecord { visibility: hidden }
     .authority-control-set .acs-name { font-weight: bold; }
     .authority-control-set .acs-id { }
 </style>

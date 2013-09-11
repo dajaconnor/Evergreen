@@ -102,7 +102,7 @@ function displayAuthorities(data) {
             '<div class="authEntry" id="auth' + auth.id + '">' +
             '<div class="text" id="authLabel' + auth.id + '">' +
             '<span class="text" onclick="toggleBibsForAuthority('+
-				auth.id + ');">' + auth.text + '</span></div><div class="authority-control-set"><span>ID: ' +
+				auth.id + ');">' + auth.text + '</span><div id="auth' + auth.id + 'BibResults" class="forAuth' + auth.id + '" style="background-color:#EEE; padding-left:10px; margin-left:10px; overflow-y: auto; max-height:400px; margin-bottom:20px; display:none;"></div></div><div class="authority-control-set"><span>ID: ' +
             auth.id + '</span></div>' +
             '<div class="authority-control-set">Control Set: <span class="acs-name">' +
             fetch_control_set(auth.thesaurus).name() +
@@ -266,10 +266,9 @@ function getAssociatedBibs(authIds) {
 				var count = 0;
 				for (var bib in msg[authIds[i]]){
 					count ++;
-    				dojo.place('<div class="bibrecord forAuth' +
-					authIds[i] + '"><a href="/eg/opac/record/' + authIds[i] + '" target="_blank"> - ' + msg[authIds[i]][bib] +
+    				dojo.place('<div class="bibrecord"> - <a href="/eg/opac/record/' + authIds[i] + '" target="_blank">' + msg[authIds[i]][bib] +
 					'</a></div> ',
-					'auth' + authIds[i],
+					'auth' + authIds[i] + 'BibResults',
 					'last');
 				}
 				dojo.place('<span class="bibcount" id="bibcount' + authIds[i] +
@@ -279,8 +278,7 @@ function getAssociatedBibs(authIds) {
 					'authLabel' + authIds[i], 'first');
 			}
 			else{
-				dojo.place('<span class="bibcount">0</span> ', 'authLabel' + authIds[i], 'first');
-				dojo.place('<div class="bibrecord"><span>-</span></div> ', 'auth' + authIds[i], 'last');
+				dojo.place('<span class="bibcount" style="padding-left: 17px;">0</span> ', 'authLabel' + authIds[i], 'first');
 			}
 		}
     }
@@ -292,12 +290,12 @@ function toggleBibsForAuthority(authId){
 	var show = true;
 	for (var i in bibs){
 		if (bibs[i] != undefined && bibs[i].style != undefined){
-			if (bibs[i].style.visibility == "" || bibs[i].style.visibility == "hidden"){
-				bibs[i].style.visibility = "visible";
+			if (bibs[i].style.display == "" || bibs[i].style.display == "none"){
+				bibs[i].style.display = "block";
 				show = true;
 			}
 			else{
-				bibs[i].style.visibility = "hidden";
+				bibs[i].style.display = "none";
 				show = false;
             }
         }

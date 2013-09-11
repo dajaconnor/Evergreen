@@ -252,11 +252,12 @@ sub titled_linked_bibs {
 	foreach my $bib (@{$response}){
 		
 		# add to auth's array if it's already there
-		if ($linked_bibs{${$bib}[0]}){
+		if (exists $linked_bibs{${$bib}[0]}){
 			
-			my %oldAuth = $linked_bibs{${$bib}[0]};
+			my %oldAuth = %{ $linked_bibs{${$bib}[0]} };
 			
 			$oldAuth{${$bib}[1]} = ${$bib}[2];
+            $linked_bibs{${$bib}[0]} = \%oldAuth;
 		}
 		
 		# otherwise, make a new auth object

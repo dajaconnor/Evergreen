@@ -102,7 +102,7 @@ function displayAuthorities(data) {
             '<div class="authEntry" id="auth' + auth.id + '">' +
             '<div class="text" id="authLabel' + auth.id + '">' +
             '<span class="text" onclick="toggleBibsForAuthority('+ 
-					auth.id + ');">' + auth.text + '</span></div><div class="authority-control-set"><span>ID: ' +
+					auth.id + ');">' + auth.text + '</span><div id="auth' + auth.id + 'BibResults" class="forAuth' + auth.id + '" style="background-color:#DDD; padding-left:10px; margin-left:10px; overflow-y: auto; max-height:162px; margin-bottom:20px; display:none;"></div></div><div class="authority-control-set"><span>ID: ' +
             auth.id + '</span></div>' +
             '<div class="authority-control-set">Control Set: <span class="acs-name">' +
             fetch_control_set(auth.thesaurus).name() +
@@ -272,9 +272,9 @@ function getAssociatedBibs(authIds) {
 					count ++;
 					
 					dojo.place('<div class="bibrecord forAuth' + 
-					authIds[i] + '"><a href="/eg/opac/record/' + bib + '" target="_blank"> - ' + msg[authIds[i]][bib] + 
+					authIds[i] + '" > - <a href="/eg/opac/record/' + bib + '" target="_blank">' + msg[authIds[i]][bib] + 
 					'</a></div> ', 
-					'auth' + authIds[i], 
+					'auth' + authIds[i] + 'BibResults', 
 					'last');
 				}
 				
@@ -287,8 +287,7 @@ function getAssociatedBibs(authIds) {
 			
 			else{
 			
-				dojo.place('<span class="bibcount">0</span> ', 'authLabel' + authIds[i], 'first');
-				dojo.place('<div class="bibrecord"><span>-</span></div> ', 'auth' + authIds[i], 'last');
+				dojo.place('<span class="bibcount" style="padding-left: 17px;"> 0 </span> ', 'authLabel' + authIds[i], 'first');
 			}
 		}
     }
@@ -304,15 +303,15 @@ function toggleBibsForAuthority(authId){
 		
 		if (bibs[i] != undefined && bibs[i].style != undefined){
 			
-			if (bibs[i].style.visibility == "" || bibs[i].style.visibility == "hidden"){
+			if (bibs[i].style.display == "" || bibs[i].style.display == "none"){
 				
-				bibs[i].style.visibility = "visible";
+				bibs[i].style.display = "block";
 				show = true;
 			}
 			
 			else{
 				
-				bibs[i].style.visibility = "hidden";
+				bibs[i].style.display = "none";
 				show = false;
 			}
 		}
