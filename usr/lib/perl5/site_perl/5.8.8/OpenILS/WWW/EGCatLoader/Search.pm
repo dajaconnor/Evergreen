@@ -35,6 +35,7 @@ sub _prepare_biblio_search_basics {
         # This stuff probably will need refined or rethought to better handle
         # the weird things Real Users will surely type in.
         $contains = "" unless defined $contains; # silence warning
+        $query =~ s/-//g; # Get rid of -
         if ($contains eq 'nocontains') {
             $query =~ s/"//g;
             $query = ('"' . $query . '"') if index $query, ' ';
