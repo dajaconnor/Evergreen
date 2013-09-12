@@ -146,8 +146,6 @@ function build_message_menu(){
 		}
 	);
 
-	alert(messageString);
-
 	var messageList = messageString.split(/&SPLIT&/);
 
 	// Array of arrays
