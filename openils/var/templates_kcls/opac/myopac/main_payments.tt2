@@ -1,13 +1,20 @@
-[%  PROCESS "opac/parts/header.tt2";
-    PROCESS "opac/parts/misc_util.tt2";
-    WRAPPER "opac/parts/myopac/main_base.tt2";
-    myopac_page = "main";
-    myopac_main_page = "payments";
+[%  
+    WRAPPER "opac/parts/base.tt2";
+
     limit = ctx.payment_history_limit;
     offset = ctx.payment_history_offset;
 %]
 
-<div>
+<div id='fines_payments_wrapper'>
+	<div id='acct_fines_tabs'>
+
+		<a href='main_fines'><img src='[% ctx.media_prefix %]/images/acct_fines_on.jpg'/></a>
+		<a href='main_payments'><img src='[% ctx.media_prefix %]/images/acct_payments_off.jpg'/></a>
+
+	</div>
+</div>
+
+<div style="background:#fff">
     <div class="header_middle">
         <span class="float-left">[% l('Payments History') %]</span>
         <span class='float-left' style='padding-left: 10px;'>

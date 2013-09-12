@@ -1,19 +1,26 @@
-[%  PROCESS "opac/parts/header.tt2";
-    PROCESS "opac/parts/misc_util.tt2";
-    WRAPPER "opac/parts/myopac/main_base.tt2";
-    myopac_page = "main";
-    myopac_main_page = "payment_form";
+[%  
 
+    WRAPPER "opac/parts/base.tt2";
     last_chance = CGI.param("last_chance");
 
 %]
+
+<div id='fines_payments_wrapper'>
+	<div id='acct_fines_tabs'>
+
+		<a href='main_fines'><img src='[% ctx.media_prefix %]/images/acct_fines_on.jpg'/></a>
+		<a href='main_payments'><img src='[% ctx.media_prefix %]/images/acct_payments_off.jpg'/></a>
+
+	</div>
+</div>
+
 [% IF ctx.fines.balance_owed <= 0 %]
 <div>
     [% l("You either have no fines to pay or you have selected fines whose " _
         "total is non-positive.  We cannot process non-positive amounts.") %]
 </div>
 [% ELSE %]
-<div id="pay_fines_now">
+<div id="pay_fines_now" style="background:#fff">
     [% IF last_chance %]
     <p><big>[% l("Are you sure you are ready to charge [_1] to your credit card?", money(ctx.fines.balance_owed)) %]</big></p>
     <form action="[% ctx.opac_root %]/myopac/main_pay_init" method="POST">
