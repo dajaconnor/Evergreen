@@ -6,7 +6,7 @@
     {value => "series", label => l("Series")},
     {value => "id|bibcn", label => l("Bib Call Number")}
     {value => "identifier", label => l("ISBN/ISSN/Other")}
-	{value => "keyword|publisher", label => l("Publisher")}
+    {value => "keyword|publisher", label => l("Publisher")}
 ] %]
 <select name="qtype" onChange='updateBeginsWithOption(this, get_nextsibling(this.parentNode));'>
     [%  query_type = query_type || CGI.param('qtype');
