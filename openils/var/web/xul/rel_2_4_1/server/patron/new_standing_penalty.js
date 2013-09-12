@@ -140,13 +140,13 @@ function build_message_menu(){
 
    // Load the dropdown
 	var messageString = fieldmapper.standardRequest(
-		[ api.PATRON_MESSAGE_LIST.app, api.PATRON_MESSAGE_LIST.method ],
+		[ 'open-ils.actor', 'open-ils.actor.patron_message_list' ],
 		{   async: false,
 			timeout: 10
 		}
 	);
 
-	
+	alert(messageString);
 
 	var messageList = messageString.split(/&SPLIT&/);
 
