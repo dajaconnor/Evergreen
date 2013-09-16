@@ -9,6 +9,7 @@ use OpenSRF::Utils::JSON;
 use OpenILS::Application::AppUtils;
 use OpenILS::Utils::CStoreEditor;
 my $U = 'OpenILS::Application::AppUtils';
+use OpenSRF::Utils::Logger qw/$logger/;
 
 my ${spc} = ' ' x 2;
 sub subquery_callback {
@@ -82,18 +83,18 @@ sub quote_phrase_value {
     my $self = shift;
     my $value = shift;
     my $wb = shift;
-
+    
     my $left_anchored = '';
     my $right_anchored = '';
     $left_anchored  = $1 if $value =~ m/^([*\^])/;
     $right_anchored = $1 if $value =~ m/([*\$])$/;
     $value =~ s/^[*\^]//   if $left_anchored;
     $value =~ s/[*\$]$//  if $right_anchored;
-    $value = quotemeta($value);
     $value = '^' . $value if $left_anchored eq '^';
     $value = "$value\$"   if $right_anchored eq '$';
     $value = '[[:<:]]' . $value if $wb && !$left_anchored;
     $value .= '[[:>:]]' if $wb && !$right_anchored;
+    
     return $self->quote_value($value);
 }
 
