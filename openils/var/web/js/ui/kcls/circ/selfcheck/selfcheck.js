@@ -496,7 +496,7 @@ SelfCheckManager.prototype.updateFinesSummary = function() {
     // fines summary
     fieldmapper.standardRequest(
         ['open-ils.actor', 'open-ils.actor.user.fines.summary'],
-        {   async : true,
+        {   async : false,
             params : [this.authtoken, this.patron.id()],
             oncomplete : function(r) {
                 var summary = openils.Util.readResponse(r);
@@ -528,7 +528,7 @@ SelfCheckManager.prototype.drawItemsOutPage = function() {
     fieldmapper.standardRequest(
         ['open-ils.circ', 'open-ils.circ.actor.user.checked_out.atomic'],
         {
-            async : true,
+            async : false,
             params : [this.authtoken, this.patron.id()],
             oncomplete : function(r) {
                 var resp = openils.Util.readResponse(r);
@@ -689,7 +689,7 @@ SelfCheckManager.prototype.drawHoldsPage = function(bool) {
     fieldmapper.standardRequest( // fetch the hold IDs
 
         ['open-ils.circ', 'open-ils.circ.holds.id_list.retrieve'],
-        {   async : true,
+        {   async : false,
             params : [this.authtoken, this.patron.id()],
 
             oncomplete : function(r) { 
@@ -701,7 +701,7 @@ SelfCheckManager.prototype.drawHoldsPage = function(bool) {
 
                 fieldmapper.standardRequest( // fetch the hold objects with fleshed details
                     ['open-ils.circ', 'open-ils.circ.hold.details.batch.retrieve'],
-                    {   async : true,
+                    {   async : false,
                         params : [self.authtoken, ids],
 
                         onresponse : function(rr) {
@@ -843,7 +843,7 @@ SelfCheckManager.prototype.drawFinesPage = function() {
 
     fieldmapper.standardRequest( 
         ['open-ils.actor', 'open-ils.actor.user.transactions.have_balance.fleshed'],
-        {   async : true,
+        {   async : false,
             params : [this.authtoken, this.patron.id()],
             oncomplete : function(r) { 
                 progressDialog.hide();
@@ -1238,7 +1238,7 @@ SelfCheckManager.prototype.printSessionReceipt = function(callback) {
     fieldmapper.standardRequest(
         ['open-ils.circ', 'open-ils.circ.fire_circ_trigger_events'],
         {   
-            async : true,
+            async : false,
             params : params,
             oncomplete : function(r) {
                 var resp = openils.Util.readResponse(r);
@@ -1304,7 +1304,7 @@ SelfCheckManager.prototype.printItemsOutReceipt = function(callback) {
     fieldmapper.standardRequest(
         ['open-ils.circ', 'open-ils.circ.fire_circ_trigger_events'],
         {   
-            async : true,
+            async : false,
             params : params,
             oncomplete : function(r) {
                 progressDialog.hide();
@@ -1364,7 +1364,7 @@ SelfCheckManager.prototype.printHoldsReceipt = function(callback) {
     fieldmapper.standardRequest(
         ['open-ils.circ', 'open-ils.circ.fire_hold_trigger_events'],
         {   
-            async : true,
+            async : false,
             params : params,
             oncomplete : function(r) {
                 progressDialog.hide();
@@ -1393,7 +1393,7 @@ SelfCheckManager.prototype.printPaymentReceipt = function(paymentIds, callback) 
     fieldmapper.standardRequest(
         ['open-ils.circ', 'open-ils.circ.money.payment_receipt.print'],
         {
-            async : true,
+            async : false,
             params : [this.authtoken, paymentIds],
             oncomplete : function(r) {
                 var resp = openils.Util.readResponse(r);
@@ -1433,7 +1433,7 @@ SelfCheckManager.prototype.printFinesReceipt = function(callback) {
     fieldmapper.standardRequest(
         ['open-ils.circ', 'open-ils.circ.fire_user_trigger_events'],
         {   
-            async : true,
+            async : false,
             params : params,
             oncomplete : function(r) {
                 progressDialog.hide();
