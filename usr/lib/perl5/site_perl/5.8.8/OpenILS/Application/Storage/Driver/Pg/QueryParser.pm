@@ -9,7 +9,6 @@ use OpenSRF::Utils::JSON;
 use OpenILS::Application::AppUtils;
 use OpenILS::Utils::CStoreEditor;
 my $U = 'OpenILS::Application::AppUtils';
-use OpenSRF::Utils::Logger qw/$logger/;
 
 my ${spc} = ' ' x 2;
 sub subquery_callback {
@@ -83,18 +82,18 @@ sub quote_phrase_value {
     my $self = shift;
     my $value = shift;
     my $wb = shift;
-    
+
     my $left_anchored = '';
     my $right_anchored = '';
     $left_anchored  = $1 if $value =~ m/^([*\^])/;
     $right_anchored = $1 if $value =~ m/([*\$])$/;
     $value =~ s/^[*\^]//   if $left_anchored;
     $value =~ s/[*\$]$//  if $right_anchored;
+    $value = quotemeta($value);
     $value = '^' . $value if $left_anchored eq '^';
     $value = "$value\$"   if $right_anchored eq '$';
     $value = '[[:<:]]' . $value if $wb && !$left_anchored;
     $value .= '[[:>:]]' if $wb && !$right_anchored;
-    
     return $self->quote_value($value);
 }
 
@@ -817,6 +816,10 @@ SELECT  $key AS id,
   LIMIT $core_limit
 SQL
 
+open SQLTXT, ">", "/tmp/sql.txt";
+print SQLTXT $sql;
+close SQLTXT;
+
     warn $sql if $self->QueryParser->debug;
     return $sql;
 
@@ -924,13 +927,21 @@ sub flatten {
                 $where .= "$NOT(" . $talias . ".id IS NOT NULL";
                 if (@{$node->phrases}) {
                     $where .= ' AND ' . join(' AND ', map {
-                        "${talias}.value ~* search_normalize(".$self->QueryParser->quote_phrase_value($_, 1).")"
+                        "${talias}.value ~* xml_encode_special_chars(search_normalize(".$self->QueryParser->quote_phrase_value($_, 1)."))"
                     } @{$node->phrases});
-                } else {
+                } elsif (((@{$node->only_real_atoms}[0])->{content}) =~ /^\^/) { # matches exactly
+                    $where .= " AND ${talias}.value ilike xml_encode_special_chars(search_normalize(";
+                    my $phrase_list;
                     for my $atom (@{$node->only_real_atoms}) {
-                        next unless $atom->{content} && $atom->{content} =~ /(^\^|\$$)/;
-                        $where .= " AND ${talias}.value ~* search_normalize(".$self->QueryParser->quote_phrase_value($atom->{content}).")";
+#                       my $content = $atom->{content};
+                        my $content = ref($atom) ? $atom->{content} : $atom;
+                        $content =~ s/^\^//;
+                        $content =~ s/\$$//;
+                        $phrase_list .= "$content ";
+#                       next unless $atom->{content} && $atom->{content} =~ /(^\^|\$$)/;
+#                       $where .= " AND ${talias}.value ~* search_normalize(".$self->QueryParser->quote_phrase_value($atom->{content}).")";
                     }
+                    $where .= $self->QueryParser->quote_phrase_value($phrase_list).'))';
                 }
                 $where .= ')';
 
@@ -1312,7 +1323,10 @@ sub buildSQL {
 
 #-------------------------------
 package OpenILS::Application::Storage::Driver::Pg::QueryParser::query_plan::node;
+use OpenILS::Application::Storage::QueryParser;
 use base 'QueryParser::query_plan::node';
+use OpenSRF::Utils::Logger qw($logger);
+use Data::Dumper;
 
 sub only_atoms {
     my $self = shift;
@@ -1335,9 +1349,9 @@ sub only_real_atoms {
     my $atoms = $self->query_atoms;
     my @only_real_atoms;
     for my $a (@$atoms) {
-        push(@only_real_atoms, $a) if (ref($a) && $a->isa('QueryParser::query_plan::node::atom') && !($a->{dummy}));
+        push(@only_real_atoms, $a) if ((ref($a) && $a->isa('QueryParser::query_plan::node::atom') && !($a->{dummy})) ||
+                                        $self->plan->QueryParser->query =~ '^.*&.*$');
     }
-
     return \@only_real_atoms;
 }
 
