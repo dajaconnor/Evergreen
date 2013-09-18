@@ -3121,8 +3121,8 @@ sub query_parser_fts {
 	my $metarecord = ($self->api_name =~ /metabib/ or $query->parse_tree->find_modifier('metabib') or $query->parse_tree->find_modifier('metarecord')) ? "'t'" : "'f'";
 	my $param_pref_ou = $pref_ou || 'NULL';
 
-	my $sth = metabib::metarecord_source_map->db_Main->prepare(<<"    SQL");
-        SELECT  * -- bib search: $args{query}
+	my $sql = <<SQL;
+	SELECT  * -- bib search: $args{query}
           FROM  search.query_parser_fts(
                     $param_search_ou\:\:INT,
                     $param_depth\:\:INT,
@@ -3137,7 +3137,41 @@ sub query_parser_fts {
                     $deleted_search\:\:BOOL,
                     $param_pref_ou\:\:INT
                 );
-    SQL
+SQL
+
+	# If it's an all puncuation search
+	# Match the search query
+	# [a-z]+: A lowercase string followed by : (ie. title:, subject:, etc)
+	# [!?\.]+ a string made entirely of punctuation followed by a space
+	if ($sql =~ m/keyword: [a-z]+:([!?\.]+) /){
+		
+		my $search_term = $1;
+		my $search_type = "";
+		my $row = "";
+		
+		# x[0-9a-z]+ A string of lowercase letters and numbers starting with 'x'
+		# _[a-z]+ A string of lowercase letters starting with _
+		# \. ends in a period
+		if ($sql =~ m/(x[0-9a-z]+_[a-z]+)\./) {
+
+			$row = $1;
+			
+			#_([a-z]+) A string of lowercase letters starting with _
+			# ie. title, subject, author, etc.
+			if ($row =~ m/_([a-z]+)/){
+			
+				$search_type = $1;
+			}
+		}
+
+		$sql =~ s/AS \(SELECT .* AS tsq_rank/AS (SELECT '$search_term' AS tsq, '$search_term' AS tsq_rank/gs;		
+		$sql =~ s/(1\.0)(.+?)( AS rel)/$1$3/gs;
+		$sql =~ s/(1\.0)(\/.+?)( AS rank)/$1$3/gs;
+		$sql =~ s/(fe.index_vector .*?)\)/fe.value ~* ('$search_term'))/g;
+		$sql =~ s/id IS NOT NULL\)/id IS NOT NULL AND $row.value ~* ('$search_term'))/g;
+	}
+
+	my $sth = metabib::metarecord_source_map->db_Main->prepare($sql);	
 
     $sth->execute;
 
