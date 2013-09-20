@@ -218,15 +218,19 @@ sub load_myopac_prefs_notify {
     $val = join("|",@notify_methods);
     $settings{$key}= $val unless $$set_map{$key} eq $val;
 
-    # Send the modified settings off to be saved
-    $U->simplereq(
-        'open-ils.actor', 
-        'open-ils.actor.patron.settings.update',
-        $self->editor->authtoken, undef, \%settings);
+    if (keys %settings) { # we found a different setting value
+        # Send the modified settings off to be saved
+        $U->simplereq(
+            'open-ils.actor', 
+            'open-ils.actor.patron.settings.update',
+            $self->editor->authtoken, undef, \%settings);
 
-    # re-fetch user prefs 
-    $self->ctx->{updated_user_settings} = \%settings;
-    return $self->_load_user_with_prefs || Apache2::Const::OK;
+        # re-fetch user prefs
+        $self->ctx->{updated_user_settings} = \%settings;
+        $stat = $self->_load_user_with_prefs;
+    }
+        
+    return $stat || Apache2::Const::OK;
 }
 
 sub fetch_optin_prefs {
@@ -441,7 +445,8 @@ sub load_myopac_prefs_my_lists {
     my $self = shift;
 
     my @user_prefs = qw/
-        opac.lists_per_page
+        opac.lists_per_page,
+        opac.list_items_per_page
     /;
 
     my $stat = $self->_load_user_with_prefs;
@@ -1728,22 +1733,37 @@ sub _get_lists_per_page {
     return 10; # default
 }
 
+sub _get_items_per_page {
+    my $self = shift;
+
+    if($self->editor->requestor) {
+        $self->timelog("Checking for opac.list_items_per_page preference");
+        # See if the user has a list items per page preference
+        my $ipp = $self->editor->search_actor_user_setting({
+            usr => $self->editor->requestor->id,
+            name => 'opac.list_items_per_page'
+        })->[0];
+        $self->timelog("Got opac.list_items_per_page preference");
+        return OpenSRF::Utils::JSON->JSON2perl($ipp->value) if $ipp;
+    }
+    return 10; # default
+}
+
 sub load_myopac_bookbags {
     my $self = shift;
     my $e = $self->editor;
     my $ctx = $self->ctx;
-    my $limit = $self->_get_lists_per_page || 10;
+    my $limit = $self->_get_lists_per_page;
     my $offset = $self->cgi->param('offset') || 0;
 
     $ctx->{bookbags_limit} = $limit;
     $ctx->{bookbags_offset} = $offset;
 
-    #kmig58
     # for list item pagination
-    my $itemLimit = 10;
-    my $itemPage = $self->cgi->param('itemPage') || 1;
-    my $itemOffset = ($itemPage - 1) * $itemLimit;
-    $ctx->{bookbags_itemPage} = $itemPage;
+    my $itemLimit = $self->_get_items_per_page;
+    my $item_page = $self->cgi->param('item_page') || 1;
+    my $itemOffset = ($item_page - 1) * $itemLimit;
+    $ctx->{bookbags_item_page} = $item_page;
 
     my ($sorter, $modifier) = $self->_get_bookbag_sort_params("sort");
     $e->xact_begin; # replication...
@@ -1789,7 +1809,7 @@ sub load_myopac_bookbags {
             grep { $_->id eq $self->cgi->param("bbid") } @{$ctx->{bookbags}};
 
         if ($bookbag) {
-            #kmig58
+            
             # Calculate total count of the items in selected bookbag.
             # This total includes record entries that have no assets available.
             my $iq = {
@@ -1878,7 +1898,6 @@ sub load_myopac_bookbags {
                 $bookbag->id, $sorter, $modifier
             );
 
-            #kmig58
             # For list items pagination
             my $args = {
                 "limit" => $itemLimit,

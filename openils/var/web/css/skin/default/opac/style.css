@@ -1152,3 +1152,74 @@ a.dash-link:hover { text-decoration: underline !important; }
 .result_item_circulated {
     padding-top: 4px;
 }
+
+/* Popmenu styles used for making css menus. */
+.popmenu {
+    margin: 0;
+    padding: 0;
+}
+.popmenu li {
+    list-style: none;
+}
+.popmenu li a {
+    display: block;
+    padding: 3px 5px;
+}
+.popmenu li ul {
+    display: none; 
+    width: 10em; /* Width to help Opera out */
+    background-color: [% css_colors.primary %];
+}
+.popmenu li:hover ul {
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    border-color: [% css_colors.border_dark %];
+    border-width: 1px;
+    border-style: solid;
+}
+.popmenu li:hover li {
+    float: none;
+}
+.popmenu li:hover li a {
+    background-color: [% css_colors.primary %]; 
+    color: [% css_colors.accent_ultralight %];
+}
+.popmenu li li a:hover {
+    background-color: [% css_colors.accent_ultralight %]; 
+    color: [% css_colors.primary %];
+}
+/* Styles for the temporary list entry. */
+.popmenu li:hover li[class~="temporary"] a {
+    background-color: [% css_colors.primary %]; 
+    color: [% css_colors.accent_ultralight %];
+}
+.popmenu li li[class~="temporary"] a:hover {
+    background-color: [% css_colors.accent_ultralight %]; 
+    color: [% css_colors.primary %];
+}
+/* Styles for the default list entry. */
+.popmenu li:hover li[class~="default"] a {
+    background-color: [% css_colors.primary %]; 
+    color: [% css_colors.accent_ultralight %];
+}
+.popmenu li li[class~="default"] a:hover {
+    background-color: [% css_colors.accent_ultralight %]; 
+    color: [% css_colors.primary %];
+}
+/* Styles for the new list entry. */
+.popmenu li:hover li[class~="new"] a {
+    background-color: [% css_colors.primary %]; 
+    color: [% css_colors.accent_ultralight %];
+}
+.popmenu li li[class~="new"] a:hover {
+    background-color: [% css_colors.accent_ultralight %]; 
+    color: [% css_colors.primary %];
+}
+/* Style to add a divider on the menu. */
+.popmenu li li[class~="divider"] {
+    border-bottom-width: 1px;
+    border-bottom-color: [% css_colors.border_dark %];
+    border-bottom-style: solid;
+}
