@@ -3177,7 +3177,7 @@ SQL
 		$sql =~ s/(\$_.*?\$)(.*?\$_.*?\$)\)/$1^$2/g;
 
 		# Clobber the last space in the search value
-		$sql =~ s/\\ (\$_.*?\$)/$1/g;
+		$sql =~ s/ (\$_.*?\$)/$1/g;
 		
 		# Clobber all the \
 		$sql =~ s/\\//g;
