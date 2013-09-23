@@ -55,6 +55,7 @@ sub fetch_mylist {
 
         # make it look like the caller is expecting
         $marc_xml = { map {$_->{id} => $_->{marc_xml}} @recs };
+
     }
 
     # Leverage QueryParser to sort the items by values of config.metabib_fields

@@ -15,6 +15,7 @@ use OpenILS::Utils::Fieldmapper;
 use DateTime::Format::ISO8601;
 use CGI qw(:all -utf8);
 use Time::HiRes;
+use Data::Dumper;
 
 # EGCatLoader sub-modules 
 use OpenILS::WWW::EGCatLoader::Util;
@@ -144,6 +145,7 @@ sub load {
 
         # This will be less confusing to users than to be shown a login form
         # when they're already logged in.
+        $logger->info("Kyle- proto = " . $self->ctx->{proto} . " hostname = " . $self->ctx->{hostname} . " opac_root = " . $self->ctx->{opac_root});
         return $self->generic_redirect(
             sprintf(
                 "%s://%s%s/myopac/main",
@@ -214,8 +216,10 @@ sub redirect_ssl {
 # -----------------------------------------------------------------------------
 sub redirect_auth {
     my $self = shift;
+    $logger->info("Kyle- is_staff = " . $self->ctx->{is_staff} . " hostname = " . $self->ctx->{hostname} . " opac_root = " . $self->ctx->{opac_root});
     my $login_page = sprintf('%s://%s%s/login',($self->ctx->{is_staff} ? 'oils' : 'https'), $self->ctx->{hostname}, $self->ctx->{opac_root});
     my $redirect_to = uri_escape($self->apache->unparsed_uri);
+    $logger->info("Kyle- redirect_to = " . $self->ctx->{redirect_to});
     return $self->generic_redirect("$login_page?redirect_to=$redirect_to");
 }
 
@@ -234,6 +238,7 @@ sub load_simple {
 # Tests to see if the user is authenticated and sets some common context values
 # -----------------------------------------------------------------------------
 sub load_common {
+    $logger->info("Kyle- in load_common");
     my $self = shift;
 
     my $e = $self->editor;
@@ -241,6 +246,7 @@ sub load_common {
 
     # redirect non-https to https if we think we are already logged in
     if ($self->cgi->cookie(COOKIE_LOGGEDIN)) {
+        $logger->info("Kyle- in if in load_common");
         return $self->redirect_ssl unless $self->cgi->https;
     }
 
@@ -259,6 +265,8 @@ sub load_common {
     $ctx->{home_page} = $ctx->{proto} . '://' . $ctx->{hostname} . $self->ctx->{opac_root} . "/home";
     $ctx->{logout_page} = ($ctx->{proto} eq 'http' ? 'https' : $ctx->{proto} ) . '://' . $ctx->{hostname} . $self->ctx->{opac_root} . "/logout";
 
+    #$logger->info("Kyle- home_page = " . ctx->{home_page} . " logout_page = " . ctx->{logout_page});
+    
     if($e->authtoken($self->cgi->cookie(COOKIE_SES))) {
 
         if($e->checkauth) {
