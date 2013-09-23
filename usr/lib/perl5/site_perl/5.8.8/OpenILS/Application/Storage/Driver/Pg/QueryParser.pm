@@ -89,7 +89,6 @@ sub quote_phrase_value {
     $right_anchored = $1 if $value =~ m/([*\$])$/;
     $value =~ s/^[*\^]//   if $left_anchored;
     $value =~ s/[*\$]$//  if $right_anchored;
-    $value = quotemeta($value);
     $value = '^' . $value if $left_anchored eq '^';
     $value = "$value\$"   if $right_anchored eq '$';
     $value = '[[:<:]]' . $value if $wb && !$left_anchored;
