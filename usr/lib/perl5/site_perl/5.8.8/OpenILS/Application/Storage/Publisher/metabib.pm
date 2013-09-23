@@ -3139,6 +3139,59 @@ sub query_parser_fts {
                 );
 SQL
 
+	# The following if chunk is for Call Number begins with search only
+	my $identifier;
+	my $replace;
+
+	if ($args{query} =~ m/id\|bibcn:\^/){
+
+		if ($sql =~ m/(x[0-9a-z]+_identifier_bibcn)/){
+			
+			$identifier = $1;
+		}
+		
+		# 1.0 AS tsq, 1.0 AS tsq_rank
+		$sql =~ s/AS \(SELECT .* AS tsq_rank/AS (SELECT 1.0 AS tsq, 1.0 AS tsq_rank/gs;
+		
+		# 1.0 AS rel	
+		$sql =~ s/1\.0\/.*? AS rank/1.0 AS rel, 1.0 AS rank/gs;
+		
+		# 1.0 AS rank
+		$sql =~ s/1\.0\/.*? AS rank/1.0 AS rank/gs;
+		
+		$log->debug("begins_with middle: $sql");
+		
+		# Clobber this: , x9c521f8_identifier_bibcn_xq.tsq, x9c521f8_identifier_bibcn_xq.tsq_rank /* search */
+		$sql =~ s/fe_weight\.weight, .*? \/\* search \*\//fe_weight.weight/gs; 
+		
+		# Clobber this: JOIN x9c521f8_identifier_bibcn_xq ON (fe.index_vector @@ x9c521f8_identifier_bibcn_xq.tsq)
+		$sql =~ s/\(fe_weight\.id = fe\.field\).*?WHERE fe_weight\.id/(fe_weight.id = fe.field) WHERE fe_weight.id/gs;
+		
+		# Replace 'ilike' with '~*'
+		$sql =~ s/ilike/~*/g;
+		
+		# Kill search_normalize
+		$sql =~ s/search_normalize\(//g;
+		
+		# Add a ^ to the beginning of search value and eliminate a closing paren
+		$sql =~ s/(\$_.*?\$)(.*?\$_.*?\$)\)/$1^$2/g;
+
+		# Clobber the last space in the search value
+		$sql =~ s/\\ (\$_.*?\$)/$1/g;
+		
+		# Clobber all the \
+		$sql =~ s/\\//g;
+		
+		# Replace 'GROUP BY 1' with 'GROUP BY x9c521f8_identifier_bibcn.value, m.source'
+		$replace = 'GROUP BY ' . $identifier . '.value, m.source';
+		$sql =~ s/GROUP BY 1/$replace/g;
+		
+		# Replace 'ORDER BY 4 ASC NULLS LAST, 5 DESC NULLS LAST, 3 DESC'
+		# with 'ORDER BY x9c521f8_identifier_bibcn.value ASC NULLS LAST'
+		$replace = 'ORDER BY ' . $identifier . '.value ASC NULLS LAST';
+		$sql =~ s/ORDER BY 4 ASC NULLS LAST, 5 DESC NULLS LAST, 3 DESC/$replace/g;
+	}
+
 	# If it's an all puncuation search
 	# Match the search query
 	# [a-z]+: A lowercase string followed by : (ie. title:, subject:, etc)
