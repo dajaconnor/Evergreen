@@ -832,8 +832,14 @@ sub multiclass_query {
     my($self, $conn, $arghash, $query, $docache) = @_;
 
     $logger->debug("initial search query => $query");
+    
+    # If it is all punctuation search, clobber any 'contains phrase' madness
+	$query =~ s/([a-z]+:)"(["!?\.@#\$%\^&\*]+)"/$1$2/g;
+    
     my $orig_query = $query;
 
+	$logger->debug("almost initial search query => $query");
+    
     $query =~ s/\+/ /go;
     $query =~ s/^\s+//go;
 
