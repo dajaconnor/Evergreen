@@ -3159,8 +3159,6 @@ SQL
 		# 1.0 AS rank
 		$sql =~ s/1\.0\/.*? AS rank/1.0 AS rank/gs;
 		
-		$log->debug("begins_with middle: $sql");
-		
 		# Clobber this: , x9c521f8_identifier_bibcn_xq.tsq, x9c521f8_identifier_bibcn_xq.tsq_rank /* search */
 		$sql =~ s/fe_weight\.weight, .*? \/\* search \*\//fe_weight.weight/gs; 
 		
@@ -3196,7 +3194,8 @@ SQL
 	# Match the search query
 	# [a-z]+: A lowercase string followed by : (ie. title:, subject:, etc)
 	# [!?\.]+ a string made entirely of punctuation followed by a space
-	if ($sql =~ m/keyword: [a-z]+:([!?\.]+) /){
+	
+	if ($sql =~ m/keyword: [a-z]+:\^?([!?\.]+)\$? / || $sql =~ m/keyword: \^?([!?\.]+)\$? /){
 		
 		my $search_term = $1;
 		my $search_type = "";
