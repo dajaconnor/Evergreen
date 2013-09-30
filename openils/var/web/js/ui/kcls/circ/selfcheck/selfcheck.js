@@ -39,6 +39,7 @@ function SelfCheckManager() {
     this.staff = null; 
     this.workstation = null;
     this.authtoken = null;
+    this.fail_count = 0;
 
     this.patron = null; 
     this.patronBarcodeRegex = null;
@@ -307,6 +308,7 @@ SelfCheckManager.prototype.drawLoginPage = function() {
 	
 	var txtBox = (dojo.byId('step2').style.display=='none') ? 'patron-login-username' : 'patron-login-password';
 	try{var a=dojo.byId(txtBox);a.focus();a.select();}catch(e){}
+    SelfCheckManager.fail_count = 0;
 }
 
 /**
@@ -337,12 +339,24 @@ SelfCheckManager.prototype.loginPatron = function(barcode_or_usrname, passwd) {
 
         if(res == 0) {
             // user-not-found results in login failure
-            this.handleAlert(
-                dojo.string.substitute(localeStrings.LOGIN_FAILED, [barcode || usrname]),
-                false, 'login-failure'
-            );
-            this.drawLoginPage();
-			openils.Util.show('back_to_login');
+            this.fail_count++;
+            // Double-Scan of Barcode
+            if (dojo.byId('patron-login-username').value == dojo.byId('patron-login-password').value) {
+              dojo.byId('patron-login-password').value = '';
+              dojo.byId('patron-login-password').focus();
+              if (this.fail_count > 0) {
+                // Barcode and PIN are the same, but fails login? That means double scan
+                this.handleAlert(localeStrings.LOGIN_BARCODE_DOUBLE, false, 'login-failure');
+                openils.Util.show('back_to_login');
+              }
+            } else {
+              this.handleAlert(
+                 dojo.string.substitute(localeStrings.LOGIN_FAILED, [barcode || usrname]),
+                 false, 'login-failure'
+              );
+             this.drawLoginPage();
+			 openils.Util.show('back_to_login');
+           }
             return;
         }
     //} 
@@ -1484,6 +1498,7 @@ function checkLogin() {
 
 
 function cancelLogin() {
+    SelfCheckManager.fail_count = 0;
 	dojo.byId('oils-selfck-status-div').innerHTML = '';
 	dojo.byId('oils-selfck-status-div2').innerHTML = '';
 	dojo.byId('oils-selfck-status-div3').innerHTML = '';

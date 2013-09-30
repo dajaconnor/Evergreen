@@ -12,6 +12,7 @@
     "OPEN_CIRCULATION_EXISTS" : "Item ${0} is already checked out to another user",
     "GENERIC_CIRC_FAILURE" : "Unable to check out item ${0}.  Please see staff.",
     "LOGIN_FAILED" : "Login for ${0} failed",
+    "LOGIN_BARCODE_DOUBLE" : "Your PIN is needed.",
     "UNKNOWN_ERROR" : "An unhandled exception occurred with error code ${0}",
     "MAX_RENEWALS" : "No more renewals allowed for item ${0}",
     "ITEM_NOT_CATALOGED" : "Item ${0} was not found in the system.  Try re-scanning the item.",
