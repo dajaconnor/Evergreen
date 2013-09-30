@@ -15,7 +15,7 @@ var selfCheckMgr;
 var itemsOutCirc = [];
 var itemsOutMod = [];
 var itemsOutCopy = [];
-var TIMEOUT = 60; // logout timer
+var TIMEOUT = 600000; // logout timer
 
 
 const SET_BARCODE_REGEX = 'opac.barcode_regex';
@@ -530,6 +530,10 @@ SelfCheckManager.prototype.updateFinesSummary = function() {
 SelfCheckManager.prototype.drawItemsOutPage = function() {
 	this.keepMeLoggedIn();
 	switchTo('step3','step3d');
+	
+	// Reset items checked out in case it changed
+	this.circSummary = undefined;
+    this.updateCircSummary();
 
 	if(!this.outTemplate)
         this.outTemplate = this.itemsOutTbody.removeChild(dojo.byId('oils-selfck-circ-out-row'));
