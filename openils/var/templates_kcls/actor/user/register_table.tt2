@@ -1,7 +1,11 @@
 <tbody id='uedit-tbody'>
     <tr fmclass='au' fmfield='dob'/>
     <tr fmclass='au' fmfield='juvenile'/>
+
+<!-- new field added in later versions, but not used by KCLS
     <tr fmclass='au' fmfield='prefix'/>
+-->
+
     <tr fmclass='au' fmfield='family_name' required='required'/>
     <tr fmclass='au' fmfield='first_given_name' required='required'/>
     <tr fmclass='au' fmfield='second_given_name'/>
