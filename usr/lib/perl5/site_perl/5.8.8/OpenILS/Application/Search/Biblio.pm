@@ -838,10 +838,20 @@ sub multiclass_query {
 	
 	# If it is all punctuation search, clobber any 'exact match' madness
 	$query =~ s/([a-z]+:)\^(["!?\.@#\$%\^&\*]+)\$/$1$2/g;
+	
+	if ($query =~ m/(.*[\(\)].*) depth\(/){
+		
+		my $actual_query = $1;
+		
+		$actual_query =~ s/[\(\)]//g;
+		$query =~ s/(.*)( depth\()/$actual_query$2/g;
+	}
     
     my $orig_query = $query;
+    
 
 	$logger->debug("almost initial search query => $query");
+	$logger->debug("almost initial arghash => " . Dumper($arghash));
     
     $query =~ s/\+/ /go;
     $query =~ s/^\s+//go;
