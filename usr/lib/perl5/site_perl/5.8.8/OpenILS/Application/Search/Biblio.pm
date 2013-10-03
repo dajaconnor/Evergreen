@@ -839,12 +839,35 @@ sub multiclass_query {
 	# If it is all punctuation search, clobber any 'exact match' madness
 	$query =~ s/([a-z]+:)\^(["!?\.@#\$%\^&\*]+)\$/$1$2/g;
 	
-	if ($query =~ m/(.*[\(\)].*) depth\(/){
+	# What the user actually typed in with no modifiers
+	my $actual_query;
+	
+	# first seperate the search query from the modifiers
+	my @modifiers = ("mattype","item_lang","audience_group","after","sort","site","depth");
+	
+	for my $i (0 .. $#modifiers) {
 		
-		my $actual_query = $1;
+		$logger->debug("EVIL Modifier: ".$modifiers[$i]);
 		
-		$actual_query =~ s/[\(\)]//g;
-		$query =~ s/(.*)( depth\()/$actual_query$2/g;
+		if ($query =~ m/(.*) $modifiers[$i]\(.*/){
+			
+			$actual_query = $1;
+			
+			$logger->debug("EVIL query: ".$actual_query);
+			
+			# Then pull off any extraneous parens
+			if ($actual_query =~ m/.*[\(\)].*/){
+				
+				$actual_query =~ s/[\(\)]//g;
+				$query =~ s/(.*)( $modifiers[$i]\()/$actual_query$2/g;
+				
+				$logger->debug("EVIL no parens: ".$query);
+			}
+			
+			# Kill the loop
+			last;
+		}
+		
 	}
     
     my $orig_query = $query;
