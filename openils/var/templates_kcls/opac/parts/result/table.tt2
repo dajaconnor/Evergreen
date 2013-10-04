@@ -121,6 +121,12 @@
                                                             </td>
                                                             <td>[% attrs.pubdate | html %]</td>
                                                         </tr>
+                                                        <tr name="results_tcn_tr" class="[% attrs.tcn ? '' : 'hide_me' %]">
+                                                            <td valign="top">
+                                                                <strong>[% l('TCN:') %]</strong>
+                                                            </td>
+                                                            <td>[% attrs.tcn | html %]</td>
+                                                        </tr>
                                                         [% ELSIF CGI.param('detail_record_view') %]
                                                         <!-- These fields are visible when viewing the results page in 'detailed' mode -->
                                                         <tr name="results_pub_tr" class="[% attrs.publisher ? '' : 'hide_me' %]">
@@ -134,6 +140,12 @@
                                                                 <strong>[% l('Publication Date:') %]</strong>
                                                             </td>
                                                             <td>[% attrs.pubdate | html %]</td>
+                                                        </tr>
+                                                        <tr name="results_tcn_tr" class="[% attrs.tcn ? '' : 'hide_me' %]">
+                                                            <td valign="top">
+                                                                <strong>[% l('TCN:') %]</strong>
+                                                            </td>
+                                                            <td>[% attrs.tcn | html %]</td>
                                                         </tr>
                                                         <tr name="results_isbn_tr" class="[% attrs.isbns.0 ? '' : 'hide_me' %]">
                                                             <td valign="top">

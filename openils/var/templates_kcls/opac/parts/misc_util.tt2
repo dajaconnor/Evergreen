@@ -160,6 +160,18 @@
         END;
         args.pubdate = (args.pubdates.size) ? args.pubdates.0 : '';
 
+        # Copyright | KCLS requested copyright date display
+        args.copyright = (args.pubdates.size) ? xml.findnodes('//*[@tag="264" and @ind2="4"]/*[@code="c"]').textContent : '';
+
+
+        # TCN | KCLS requested TCN display
+        args.tcnlist = [];
+        tcn_hunt = xml.findnodes('//*[@tag="901"]/*[@code="c"]');
+        FOR sub IN tcn_hunt;
+            args.tcnlist.push(sub.textContent);
+        END;
+        args.tcn = (args.tcnlist.size) ? args.tcnlist.0 : '';
+
         # Full publisher info
         args.pubinfo = "$args.pubplace $args.publisher $args.pubdate";
 
