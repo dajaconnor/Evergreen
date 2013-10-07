@@ -15,7 +15,7 @@ var selfCheckMgr;
 var itemsOutCirc = [];
 var itemsOutMod = [];
 var itemsOutCopy = [];
-var TIMEOUT = 600000; // logout timer
+var TIMEOUT = 60; // logout timer
 
 
 const SET_BARCODE_REGEX = 'opac.barcode_regex';
