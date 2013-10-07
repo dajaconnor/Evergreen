@@ -836,6 +836,9 @@ sub multiclass_query {
     # If it is all punctuation search, clobber any 'contains phrase' madness
 	$query =~ s/([a-z]+:)"(["!?\.@#\$%\^&\*]+)"/$1$2/g;
 	
+	# Clobber 'contains phrase' for keyword too
+	$query =~ s/"(["!?\.@#\$%\^&\*]+)"/$1/g;
+	
 	# If it is all punctuation search, clobber any 'exact match' madness
 	$query =~ s/([a-z]+:)\^(["!?\.@#\$%\^&\*]+)\$/$1$2/g;
 	
