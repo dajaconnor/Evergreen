@@ -834,13 +834,30 @@ sub multiclass_query {
     $logger->debug("initial search query => $query");
     
     # If it is all punctuation search, clobber any 'contains phrase' madness
+    # [a-z]+:  This matches 'title:', 'subject:', etc. and is returned in $1
+    # ["!?\.@#\$%\^&\*]+  One or more punctuation without any numbers or letters
+    # is returned in $2
+    # $1$2  Replaces the whole string without the "
 	$query =~ s/([a-z]+:)"(["!?\.@#\$%\^&\*]+)"/$1$2/g;
 	
 	# Clobber 'contains phrase' for keyword too
+    # ["!?\.@#\$%\^&\*]+  One or more punctuation without any numbers or letters
+    # is returned in $1
+    # $1  Replaces the whole string without the "
 	$query =~ s/"(["!?\.@#\$%\^&\*]+)"/$1/g;
 	
 	# If it is all punctuation search, clobber any 'exact match' madness
+	# [a-z]+:  This matches 'title:', 'subject:', etc. and is returned in $1
+	# ["!?\.@#\$%\^&\*]+  One or more punctuation without any numbers or letters
+	# is returned in $2
+    # $1$2  Replaces the whole string without ^ and $
 	$query =~ s/([a-z]+:)\^(["!?\.@#\$%\^&\*]+)\$/$1$2/g;
+	
+	# Clobber 'exact match' for keyword too
+    # ["!?\.@#\$%\^&\*]+  One or more punctuation without any numbers or letters
+    # is returned in $1
+    # $1  Replaces the whole string without the ^ and $
+    $query =~ s/\^(["!?\.@#\$%\^&\*]+)\$/$1/g;
 	
 	# What the user actually typed in with no modifiers
 	my $actual_query;
