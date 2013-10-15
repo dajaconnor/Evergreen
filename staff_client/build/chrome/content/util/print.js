@@ -401,7 +401,6 @@ util.print.prototype = {
         } else {
             this.simple(s,params);
         }
-        if(this.context != this.default_context) this.set_context(this.default_context);
     },
 
     'template_sub' : function( msg, cols, params ) {
