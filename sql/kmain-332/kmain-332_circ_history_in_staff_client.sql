@@ -7,8 +7,7 @@ CREATE OR REPLACE FUNCTION circ_retention_start_date() RETURNS trigger AS $start
 
 		IF NEW."value" = 'true'
 		
-		THEN NEW."value" := NOW();
-
+		THEN NEW."value" := '"' || to_char(current_date, 'YYYY-MM-DD') || '"';
 
 		END IF;
 
