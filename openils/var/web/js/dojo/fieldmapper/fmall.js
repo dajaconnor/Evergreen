@@ -440,6 +440,7 @@ _c["moucs"] = ["balance_owed","total_owed","total_paid","usr",];
 _c["aufh"] = ["circ_lib","current_copy","fail_time","hold","id",];
 _c["ctcl"] = ["id","name",];
 _c["stgsc"] = ["row_id","row_date","usrname","statcat","value","complete",];
+_c["cpm"] = ["id","message","weight",];
 _c["acqlipad"] = ["id","code","description","xpath","provider","ident","remove",];
 _c["fdoc"] = ["id","fm_class","field","owner","string",];
 _c["ccpbt"] = ["code","label",];
