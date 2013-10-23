@@ -952,7 +952,7 @@ sub attempt_hold_placement {
     } elsif (!$ctx->{is_staff})  {
 
         $method .= '.override' if $self->ctx->{get_org_setting}->(
-            $e->requestor->home_ou, "opac.patron.auto_overide_hold_events");
+            $e->requestor->home_ou, "opac.patron.auto_override_hold_events");
     }
 
     my @create_targets = map {$_->{target_id}} (grep { !$_->{hold_failed} } @hold_data);
