@@ -641,6 +641,8 @@ sub retrieve_copies {
     my( $self, $client, $user_session, $docid, @org_ids ) = @_;
 
     if(ref($org_ids[0])) { @org_ids = @{$org_ids[0]}; }
+    
+    $logger->debug("retrieve_copies $org_ids[0] id $docid");
 
     $docid = "$docid";
 
@@ -660,6 +662,9 @@ sub retrieve_copies {
         for my $orgid (@org_ids) {
             my $vols = _build_volume_list( 
                     { record => $docid, owning_lib => $orgid, deleted => 'f', label => { '<>' => '##URI##' } } );
+                    
+			$logger->debug("retrieve_copies vols @$vols");
+                    
             push( @all_vols, @$vols );
         }
         
@@ -694,9 +699,13 @@ sub _build_volume_list {
             { flesh => 1, flesh_fields => { acp => ['stat_cat_entries','parts'] } }
         ]);
 
+		$logger->debug("volume 1: ".Dumper($volume));
         $copies = [ sort { $a->barcode cmp $b->barcode } @$copies  ];
 
         for my $c (@$copies) {
+			
+			$logger->debug("copy: ".Dumper($c));	
+			
             if( $c->status == OILS_COPY_STATUS_CHECKED_OUT ) {
                 $c->circulations(
                     $e->search_action_circulation(
@@ -712,9 +721,20 @@ sub _build_volume_list {
             }
         }
 
+		
+			
         $volume->copies($copies);
+
+		for my $item (@$volume) {
+
+			$logger->debug("volume 2: ".Dumper($item));
+		}
+		#$logger->debug("copies: ".Dumper($volume->copies));	
+		
+        
         push( @volumes, $volume );
     }
+    
 
     #$session->disconnect();
     return \@volumes;
@@ -1332,7 +1352,21 @@ sub acn_sms_msg {
     );
 }
 
+__PACKAGE__->register_method(
+	api_name        => 'open-ils.cat.asset.map_asset_by_call_number',
+	method          => 'asset_by_call_number',
+	api_level       => 1,
+	stream          => 1,
+);
 
+sub asset_by_call_number {
+	
+	my( $self, $client, $user_session, $docid ) = @_;
+	
+	my $meth = $self->method_lookup("open-ils.storage.asset.map_asset_by_call_number");
+
+    return $meth->run($user_session, $docid);
+}
 
 1;
 

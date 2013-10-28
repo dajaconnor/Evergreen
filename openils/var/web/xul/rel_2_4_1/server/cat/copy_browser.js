@@ -25,8 +25,21 @@ cat.copy_browser.prototype = {
 
             obj.docid = params.docid;
 
-            JSAN.use('util.network'); obj.network = new util.network();
-            JSAN.use('OpenILS.data'); obj.data = new OpenILS.data(); obj.data.init({'via':'stash'});
+            JSAN.use('util.network'); 
+            obj.network = new util.network();
+            JSAN.use('OpenILS.data'); 
+            obj.data = new OpenILS.data(); 
+            obj.data.init({'via':'stash'});
+		
+		
+			//var robj = fieldmapper.standardRequest(
+                                    //[ api.MAP_ASSET.app, api.MAP_ASSET.method ],
+                                    //{   async: false,
+                                        //timeout: 180,
+                                        //params: [ses(), obj.docid],
+                                    //}
+                                //);
+			var randomObject = obj.network.simple_request('MAP_ASSET',[ ses(), obj.docid ]);
 
             obj.controller_init(params);
 
@@ -38,6 +51,8 @@ cat.copy_browser.prototype = {
 
             obj.default_depth = obj.depth_menu_init();
             obj.default_lib = obj.data.hash.aou[ obj.library_menu_init() ];
+            
+            
 
             document.getElementById('show_acns').addEventListener(
                 'command',
@@ -1496,16 +1511,27 @@ cat.copy_browser.prototype = {
     },
 
     'append_org' : function (org,parent_org,params) {
+		
         var obj = this;
-        obj.error.consoleService.logStringMessage('append_org: org = ' + org.shortname() + ' parent_org = ' + (parent_org ? parent_org.shortname() : '') + ' params = ' + js2JSON(params) + '\n');
+        obj.error.consoleService.logStringMessage('append_org: org = ' + 
+				org.shortname() + ' parent_org = ' + 
+				(parent_org ? parent_org.shortname() : '') + ' params = ' + 
+				js2JSON(params) + '\n');
+        
         try {
+			
             if (obj.map_tree[ 'aou_' + org.id() ]) {
+				
                 var x = obj.map_tree[ 'aou_' + org.id() ];
+                
                 if (params) {
+					
                     for (var i in params) {
+						
                         x.setAttribute(i,params[i]);
                     }
                 }
+                
                 return x;
             }
 
@@ -1522,39 +1548,75 @@ cat.copy_browser.prototype = {
             };
         
             var acn_tree_list;
+            
             if ( obj.org_ids.indexOf( Number( org.id() ) ) == -1 ) {
+				
                 if ( get_bool( obj.data.hash.aout[ org.ou_type() ].can_have_vols() ) ) {
+					
                     data.row.my.volume_count = '0';
                     data.row.my.copy_count = '<0>';
-                } else {
+                } 
+                
+                else {
+					
                     data.row.my.volume_count = '';
                     data.row.my.copy_count = '';
                 }
-            } else {
+            } 
+            
+            else {
+                
                 var v_count = 0; var c_count = 0;
                 acn_tree_list = obj.network.simple_request(
                     'FM_ACN_TREE_LIST_RETRIEVE_VIA_RECORD_ID_AND_ORG_IDS.authoritative',
                     [ ses(), obj.docid, [ org.id() ] ]
                 );
+                
+                //alert(JSON.stringify(acn_tree_list));
+                
                 for (var i = 0; i < acn_tree_list.length; i++) {
+					
                     v_count++;
-                    obj.map_acn[ 'acn_' + acn_tree_list[i].id() ] = function(r){return r;}(acn_tree_list[i]);
-                    var copies = acn_tree_list[i].copies(); if (copies) c_count += copies.length;
+					
+                    obj.map_acn[ 'acn_' + acn_tree_list[i].id() ] = acn_tree_list[i];
+                    
+                    //alert(acn_tree_list[i].id());
+                    //alert(JSON.stringify(obj.map_acn[ 'acn_' + acn_tree_list[i].id() ]));
+                    //alert(JSON.stringify(obj.map_acn[ 'acn_' + acn_tree_list[i].id() ]['a'][i][0].Structure));
+                    //alert(JSON.stringify(obj.map_acn[ 'acn_' + acn_tree_list[i].id() ]['a'][i][0].Structure.fields));
+                    
+                    var copies = acn_tree_list[i].copies(); 
+                    
+                    if (copies){
+						
+						c_count += copies.length;
+                    }
+
                     for (var j = 0; j < copies.length; j++) {
-                        obj.map_acp[ 'acp_' + copies[j].id() ] = function(r){return r;}(copies[j]);
+						
+                        obj.map_acp[ 'acp_' + copies[j].id() ] = copies[j];
                     }
                 }
+                
                 data.row.my.volume_count = String(v_count);
                 data.row.my.copy_count = '<' + c_count + '>';
             }
+            
             if (document.getElementById('hide_aous').checked) {
+				
                 if (org.children().length == 0
                         && data.row.my.volume_count == '0') {
+							
                     if (!params) {
+						
                         params = { 'hidden' : true };
-                    } else {
+                    } 
+                    
+                    else {
+						
                         params['hidden'] = true;
                     }
+                    
                     dump('hiding org.id() = ' + org.id() + '\n');
                 }
             }

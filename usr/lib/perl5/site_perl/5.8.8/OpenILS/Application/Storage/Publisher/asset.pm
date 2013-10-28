@@ -915,4 +915,74 @@ __PACKAGE__->register_method(
 	api_level	=> 1,
 );
 
+
+__PACKAGE__->register_method(
+	api_name        => 'open-ils.storage.asset.map_asset_by_call_number',
+	method          => 'map_asset_by_call_number',
+	api_level       => 1,
+	stream          => 1,
+);
+
+sub map_asset_by_call_number {
+	
+	my( $self, $client, $user_session, $docid ) = @_;
+	
+	$log->debug("asset_map: init");
+
+	# Build SQL statement
+	my $select = <<"	SQL";
+
+		SELECT	asset.get_holdings_maintenance_page($docid);
+	SQL
+
+	# Load and execute statement
+	my $sth = asset::stat_cat->db_Main->prepare_cached($select);
+	
+	$sth->execute();
+	
+	# Catch DB response
+	my @holder_array = @{ $sth->fetchall_arrayref };
+	
+	my $arraysize = scalar @holder_array;
+	my @temp_array;
+	
+	# Stream each row via client, string by string
+	for ( my $i = 0; $i < $arraysize; $i++){
+	
+		push(@temp_array, $holder_array[$i]->[0]);
+	}
+	
+	return format_asset_map(\@temp_array);
+}
+
+sub format_asset_map{
+	
+	my $result = shift;
+	
+	my @result_array = @{ $result };
+	my $result_length = scalar @result_array;
+	my $return_string;
+	
+	$log->debug("asset_map: ".$result_array[0] . " : " . $result_length);
+	
+	for (my $count = 0; $count < $result_length; $count++) {
+		
+		if ($count == 0){
+			
+			# Break of bookend parens
+			my $bigString = substr $result_array[$count], 1, -1;
+			
+			# Break out items
+			my @volumes = split(/,/, $bigString);
+			my $volumes_length = scalar @volumes;
+			
+			for (my $vol = 0; $vol < $volumes_length; $vol++) {
+				
+				$log->debug("asset_map vol: ".$volumes[$vol] . " : " . $volumes_length);
+			}
+		}
+	}
+}
+
+
 1;
