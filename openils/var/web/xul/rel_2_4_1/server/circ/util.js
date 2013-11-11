@@ -1214,7 +1214,7 @@ circ.util.columns = function(modify,params) {
             'primary' : false,
             'hidden' : true,
             'editable' : false, 'render' : function(my) {
-                if (my.circ) {
+                if (my.circ && my.circ.stop_fines() != "") {
                     return util.date.formatted_date( my.circ.due_date(), '%{localized}' );
                 } else {
                     return "";

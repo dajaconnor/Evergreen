@@ -1354,9 +1354,7 @@ sub acn_sms_msg {
 
 __PACKAGE__->register_method(
 	api_name        => 'open-ils.cat.asset.map_asset_by_call_number',
-	method          => 'asset_by_call_number',
-	api_level       => 1,
-	stream          => 1,
+	method          => 'asset_by_call_number'
 );
 
 sub asset_by_call_number {
@@ -1365,7 +1363,11 @@ sub asset_by_call_number {
 	
 	my $meth = $self->method_lookup("open-ils.storage.asset.map_asset_by_call_number");
 
-    return $meth->run($user_session, $docid);
+    my ($returned) = $meth->run($user_session, $docid);
+    
+    $logger->debug("objectify: ".Dumper($returned));
+    
+    return $returned;
 }
 
 1;

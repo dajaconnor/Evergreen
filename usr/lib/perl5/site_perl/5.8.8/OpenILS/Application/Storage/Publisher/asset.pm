@@ -1,13 +1,14 @@
 package OpenILS::Application::Storage::Publisher::asset;
 use base qw/OpenILS::Application::Storage/;
 #use OpenILS::Application::Storage::CDBI::asset;
-#use OpenILS::Utils::Fieldmapper;
 use OpenSRF::Utils::Logger qw/:level/;
 use OpenSRF::EX qw/:try/;
 use OpenSRF::Utils::JSON;
+use Data::Dumper;
+use XML::Simple;
+use Storable 'dclone';
 
-#
-
+my $fieldmapper = 'OpenILS::Utils::Fieldmapper';
 my $log = 'OpenSRF::Utils::Logger';
 
 use MARC::Record;
@@ -918,9 +919,8 @@ __PACKAGE__->register_method(
 
 __PACKAGE__->register_method(
 	api_name        => 'open-ils.storage.asset.map_asset_by_call_number',
-	method          => 'map_asset_by_call_number',
-	api_level       => 1,
-	stream          => 1,
+	method          => 'map_asset_by_call_number'
+	
 );
 
 sub map_asset_by_call_number {
@@ -943,18 +943,29 @@ sub map_asset_by_call_number {
 	# Catch DB response
 	my @holder_array = @{ $sth->fetchall_arrayref };
 	
+	
+	
 	my $arraysize = scalar @holder_array;
 	my @temp_array;
 	
-	# Stream each row via client, string by string
+	# format to a normal array of strings
 	for ( my $i = 0; $i < $arraysize; $i++){
 	
 		push(@temp_array, $holder_array[$i]->[0]);
 	}
 	
-	return format_asset_map(\@temp_array);
+	my $returned = format_asset_map(\@temp_array); 
+    
+    return $returned;
+    
+    #foreach $clone (@{$returned}){
+		
+		#$client->respond($clone);
+	#}
 }
 
+# Takes an array of strings from get_holdings_maintenance_page and 
+# fieldmaps it
 sub format_asset_map{
 	
 	my $result = shift;
@@ -965,24 +976,189 @@ sub format_asset_map{
 	
 	$log->debug("asset_map: ".$result_array[0] . " : " . $result_length);
 	
+	my @arrayOfArrays;
+	
 	for (my $count = 0; $count < $result_length; $count++) {
+
+		# Break off bookend parens
+		my $bigString = substr $result_array[$count], 1, -1;
 		
-		if ($count == 0){
+		# Break out items
+		my @volume_split = split(/,/, $bigString);
+		my @volume_data;
+		
+		foreach my $item (@volume_split){
 			
-			# Break of bookend parens
-			my $bigString = substr $result_array[$count], 1, -1;
-			
-			# Break out items
-			my @volumes = split(/,/, $bigString);
-			my $volumes_length = scalar @volumes;
-			
-			for (my $vol = 0; $vol < $volumes_length; $vol++) {
+			#2011-08-10T14:16:12-0700
+			if ($item =~ m/"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.*"/){
 				
-				$log->debug("asset_map vol: ".$volumes[$vol] . " : " . $volumes_length);
+				# Replace the T with a space
+				$item =~ s/ /T/g;
+				
+				# Clobber all the quotes
+				$item =~ s/"//g;
+				
+				# Clobber the milliseconds
+				$item =~ s/\.[0-9]+//g;
+				
+				# Add minutes to the time zone
+				$item = $item.'00';
 			}
+			
+			# Clobber bookend quotes if they're there
+			if ($item =~ m/^"(.*)"$/){
+				
+				$item = $1;
+			}
+			
+			push(@volume_data, $item);
+		}
+		
+		push(@arrayOfArrays, \@volume_data);
+	}
+	
+	# returnArray is [values, objectTemplate]
+	my @returnArray;
+	push(@returnArray, \@arrayOfArrays);
+	
+	my @follow_links;
+	push(@follow_links, "circ");
+	push(@follow_links, "acp");
+	
+	$log->debug("objectify links_to_follow: ".@follow_links);
+	
+	# Get the object template
+	my $returned = objectify("acn", \@follow_links);
+	
+    $log->debug("objectify: ".Dumper($returned));
+    
+    push(@returnArray, $returned);
+    
+    return \@returnArray;
+}
+
+# This will return a fieldmapped object template
+# type is the fieldmapper class you want to map to
+# links_to_follow is an optional list of links that will need to be fieldmapped in 
+sub objectify {
+	
+	my $type = shift;
+	my $links_to_follow = shift;
+	my $next_link;
+	
+	$log->debug("objectify links_to_follow: ".Dumper($links_to_follow));
+	
+	if ($links_to_follow && scalar @{ $links_to_follow } > 0){
+		
+		$next_link = pop(@{ $links_to_follow });
+	}
+	
+	my $parser = new XML::Simple (KeyAttr=>{'class' => 'id', 'link' => 'field'});
+	
+	my $mappedXML = $parser->XMLin("/openils/var/web/reports/fm_IDL.xml");
+	
+	my $class_head;
+	my $fields;
+	my $field_head;
+	my %base_object;
+	$base_object{ 'classname' } = $type;
+	$base_object{ 'Structure' } = {};
+	$base_object{ 'Structure' }{ 'name' } = $type;
+	$base_object{ 'Structure' }{ 'fields' } = {};
+
+	my $class = $mappedXML->{'class'}->{$type};
+
+	$base_object{ 'Structure' }{ 'label' } = $class->{'reporter:label'};	
+	$base_object{ 'Structure' }{ 'restrict_primary' } = $class->{'oils_persist:restrict_primary'};
+	$base_object{ 'Structure' }{ 'virtual' } = $class->{'oils_persist:virtual'};
+	$base_object{ 'Structure' }{ 'pkey' } = $class->{'oils_persist:primary'};
+	$base_object{ 'Structure' }{ 'pkey_sequence' } = $class->{'oils_persist:sequence'};
+	
+	# Permacrud
+	my %permacrud;
+	my %actions = %{$class->{'permacrud'}->{'actions'}};
+	
+	foreach my $action_key (keys %actions){
+		
+		my %action;
+		
+		my @perms = ($actions->{$action}->{'permission'});
+		
+		$action->{'perms'} = \@perms;
+		
+		$permacrud->{$action_key} = $action;
+	}
+	
+	$base_object{ 'Structure' }{'permacrud'} = $permacrud;
+
+	my @fields;
+	my $count = 0;
+	my @a;
+
+	# For each field in the class
+	foreach my $field_ref (@{$class->{'fields'}->{'field'}}) {
+		
+		if($field_ref->{'name'} ne 'isnew' && 
+			$field_ref->{'name'} ne 'ischanged' &&
+			$field_ref->{'name'} ne 'isdeleted'){
+
+			# add field name to fields array
+			push(@fields, $field_ref->{'name'});
+			
+			# create and populate a field object
+			my %field;
+
+			$field{'name'} = $field_ref->{'name'};
+			$field{'label'} = $field_ref->{'reporter:label'};		
+			$field{'datatype'} = $field_ref->{'reporter:datatype'};		
+			$field{'primitive'} = $field_ref->{'oils_persist:primitive'};		
+			$field{'selector'} = $field_ref->{'reporter:selector'};		
+			$field{'virtual'} = $field_ref->{'oils_persist:virtual'};		
+			$field{'required'} = $field_ref->{'oils_obj:required'};		
+			$field{'i18n'} = $field_ref->{'oils_persist:i18n'};
+			$field{'array_position'} = $count;
+
+			# If field is a link
+			if (exists $class->{'links'}->{'link'}->{ $field_ref->{'name'} }){
+				
+				my $link_ref = $class->{'links'}->{'link'}->{ $field_ref->{'name'} };
+
+				$field{'type'} = 'link';
+				$field{'key'} = $link_ref->{ 'key' };	
+				$field{'class'} = $link_ref->{ 'class' };			
+				$field{'reltype'} = $link_ref->{ 'reltype' };
+				
+				# If we need this objectified too
+				if ($next_link eq $link_ref->{ 'class' }){
+					
+					$log->debug("objectify link: ".$next_link." ". Dumper($links_to_follow));
+					push(@a, objectify($link_ref->{ 'class' }, $links_to_follow));
+				}
+			}
+			
+			# otherwise it's a field
+			else{
+				
+				$field{'type'} = 'field';
+			}
+
+			$base_object{ 'Structure' }{ 'fields' }{$field_ref->{'name'}} = \%field;
+
+			$count ++;
 		}
 	}
+
+	# Attach a array
+	$base_object{ 'a' } = \@a;
+	$base_object{ 'Structure' }{ '_fields'} = \@fields;
+	
+	#bless(\%base_object, $type);
+	
+	$log->debug("objectify base_object: ".Dumper(\%base_object));
+
+	return \%base_object;
 }
+
 
 
 1;

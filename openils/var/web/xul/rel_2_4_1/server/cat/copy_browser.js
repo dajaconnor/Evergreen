@@ -17,6 +17,7 @@ cat.copy_browser.prototype = {
     'map_acp' : {},
     'sel_list' : [],
     'funcs' : [],
+    'hashOfVolumes' : {}, // lib : [volumes]
 
     'init' : function( params ) {
 
@@ -31,15 +32,99 @@ cat.copy_browser.prototype = {
             obj.data = new OpenILS.data(); 
             obj.data.init({'via':'stash'});
 		
-		
-			//var robj = fieldmapper.standardRequest(
-                                    //[ api.MAP_ASSET.app, api.MAP_ASSET.method ],
-                                    //{   async: false,
-                                        //timeout: 180,
-                                        //params: [ses(), obj.docid],
-                                    //}
-                                //);
 			var randomObject = obj.network.simple_request('MAP_ASSET',[ ses(), obj.docid ]);
+			
+			if (randomObject == null || randomObject.length != 2){
+				
+				throw("Database error: MAP_ASSET did not return expected results");
+			}
+			//var listOfCopies = JSON.parse(JSON.stringify(randomObject[0]));
+			var listOfCopies = randomObject[0];
+			var volumeTemplate = randomObject[1];
+			var copyTemplate = volumeTemplate['a'][0];
+			var circTemplate = copyTemplate['a'][0];
+			
+
+			circTemplate.fields = circTemplate.field_map;
+
+			volumeTemplate['a'] = [];
+			volumeTemplate['a'][0] = [];
+			copyTemplate['a'] = [];
+
+			// For list of copy info in the list of copies
+			// Make a new object from the template and insert copy data
+			for (var i in listOfCopies){
+				
+				var volumeVars = listOfCopies[i].slice(0,12);
+				var copyVars = listOfCopies[i].slice(12,45);
+				var circVars = listOfCopies[i].slice(45,78);
+				
+				// clone the copy template the create a new copy
+				var copy = JSON.parse(JSON.stringify(copyTemplate));
+			
+				copy = setupTemplate(copy);
+				
+				// populate copy with it's unique values
+				copy['a'] = copyVars;
+				
+				// add circ data
+				var circ = JSON.parse(JSON.stringify(circTemplate));
+				
+				// Slap 6 nulls after element 20
+				circ['a'] = circVars.slice(0,20).concat(
+						[null,null,null,null,null,null],
+						circVars.slice(20));
+				circ = setupTemplate(circ);
+				
+				// If no circ info, set circ to null
+				if (circ.id() != null){
+					
+					copy.a[35] = [circ];
+				}
+				
+				else{
+					
+					copy.a[35] = null;
+				}
+				
+				var lib = copy['a'][5];
+				
+				// If this library isn't there yet
+				if (!obj.hashOfVolumes[lib]){
+					
+					obj.hashOfVolumes[lib] = [];
+				}
+				
+				var volume = -1;
+				var volume_array = obj.hashOfVolumes[lib];
+				
+				// Add copy to the volume of this library
+				for (var i = 0; i < volume_array.length; i ++){
+					
+					var tcn = volume_array[i].a[0][0].a[3];
+					
+					// If copy belongs in this volume
+					if (tcn == copy.a[3]){
+						
+						volume = i;
+						obj.hashOfVolumes[lib][i].a[0].push(copy);
+						break;
+					}
+				}
+				
+				// First copy for this volume
+				if (volume == -1){
+					
+					var newVolume = JSON.parse(JSON.stringify(volumeTemplate));
+					
+					newVolume.a = [[copy]].concat(volumeVars.slice(0,8),
+						[null,null,null,null],
+						volumeVars.slice(8,12));
+					
+					newVolume = setupTemplate(newVolume);
+					obj.hashOfVolumes[lib].push(newVolume);
+				}
+			}
 
             obj.controller_init(params);
 
@@ -104,7 +189,9 @@ cat.copy_browser.prototype = {
 
             obj.show_my_libs( obj.default_lib.id() );
 
-            JSAN.use('util.exec'); var exec = new util.exec(20); exec.timer(obj.funcs,100);
+            JSAN.use('util.exec'); 
+            var exec = new util.exec(20); 
+            exec.timer(obj.funcs,100);// funcs is a list of 2 nulls
 
             obj.show_consortial_count();
 
@@ -1256,30 +1343,7 @@ cat.copy_browser.prototype = {
                 if (typeof org != 'object') org = obj.data.hash.aou[ org ];
             }
             obj.show_libs( org, false );
-/*        
-            var p_org = obj.data.hash.aou[ org.parent_ou() ];
-            if (p_org) {
-                obj.funcs.push( function() { 
-                    document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
-                    document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
-                    document.getElementById('lib_menu').setAttribute('disabled','true'); 
-                } );
-                for (var i = 0; i < p_org.children().length; i++) {
-                    obj.funcs.push(
-                        function(o) {
-                            return function() {
-                                obj.show_libs( o, false );
-                            }
-                        }( p_org.children()[i] )
-                    );
-                }
-                obj.funcs.push( function() { 
-                    document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
-                    document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
-                    document.getElementById('lib_menu').setAttribute('disabled','false'); 
-                } );
-            }
-*/
+
         } catch(E) {
             alert(E);
         }
@@ -1292,30 +1356,26 @@ cat.copy_browser.prototype = {
 
             obj.show_libs( obj.data.tree.aou );
 
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
-                document.getElementById('lib_menu').setAttribute('disabled','true'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
+			document.getElementById('lib_menu').setAttribute('disabled','true'); 
+
 
             for (var i = 0; i < obj.data.tree.aou.children().length; i++) {
+				
                 var child = obj.data.tree.aou.children()[i];
+                
                 if (obj.data.hash.aout[child.ou_type()].depth() <= obj.default_depth
                 && orgIsMine(obj.default_lib,child,obj.default_depth)) {
-                    obj.funcs.push(
-                        function(o) {
-                            return function() {
-                                obj.show_libs( o );
-                            }
-                        }( child )
-                    );
+					
+					obj.show_libs( child );
                 }
             }
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
-                document.getElementById('lib_menu').setAttribute('disabled','false'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
+			document.getElementById('lib_menu').setAttribute('disabled','false'); 
 
         } catch(E) {
             alert(E);
@@ -1337,26 +1397,19 @@ cat.copy_browser.prototype = {
                     return 0;
                 }
             );
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
-                document.getElementById('lib_menu').setAttribute('disabled','true'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
+			document.getElementById('lib_menu').setAttribute('disabled','true'); 
 
             for (var i = 0; i < orgs.length; i++) {
-                obj.funcs.push(
-                    function(o) {
-                        return function() {
-                            obj.show_libs(o,false);
-                        }
-                    }( orgs[i] )
-                );
+				
+				obj.show_libs(orgs[i],false);
             }
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
-                document.getElementById('lib_menu').setAttribute('disabled','false'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
+			document.getElementById('lib_menu').setAttribute('disabled','false'); 
 
         } catch(E) {
             alert(E);
@@ -1379,42 +1432,27 @@ cat.copy_browser.prototype = {
             parents.reverse();
 
             for (var i = 0; i < parents.length; i++) {
-                obj.funcs.push(
-                    function(o,p) {
-                        return function() { 
-                            obj.append_org(o,p,{'container':'true','open':'true'}); 
-                        };
-                    }(parents[i], obj.data.hash.aou[ parents[i].parent_ou() ])
-                );
+				obj.append_org(parents[i], obj.data.hash.aou[ parents[i].parent_ou() ],{'container':'true','open':'true'}); 
             }
+			
+			obj.append_org(start_aou,obj.data.hash.aou[ start_aou.parent_ou() ]);
 
-            obj.funcs.push(
-                function(o,p) {
-                    return function() { obj.append_org(o,p); };
-                }(start_aou,obj.data.hash.aou[ start_aou.parent_ou() ])
-            );
-
-            obj.funcs.push(
-                function() {
-                    if (start_aou.children()) {
-                        var x = obj.map_tree[ 'aou_' + start_aou.id() ];
-                        x.setAttribute('container','true');
-                        if (show_open) x.setAttribute('open','true');
-                        for (var i = 0; i < start_aou.children().length; i++) {
-                            var child = start_aou.children()[i];
-                            if (obj.data.hash.aout[child.ou_type()].depth() <= obj.default_depth
-                            && orgIsMine(obj.default_lib,child,obj.default_depth)) {
-                                obj.funcs.push(
-                                    function(o,p) {
-                                        return function() { obj.append_org(o,p); };
-                                    }( child, start_aou )
-                                );
-                            }
-                        }
-                    }
-                }
-            );
-
+			if (start_aou.children()) {
+				var x = obj.map_tree[ 'aou_' + start_aou.id() ];
+				x.setAttribute('container','true');
+				if (show_open) x.setAttribute('open','true');
+				for (var i = 0; i < start_aou.children().length; i++) {
+					var child = start_aou.children()[i];
+					if (obj.data.hash.aout[child.ou_type()].depth() <= obj.default_depth
+					&& orgIsMine(obj.default_lib,child,obj.default_depth)) {
+						obj.funcs.push(
+							function(o,p) {
+								return function() { obj.append_org(o,p); };
+							}( child, start_aou )
+						);
+					}
+				}
+			}
         } catch(E) {
             alert(E);
         }
@@ -1424,7 +1462,6 @@ cat.copy_browser.prototype = {
         var obj = this;
         for (var i = 0; i < list.length; i++) {
             var node = obj.map_tree[ list[i] ];
-            //if (node.lastChild.nodeName == 'treechildren') { continue; } else { alert(node.lastChild.nodeName); }
             var row_type = list[i].split('_')[0];
             var id = list[i].split('_')[1];
             switch(row_type) {
@@ -1435,76 +1472,64 @@ cat.copy_browser.prototype = {
         }
     },
 
+	// When you click to expand an acn
     'on_select_acn' : function(acn_id,twisty) {
+
         var obj = this;
         try {
             var acn_tree = obj.map_acp[ 'acn_' + acn_id ];
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
-                document.getElementById('lib_menu').setAttribute('disabled','true'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
+			document.getElementById('lib_menu').setAttribute('disabled','true'); 
+
             if (acn_tree.copies()) {
                 for (var i = 0; i < acn_tree.copies().length; i++) {
-                    obj.funcs.push(
-                        function(c,a) {
-                            return function() {
-                                obj.append_acp(c,a);
-                            }
-                        }( acn_tree.copies()[i], acn_tree )
-                    )
+					obj.append_acp(acn_tree.copies()[i], acn_tree );
+
                 }
             }
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
-                document.getElementById('lib_menu').setAttribute('disabled','false'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
+			document.getElementById('lib_menu').setAttribute('disabled','false'); 
+
         } catch(E) {
             alert(E);
         }
     },
 
+	// When you click to expand an org
     'on_select_org' : function(org_id,twisty) {
         var obj = this;
         try {
             var org = obj.data.hash.aou[ org_id ];
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
-                document.getElementById('lib_menu').setAttribute('disabled','true'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','true'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','true'); 
+			document.getElementById('lib_menu').setAttribute('disabled','true'); 
+
             if (org.children()) {
                 for (var i = 0; i < org.children().length; i++) {
                     var child = org.children()[i];
                     if (obj.data.hash.aout[child.ou_type()].depth() <= obj.default_depth
                     && orgIsMine(obj.default_lib,child,obj.default_depth)) {
-                        obj.funcs.push(
-                            function(o,p) {
-                                return function() {
-                                    obj.append_org(o,p)
-                                }
-                            }(child,org)
-                        );
+						
+						obj.append_org(child,org);
                     }
                 }
             } 
             if (obj.map_acn[ 'aou_' + org_id ]) {
                 for (var i = 0; i < obj.map_acn[ 'aou_' + org_id ].length; i++) {
-                    obj.funcs.push(
-                        function(o,a) {
-                            return function() {
-                                obj.append_acn(o,a);
-                            }
-                        }( org, obj.map_acn[ 'aou_' + org_id ][i] )
-                    );
+					
+					obj.append_acn(org, obj.map_acn[ 'aou_' + org_id ][i] );
                 }
             }
-            obj.funcs.push( function() { 
-                document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
-                document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
-                document.getElementById('lib_menu').setAttribute('disabled','false'); 
-            } );
+
+			document.getElementById('cmd_refresh_list').setAttribute('disabled','false'); 
+			document.getElementById('cmd_show_libs_with_copies').setAttribute('disabled','false'); 
+			document.getElementById('lib_menu').setAttribute('disabled','false'); 
+
         } catch(E) {
             alert('Error in copy_browser.js, on_select_org(): ' + E);
         }
@@ -1567,23 +1592,19 @@ cat.copy_browser.prototype = {
             else {
                 
                 var v_count = 0; var c_count = 0;
-                acn_tree_list = obj.network.simple_request(
-                    'FM_ACN_TREE_LIST_RETRIEVE_VIA_RECORD_ID_AND_ORG_IDS.authoritative',
-                    [ ses(), obj.docid, [ org.id() ] ]
-                );
                 
-                //alert(JSON.stringify(acn_tree_list));
+                acn_tree_list = obj.hashOfVolumes[ org.id() ];
+                
+                //acn_tree_list = obj.network.simple_request(
+                    //'FM_ACN_TREE_LIST_RETRIEVE_VIA_RECORD_ID_AND_ORG_IDS.authoritative',
+                    //[ ses(), obj.docid, [ org.id() ] ]
+                //);
                 
                 for (var i = 0; i < acn_tree_list.length; i++) {
 					
                     v_count++;
 					
                     obj.map_acn[ 'acn_' + acn_tree_list[i].id() ] = acn_tree_list[i];
-                    
-                    //alert(acn_tree_list[i].id());
-                    //alert(JSON.stringify(obj.map_acn[ 'acn_' + acn_tree_list[i].id() ]));
-                    //alert(JSON.stringify(obj.map_acn[ 'acn_' + acn_tree_list[i].id() ]['a'][i][0].Structure));
-                    //alert(JSON.stringify(obj.map_acn[ 'acn_' + acn_tree_list[i].id() ]['a'][i][0].Structure.fields));
                     
                     var copies = acn_tree_list[i].copies(); 
                     
@@ -1593,7 +1614,7 @@ cat.copy_browser.prototype = {
                     }
 
                     for (var j = 0; j < copies.length; j++) {
-						
+
                         obj.map_acp[ 'acp_' + copies[j].id() ] = copies[j];
                     }
                 }
@@ -1623,6 +1644,7 @@ cat.copy_browser.prototype = {
             if (parent_org) {
                 data.node = obj.map_tree[ 'aou_' + parent_org.id() ];
             }
+
             var nparams = obj.list.append(data);
             obj.list.refresh_ordinals();
             var node = nparams.treeitem_node;
@@ -1651,8 +1673,9 @@ cat.copy_browser.prototype = {
             }
 
             if (document.getElementById('show_acns').checked) {
+				
                 node.setAttribute('open','true');
-                obj.funcs.push( function() { obj.on_select_org( org.id() ); } );
+				obj.on_select_org( org.id() ); 
             }
 
         } catch(E) {
@@ -1661,9 +1684,12 @@ cat.copy_browser.prototype = {
         }
     },
 
+	// After you click to expand an org
     'append_acn' : function( org, acn_tree, params ) {
+		
         var obj = this;
         try {
+			
             if (obj.map_tree[ 'acn_' + acn_tree.id() ]) {
                 var x = obj.map_tree[ 'acn_' + acn_tree.id() ];
                 if (params) {
@@ -1690,6 +1716,7 @@ cat.copy_browser.prototype = {
                 'to_bottom' : true,
                 'no_auto_select' : true,
             };
+
             var nparams = obj.list.append(data);
             obj.list.refresh_ordinals();
             var node = nparams.treeitem_node;
@@ -1705,18 +1732,22 @@ cat.copy_browser.prototype = {
             }
             if (document.getElementById('show_acps').checked) {
                 node.setAttribute('open','true');
-                obj.funcs.push( function() { obj.on_select_acn( acn_tree.id() ); } );
-            }
 
+				obj.on_select_acn( acn_tree.id() ); 
+            }
+	
         } catch(E) {
             dump(E+'\n');
             alert(E);
         }
     },
 
+	//After you click to expand a volume
     'append_acp' : function( acp_item, acn_tree, params ) {
+
         var obj = this;
         try {
+			
             if (obj.map_tree[ 'acp_' + acp_item.id() ]) {
                 var x = obj.map_tree[ 'acp_' + acp_item.id() ];
                 if (params) {
@@ -1728,6 +1759,7 @@ cat.copy_browser.prototype = {
             }
 
             var parent_node = obj.map_tree[ 'acn_' + acn_tree.id() ];
+
             var data = {
                 'row' : {
                     'my' : {
@@ -1745,6 +1777,9 @@ cat.copy_browser.prototype = {
                             : null,
                         'volume_count' : '',
                         'copy_count' : '',
+                        'barcode' : function(){
+								return this.acp.barcode();
+							}
                     }
                 },
                 'retrieve_id' : 'acp_' + acp_item.id(),
@@ -1752,16 +1787,25 @@ cat.copy_browser.prototype = {
                 'to_bottom' : true,
                 'no_auto_select' : true,
             };
+            
+            //alert("circ: " + JSON.stringify(acp_item.circulations()));
+            
+            //if (data.row.my.circ == null){
+				
+				//alert("Circ is null!");
+			//}
+            
             var nparams = obj.list.append(data);
             obj.list.refresh_ordinals();
             var node = nparams.treeitem_node;
-            obj.map_tree[ 'acp_' + acp_item.id() ] =  node;
-            if (params) {
+            obj.map_tree[ 'acp_' + acp_item.id() ] =  node;//always empty hash
+		
+            if (params) {//always undef
                 for (var i in params) {
                     node.setAttribute(i,params[i]);
                 }
             }
-
+			
         } catch(E) {
             dump(E+'\n');
             alert(E);
@@ -1846,72 +1890,59 @@ cat.copy_browser.prototype = {
 
                         var row = params.row;
 
-                    /*    
-                        if (!row.my.mvr) obj.funcs.push(
-                            function() {
-
-                                row.my.mvr = obj.network.request(
-                                    api.MODS_SLIM_RECORD_RETRIEVE_VIA_COPY.app,
-                                    api.MODS_SLIM_RECORD_RETRIEVE_VIA_COPY.method,
-                                    [ row.my.circ.target_copy() ]
-                                );
-
-                            }
-                        );
-                        if (!row.my.acp) {
-                            obj.funcs.push(    
-                                function() {
-
-                                    row.my.acp = obj.network.request(
-                                        api.FM_ACP_RETRIEVE.app,
-                                        api.FM_ACP_RETRIEVE.method,
-                                        [ row.my.circ.target_copy() ]
-                                    );
-
-                                    params.treeitem_node.setAttribute( 'retrieve_id',row.my.acp.barcode() );
-
-                                }
-                            );
-                        } else {
-                            params.treeitem_node.setAttribute( 'retrieve_id',row.my.acp.barcode() );
-                        }
-                    */
-                        obj.funcs.push(
-                            function() {
-
-                                if (typeof params.on_retrieve == 'function') {
-                                    params.on_retrieve(row);
-                                }
-                                obj.list.refresh_ordinals();
-
-                            }
-                        );
+						if (typeof params.on_retrieve == 'function') {
+							
+							params.on_retrieve(row);
+						}
+						
+						obj.list.refresh_ordinals();
 
                         return row;
                     },
                     'on_click' : function(ev) {
-                        var row = {}; var col = {}; var nobj = {};
+						
+                        var row = {}; 
+                        var col = {}; 
+                        var nobj = {};
                         obj.list.node.treeBoxObject.getCellAt(ev.clientX,ev.clientY,row,col,nobj); 
-                        if ((row.value == -1)||(nobj.value != 'twisty')) { return; }
+                        
+                        if ((row.value == -1)||(nobj.value != 'twisty')) { 
+							
+							return; 
+						}
+                        
                         var node = obj.list.node.contentView.getItemAtIndex(row.value);
                         var list = [ node.getAttribute('retrieve_id') ];
+                        
                         if (typeof obj.on_select == 'function') {
+							
                             obj.on_select(list,true);
                         }
+                        
                         if (typeof window.xulG == 'object' && typeof window.xulG.on_select == 'function') {
+							
                             window.xulG.on_select(list);
                         }
+                        
                         obj.list.refresh_ordinals();
+                        
+                        //alert("something clicked");
                     },
                     'on_dblclick' : function(ev) {
+						
                         JSAN.use('util.functional');
                         JSAN.use('util.widgets');
                         var sel = obj.list.retrieve_selection();
                         obj.controller.view.sel_clip.disabled = sel.length < 1;
+                        
                         obj.sel_list = util.functional.map_list(
                             sel,
-                            function(o) { return o.getAttribute('retrieve_id'); }
+                            function(o) { 
+								
+								return o.getAttribute('retrieve_id'); 
+							}
                         );
+                        
                         obj.toggle_actions();
                         util.widgets.dispatch('command','cmd_edit_items');
                         obj.list.refresh_ordinals();
@@ -1971,6 +2002,7 @@ cat.copy_browser.prototype = {
             var sel_copy_libs = {};
             for (var i = 0; i < obj.sel_list.length; i++) {
                 var type = obj.sel_list[i].split(/_/)[0];
+                
                 switch(type) {
                     case 'aou' : 
                         found_aou = true; 
@@ -2044,16 +2076,20 @@ cat.copy_browser.prototype = {
 
     'refresh_list' : function() { 
         try {
+			
             var obj = this;
             obj.list.clear();
             obj.map_tree = {};
             obj.map_acn = {};
             obj.map_acp = {};
             obj.org_ids = obj.network.simple_request('FM_AOU_IDS_RETRIEVE_VIA_RECORD_ID.authoritative',[ obj.docid ]);
+            
             if (typeof obj.org_ids.ilsevent != 'undefined') throw(obj.org_ids);
+            
             JSAN.use('util.functional'); 
             obj.org_ids = util.functional.map_list( obj.org_ids, function (o) { return Number(o); });
             obj.show_my_libs( obj.default_lib.id() );
+            
             // FIXME - we get a null from the copy_count call if we call it too quickly here
             setTimeout(
                 function() {
@@ -2067,6 +2103,111 @@ cat.copy_browser.prototype = {
             this.error.standard_unexpected_error_alert(document.getElementById('catStrings').getString('staff.cat.copy_browser.refresh_list.error'),E);
         }
     },
+}
+
+function setupTemplate(template){
+
+	for (var i = 0; i < template.Structure._fields.length; i++){
+		
+		var myFunction = 'template[template.Structure._fields['+i+']] = function(){'
+			
+		+'	if (this.a.length > '+i+'){'
+		
+		+'		return this.a['+i+'];'
+		
+		+'	}else{'
+		
+		+'		return null;'
+		+'	}'
+
+		+'}';
+		
+		eval(myFunction);
+	}
+
+	return template;
+}
+
+function alert_functions(object, get_there){
+	
+	if (!get_there){
+		
+		var get_there = [];
+	}
+	
+	for (var i in object){
+		
+		if (typeof object[i] == "object"){
+			
+			get_there.push(i);
+			alert_functions(object[i], get_there);
+			get_there.pop(i);
+		}
+		
+		if (typeof object[i] == "function"){
+			
+			alert(i+" function: "+eval(object[i]) + " get there: " + JSON.stringify(get_there));
+		}
+	}
+}
+
+function alert_items(object, get_there){
+	
+	if (!get_there){
+		
+		var get_there = [];
+	}
+	
+	for (var i in object){
+		
+		if (typeof object[i] == "object"){
+			
+			get_there.push(i);
+			alert_items(object[i], get_there);
+			get_there.pop(i);
+		}
+		
+		else{
+			
+			if  (typeof object[i] != "function"){
+			
+				alert(i+" item: "+JSON.stringify(object[i]) + " get there: " + JSON.stringify(get_there));
+			}
+		}
+	}
+}
+
+function alert_diff(object, other_object, get_there){
+	
+	if (!get_there){
+		
+		var get_there = [];
+	}
+	
+	for (var i in other_object){
+		
+		if (typeof other_object[i] == "object"){
+			
+			get_there.push(i);
+			alert_diff(object[i], other_object[i], get_there);
+			get_there.pop(i);
+		}
+		
+		else if (typeof other_object[i] == "function" && eval(other_object[i]) != eval(object[i])){
+			
+			alert(i+" function: "+eval(other_object[i]) + " get there: " + JSON.stringify(get_there));
+			alert("mine: "+eval(object[i]));
+		}
+		
+		else{
+				
+			if (other_object[i] && other_object[i] != object[i] && other_object[i] != null && other_object[i] != ""){
+				
+				alert(i + " : " + typeof other_object[i] + JSON.stringify(other_object[i]) + 
+				" : " + typeof object[i] + JSON.stringify(object[i]) + " get there: " + JSON.stringify(get_there));
+			}
+		}
+	}
 }
 
 dump('exiting cat.copy_browser.js\n');
