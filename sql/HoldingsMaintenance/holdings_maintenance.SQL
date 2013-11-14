@@ -50,7 +50,7 @@ SELECT acn.create_date, acn.creator, acn.deleted, acn.edit_date, acn.editor, acn
 		AND acn.LABEL <> '##URI##'
 		AND acp.deleted = 'f'
 
-UNION
+UNION ALL
 
 SELECT acn.create_date, acn.creator, acn.deleted, acn.edit_date, acn.editor, acn.id, acn.label, acn.owning_lib, acn.label_sortkey, acn.label_class, acn.prefix, acn.suffix, acp.age_protect, acp.alert_message, acp.barcode, acp.call_number, acp.circ_as_type, acp.circ_lib, acp.circ_modifier, acp.circulate, acp.copy_number, acp.create_date, acp.active_date, acp.creator, acp.deleted, acp.dummy_isbn, acp.deposit, acp.deposit_amount, acp.dummy_author, acp.dummy_title, acp.edit_date, acp.editor, acp.fine_level, acp.holdable, acp.id, acp.loan_duration, acp.LOCATION, acp.opac_visible, acp.price, acp.REF, acp.STATUS, acp.status_changed_time, acp.mint_condition, acp.floating, acp.COST, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
 

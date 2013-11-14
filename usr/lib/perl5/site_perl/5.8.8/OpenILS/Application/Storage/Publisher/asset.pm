@@ -943,8 +943,6 @@ sub map_asset_by_call_number {
 	# Catch DB response
 	my @holder_array = @{ $sth->fetchall_arrayref };
 	
-	
-	
 	my $arraysize = scalar @holder_array;
 	my @temp_array;
 	
@@ -956,12 +954,9 @@ sub map_asset_by_call_number {
 	
 	my $returned = format_asset_map(\@temp_array); 
     
-    return $returned;
+    $log->debug("asset_map: done");
     
-    #foreach $clone (@{$returned}){
-		
-		#$client->respond($clone);
-	#}
+    return $returned;
 }
 
 # Takes an array of strings from get_holdings_maintenance_page and 
@@ -973,8 +968,6 @@ sub format_asset_map{
 	my @result_array = @{ $result };
 	my $result_length = scalar @result_array;
 	my $return_string;
-	
-	$log->debug("asset_map: ".$result_array[0] . " : " . $result_length);
 	
 	my @arrayOfArrays;
 	
@@ -1021,16 +1014,13 @@ sub format_asset_map{
 	my @returnArray;
 	push(@returnArray, \@arrayOfArrays);
 	
-	my @follow_links;
-	push(@follow_links, "circ");
-	push(@follow_links, "acp");
-	
-	$log->debug("objectify links_to_follow: ".@follow_links);
+	my %links;
+	$links{ 'circ' } = 1000;
+	$links{ 'acp' } = 33; 
+	$links{ 'acn' } = 1000; 
 	
 	# Get the object template
-	my $returned = objectify("acn", \@follow_links);
-	
-    $log->debug("objectify: ".Dumper($returned));
+	my $returned = objectify(\%links);
     
     push(@returnArray, $returned);
     
@@ -1042,123 +1032,48 @@ sub format_asset_map{
 # links_to_follow is an optional list of links that will need to be fieldmapped in 
 sub objectify {
 	
-	my $type = shift;
 	my $links_to_follow = shift;
-	my $next_link;
-	
-	$log->debug("objectify links_to_follow: ".Dumper($links_to_follow));
-	
-	if ($links_to_follow && scalar @{ $links_to_follow } > 0){
-		
-		$next_link = pop(@{ $links_to_follow });
-	}
-	
 	my $parser = new XML::Simple (KeyAttr=>{'class' => 'id', 'link' => 'field'});
 	
 	my $mappedXML = $parser->XMLin("/openils/var/web/reports/fm_IDL.xml");
 	
-	my $class_head;
-	my $fields;
-	my $field_head;
 	my %base_object;
-	$base_object{ 'classname' } = $type;
-	$base_object{ 'Structure' } = {};
-	$base_object{ 'Structure' }{ 'name' } = $type;
-	$base_object{ 'Structure' }{ 'fields' } = {};
 
-	my $class = $mappedXML->{'class'}->{$type};
+	for my $type ( keys %{ $links_to_follow } ){
 
-	$base_object{ 'Structure' }{ 'label' } = $class->{'reporter:label'};	
-	$base_object{ 'Structure' }{ 'restrict_primary' } = $class->{'oils_persist:restrict_primary'};
-	$base_object{ 'Structure' }{ 'virtual' } = $class->{'oils_persist:virtual'};
-	$base_object{ 'Structure' }{ 'pkey' } = $class->{'oils_persist:primary'};
-	$base_object{ 'Structure' }{ 'pkey_sequence' } = $class->{'oils_persist:sequence'};
+		my $class = $mappedXML->{'class'}->{$type};
 	
-	# Permacrud
-	my %permacrud;
-	my %actions = %{$class->{'permacrud'}->{'actions'}};
-	
-	foreach my $action_key (keys %actions){
-		
-		my %action;
-		
-		my @perms = ($actions->{$action}->{'permission'});
-		
-		$action->{'perms'} = \@perms;
-		
-		$permacrud->{$action_key} = $action;
+		$base_object{ $type } = getFieldsForClass($class->{'fields'}->{'field'}, $links_to_follow->{$type});
 	}
-	
-	$base_object{ 'Structure' }{'permacrud'} = $permacrud;
-
-	my @fields;
-	my $count = 0;
-	my @a;
-
-	# For each field in the class
-	foreach my $field_ref (@{$class->{'fields'}->{'field'}}) {
-		
-		if($field_ref->{'name'} ne 'isnew' && 
-			$field_ref->{'name'} ne 'ischanged' &&
-			$field_ref->{'name'} ne 'isdeleted'){
-
-			# add field name to fields array
-			push(@fields, $field_ref->{'name'});
-			
-			# create and populate a field object
-			my %field;
-
-			$field{'name'} = $field_ref->{'name'};
-			$field{'label'} = $field_ref->{'reporter:label'};		
-			$field{'datatype'} = $field_ref->{'reporter:datatype'};		
-			$field{'primitive'} = $field_ref->{'oils_persist:primitive'};		
-			$field{'selector'} = $field_ref->{'reporter:selector'};		
-			$field{'virtual'} = $field_ref->{'oils_persist:virtual'};		
-			$field{'required'} = $field_ref->{'oils_obj:required'};		
-			$field{'i18n'} = $field_ref->{'oils_persist:i18n'};
-			$field{'array_position'} = $count;
-
-			# If field is a link
-			if (exists $class->{'links'}->{'link'}->{ $field_ref->{'name'} }){
-				
-				my $link_ref = $class->{'links'}->{'link'}->{ $field_ref->{'name'} };
-
-				$field{'type'} = 'link';
-				$field{'key'} = $link_ref->{ 'key' };	
-				$field{'class'} = $link_ref->{ 'class' };			
-				$field{'reltype'} = $link_ref->{ 'reltype' };
-				
-				# If we need this objectified too
-				if ($next_link eq $link_ref->{ 'class' }){
-					
-					$log->debug("objectify link: ".$next_link." ". Dumper($links_to_follow));
-					push(@a, objectify($link_ref->{ 'class' }, $links_to_follow));
-				}
-			}
-			
-			# otherwise it's a field
-			else{
-				
-				$field{'type'} = 'field';
-			}
-
-			$base_object{ 'Structure' }{ 'fields' }{$field_ref->{'name'}} = \%field;
-
-			$count ++;
-		}
-	}
-
-	# Attach a array
-	$base_object{ 'a' } = \@a;
-	$base_object{ 'Structure' }{ '_fields'} = \@fields;
-	
-	#bless(\%base_object, $type);
-	
-	$log->debug("objectify base_object: ".Dumper(\%base_object));
 
 	return \%base_object;
 }
 
+sub getFieldsForClass {
+	
+	$fields_ref = shift;
+	$number = shift;
+	
+	$log->debug("objectify fields_ref: ".Dumper($fields_ref));
+	
+	my @fields;
+	my $count = 0;
 
+	foreach my $field (@{$fields_ref}) {
+		
+		if($count < $number &&
+			$field->{'name'} ne 'isnew' && 
+			$field->{'name'} ne 'ischanged' &&
+			$field->{'name'} ne 'isdeleted'){
+
+			# add field name to fields array
+			push(@fields, $field->{'name'});
+		}
+		
+		$count++;
+	}
+
+	return \@fields;
+}
 
 1;

@@ -371,6 +371,7 @@ var api = {
     'GET_BARCODES' : { 'app' : 'open-ils.actor', 'method' : 'open-ils.actor.get_barcodes' },
     'PATRON_MESSAGE_LIST' : { 'app' : 'open-ils.actor', 'method' : 'open-ils.actor.patron_message_list' },
     'MAP_ASSET' : { 'app' : 'open-ils.cat', 'method' : 'open-ils.cat.asset.map_asset_by_call_number' }
+    
 }
 
 var urls = {

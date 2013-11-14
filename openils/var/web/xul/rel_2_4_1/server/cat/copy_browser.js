@@ -1,6 +1,8 @@
 dump('entering cat.copy_browser.js\n');
 // vim:noet:sw=4:ts=4:
 
+alert("start");
+
 if (typeof cat == 'undefined') cat = {};
 cat.copy_browser = function (params) {
     try {
@@ -16,8 +18,9 @@ cat.copy_browser.prototype = {
     'map_acn' : {},
     'map_acp' : {},
     'sel_list' : [],
-    'funcs' : [],
+    'org_ids' : [],
     'hashOfVolumes' : {}, // lib : [volumes]
+    'copy_count' : {},
 
     'init' : function( params ) {
 
@@ -31,63 +34,79 @@ cat.copy_browser.prototype = {
             JSAN.use('OpenILS.data'); 
             obj.data = new OpenILS.data(); 
             obj.data.init({'via':'stash'});
+            
+            //alert("init 2");
 		
 			var randomObject = obj.network.simple_request('MAP_ASSET',[ ses(), obj.docid ]);
 			
 			if (randomObject == null || randomObject.length != 2){
 				
-				throw("Database error: MAP_ASSET did not return expected results");
+				throw("Database error: MAP_ASSET did not return expected results.  copy_browser.js:39");
 			}
-			//var listOfCopies = JSON.parse(JSON.stringify(randomObject[0]));
+
+			//alert("init 3");
+
 			var listOfCopies = randomObject[0];
-			var volumeTemplate = randomObject[1];
-			var copyTemplate = volumeTemplate['a'][0];
-			var circTemplate = copyTemplate['a'][0];
-			
+			var volumeTemplate = randomObject[1].acn;
+			var copyTemplate = randomObject[1].acp;
+			var circTemplate = randomObject[1].circ;
+			var orgSet = {};
 
-			circTemplate.fields = circTemplate.field_map;
-
-			volumeTemplate['a'] = [];
-			volumeTemplate['a'][0] = [];
-			copyTemplate['a'] = [];
+			obj.copy_count.count = 0;
+			obj.copy_count.available = 0;
 
 			// For list of copy info in the list of copies
 			// Make a new object from the template and insert copy data
 			for (var i in listOfCopies){
+				
+				// count copies
+				obj.copy_count.count ++;
 				
 				var volumeVars = listOfCopies[i].slice(0,12);
 				var copyVars = listOfCopies[i].slice(12,45);
 				var circVars = listOfCopies[i].slice(45,78);
 				
 				// clone the copy template the create a new copy
-				var copy = JSON.parse(JSON.stringify(copyTemplate));
+				//var copy = JSON.parse(JSON.stringify(copyTemplate));
 			
-				copy = setupTemplate(copy);
+				var copy = setupTemplate(copyTemplate, copyVars);
 				
-				// populate copy with it's unique values
-				copy['a'] = copyVars;
+				// populate library set
+				orgSet[copy.circ_lib()] = true;
 				
 				// add circ data
-				var circ = JSON.parse(JSON.stringify(circTemplate));
+				//var circ = JSON.parse(JSON.stringify(circTemplate));
 				
 				// Slap 6 nulls after element 20
-				circ['a'] = circVars.slice(0,20).concat(
+				circVars = circVars.slice(0,20).concat(
 						[null,null,null,null,null,null],
 						circVars.slice(20));
-				circ = setupTemplate(circ);
+				
+				var circ = setupTemplate(circTemplate, circVars);
 				
 				// If no circ info, set circ to null
-				if (circ.id() != null){
+				if (circ.var_id){
 					
-					copy.a[35] = [circ];
+					copy.var_circulations = [circ];
+					
+					// Count available copies
+					if (circ.stop_fines() == ""){
+						
+						obj.copy_count.available ++;
+					}
 				}
 				
 				else{
 					
-					copy.a[35] = null;
+					copy.var_circulations = null;
 				}
 				
-				var lib = copy['a'][5];
+				copy.circulations = function(){
+					
+					return copy.var_circulations;
+				}
+				
+				var lib = copy.circ_lib();
 				
 				// If this library isn't there yet
 				if (!obj.hashOfVolumes[lib]){
@@ -101,13 +120,13 @@ cat.copy_browser.prototype = {
 				// Add copy to the volume of this library
 				for (var i = 0; i < volume_array.length; i ++){
 					
-					var tcn = volume_array[i].a[0][0].a[3];
+					var tcn = volume_array[i].id();
 					
 					// If copy belongs in this volume
-					if (tcn == copy.a[3]){
+					if (tcn == copy.call_number()){
 						
 						volume = i;
-						obj.hashOfVolumes[lib][i].a[0].push(copy);
+						obj.hashOfVolumes[lib][i].copies().push(copy);
 						break;
 					}
 				}
@@ -115,15 +134,21 @@ cat.copy_browser.prototype = {
 				// First copy for this volume
 				if (volume == -1){
 					
-					var newVolume = JSON.parse(JSON.stringify(volumeTemplate));
+					//var newVolume = JSON.parse(JSON.stringify(volumeTemplate));
 					
-					newVolume.a = [[copy]].concat(volumeVars.slice(0,8),
+					volumeVars = [[copy]].concat(volumeVars.slice(0,8),
 						[null,null,null,null],
 						volumeVars.slice(8,12));
 					
-					newVolume = setupTemplate(newVolume);
+					var newVolume = setupTemplate(volumeTemplate, volumeVars);
+
 					obj.hashOfVolumes[lib].push(newVolume);
 				}
+			}
+
+			for (var lib in orgSet){
+				
+				obj.org_ids.push(lib);
 			}
 
             obj.controller_init(params);
@@ -136,8 +161,6 @@ cat.copy_browser.prototype = {
 
             obj.default_depth = obj.depth_menu_init();
             obj.default_lib = obj.data.hash.aou[ obj.library_menu_init() ];
-            
-            
 
             document.getElementById('show_acns').addEventListener(
                 'command',
@@ -188,12 +211,9 @@ cat.copy_browser.prototype = {
             );
 
             obj.show_my_libs( obj.default_lib.id() );
-
-            JSAN.use('util.exec'); 
-            var exec = new util.exec(20); 
-            exec.timer(obj.funcs,100);// funcs is a list of 2 nulls
-
             obj.show_consortial_count();
+            
+            alert("end");
 
         } catch(E) {
             this.error.standard_unexpected_error_alert('cat.copy_browser.init: ',E);
@@ -1242,9 +1262,7 @@ cat.copy_browser.prototype = {
     'library_menu_init' : function(params) {
         var obj = this;
         try {
-
-            obj.org_ids = obj.network.simple_request('FM_AOU_IDS_RETRIEVE_VIA_RECORD_ID.authoritative',[ obj.docid ]);
-            if (typeof obj.org_ids.ilsevent != 'undefined') throw(obj.org_ids);
+            
             JSAN.use('util.functional'); 
             obj.org_ids = util.functional.map_list( obj.org_ids, function (o) { return Number(o); });
 
@@ -1317,21 +1335,11 @@ cat.copy_browser.prototype = {
 
     'show_consortial_count' : function() {
         var obj = this;
-        try {
-            obj.network.simple_request('FM_ACP_COUNT.authoritative',[ obj.data.tree.aou.id(), obj.docid ],function(req){ 
-                try {
-                    var robj = req.getResultObject();
-                    var x = document.getElementById('consortial_total');
-                    if (x) x.setAttribute('value',robj[0].count);
-                    x = document.getElementById('consortial_available');
-                    if (x) x.setAttribute('value',robj[0].available);
-                } catch(E) {
-                    obj.error.standard_unexpected_error_alert(document.getElementById('catStrings').getString('staff.cat.copy_browser.consortial_copy_count.error'),E);
-                }
-            });
-        } catch(E) {
-            this.error.standard_unexpected_error_alert('cat.copy_browser.show_consortial_count: ',E);
-        }
+        
+        var x = document.getElementById('consortial_total');
+		if (x) x.setAttribute('value',obj.copy_count.count);
+		x = document.getElementById('consortial_available');
+		if (x) x.setAttribute('value',obj.copy_count.available);
     },
 
     'show_my_libs' : function(org) {
@@ -1438,18 +1446,20 @@ cat.copy_browser.prototype = {
 			obj.append_org(start_aou,obj.data.hash.aou[ start_aou.parent_ou() ]);
 
 			if (start_aou.children()) {
+				
 				var x = obj.map_tree[ 'aou_' + start_aou.id() ];
 				x.setAttribute('container','true');
+				
 				if (show_open) x.setAttribute('open','true');
+				
 				for (var i = 0; i < start_aou.children().length; i++) {
+					
 					var child = start_aou.children()[i];
+					
 					if (obj.data.hash.aout[child.ou_type()].depth() <= obj.default_depth
 					&& orgIsMine(obj.default_lib,child,obj.default_depth)) {
-						obj.funcs.push(
-							function(o,p) {
-								return function() { obj.append_org(o,p); };
-							}( child, start_aou )
-						);
+						
+						obj.append_org(child, start_aou);
 					}
 				}
 			}
@@ -1459,12 +1469,17 @@ cat.copy_browser.prototype = {
     },
 
     'on_select' : function(list,twisty) {
+		
         var obj = this;
+        
         for (var i = 0; i < list.length; i++) {
+			
             var node = obj.map_tree[ list[i] ];
             var row_type = list[i].split('_')[0];
             var id = list[i].split('_')[1];
+            
             switch(row_type) {
+				
                 case 'aou' : obj.on_select_org(id,twisty); break;
                 case 'acn' : obj.on_select_acn(id,twisty); break;
                 default: break;
@@ -2082,50 +2097,94 @@ cat.copy_browser.prototype = {
             obj.map_tree = {};
             obj.map_acn = {};
             obj.map_acp = {};
-            obj.org_ids = obj.network.simple_request('FM_AOU_IDS_RETRIEVE_VIA_RECORD_ID.authoritative',[ obj.docid ]);
-            
-            if (typeof obj.org_ids.ilsevent != 'undefined') throw(obj.org_ids);
             
             JSAN.use('util.functional'); 
             obj.org_ids = util.functional.map_list( obj.org_ids, function (o) { return Number(o); });
             obj.show_my_libs( obj.default_lib.id() );
             
-            // FIXME - we get a null from the copy_count call if we call it too quickly here
-            setTimeout(
-                function() {
-                    obj.show_consortial_count();
-                    if (typeof xulG.reload_opac == 'function') {
-                        xulG.reload_opac();
-                    }
-                }, 2000
-            );
+
+			obj.show_consortial_count();
+			if (typeof xulG.reload_opac == 'function') {
+				xulG.reload_opac();
+			}
+
         } catch(E) {
             this.error.standard_unexpected_error_alert(document.getElementById('catStrings').getString('staff.cat.copy_browser.refresh_list.error'),E);
         }
     },
 }
 
-function setupTemplate(template){
+function setupTemplate(template, vars){
 
-	for (var i = 0; i < template.Structure._fields.length; i++){
+	//alert(template.length + " : " + JSON.stringify(template));
+	//alert(vars.length + " : " + JSON.stringify(vars));
+	
+	var keys = JSON.parse(JSON.stringify(template));
+	template = {};
+	
+	for (var i = 0; i < keys.length; i++){
 		
-		var myFunction = 'template[template.Structure._fields['+i+']] = function(){'
+		// If we have a key
+		if (keys[i] != null && i < vars.length){
 			
-		+'	if (this.a.length > '+i+'){'
-		
-		+'		return this.a['+i+'];'
-		
-		+'	}else{'
-		
-		+'		return null;'
-		+'	}'
+			// Setup the value
+			//if (!vars[i] || vars[i].length == 0){
+					
+				//vars[i] = "null";
+			//}
+			
+			// Unless its all digits, make it a string
+			//else{// if (JSON.stringify(vars[i]).match(/^[0-9]+$/).length == 0){
+				
+				//vars[i] = "'"+vars[i]+"'";
+			//}
+			
+			template['var_'+keys[i]] = vars[i];
+			
+			var myFunction = 'template.'+keys[i]+' = function(){'
+			
+			+'return this.var_'+keys[i]+';}';
 
-		+'}';
-		
-		eval(myFunction);
+			eval(myFunction);
+
+		}
 	}
 
 	return template;
+}
+
+function make_function(object, name, variable){
+	
+	if (variable.length == 0){
+				
+		variable = "null";
+	}
+	
+	else{
+		
+		variable = "'"+variable+"'";
+	}
+	
+	if (name != null){
+		
+		object['var_'+name] = variable;
+		
+		var myFunction = 'object.'+name+' = function(){'
+		
+		+'return this[var_'+name+'];}';
+
+		try{
+			
+			eval(myFunction);
+		}
+		
+		catch(E){
+			
+			alert(name);
+		}
+	}
+	
+	return object;
 }
 
 function alert_functions(object, get_there){
