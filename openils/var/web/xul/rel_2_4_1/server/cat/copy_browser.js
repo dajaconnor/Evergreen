@@ -1,5 +1,4 @@
 dump('entering cat.copy_browser.js\n');
-// vim:noet:sw=4:ts=4:
 
 if (typeof cat == 'undefined') cat = {};
 cat.copy_browser = function (params) {
@@ -33,16 +32,12 @@ cat.copy_browser.prototype = {
             obj.data = new OpenILS.data(); 
             obj.data.init({'via':'stash'});
             
-            //alert("init 2");
-		
 			var randomObject = obj.network.simple_request('MAP_ASSET',[ ses(), obj.docid ]);
 			
 			if (randomObject == null || randomObject.length != 2){
 				
 				throw("Database error: MAP_ASSET did not return expected results.  copy_browser.js:39");
 			}
-
-			//alert("init 3");
 
 			var listOfCopies = randomObject[0];
 			var volumeTemplate = randomObject[1].acn;
@@ -63,17 +58,11 @@ cat.copy_browser.prototype = {
 				var volumeVars = listOfCopies[i].slice(0,12);
 				var copyVars = listOfCopies[i].slice(12,45);
 				var circVars = listOfCopies[i].slice(45,78);
-				
-				// clone the copy template the create a new copy
-				//var copy = JSON.parse(JSON.stringify(copyTemplate));
 			
 				var copy = setupTemplate(copyTemplate, copyVars);
 				
 				// populate library set
 				orgSet[copy.circ_lib()] = true;
-				
-				// add circ data
-				//var circ = JSON.parse(JSON.stringify(circTemplate));
 				
 				// Slap 6 nulls after element 20
 				circVars = circVars.slice(0,20).concat(
@@ -131,8 +120,6 @@ cat.copy_browser.prototype = {
 				
 				// First copy for this volume
 				if (volume == -1){
-					
-					//var newVolume = JSON.parse(JSON.stringify(volumeTemplate));
 					
 					volumeVars = [[copy]].concat(volumeVars.slice(0,8),
 						[null,null,null,null],
@@ -1046,13 +1033,12 @@ cat.copy_browser.prototype = {
                                     xml += '<iframe style="overflow: scroll" flex="1" src="' + urls.XUL_BIB_BRIEF + '?docid=' + obj.data.marked_library.docid + '" oils_force_external="true"/>';
                                     xml += '</vbox>';
                                     JSAN.use('OpenILS.data');
-                                    var data = new OpenILS.data(); data.init({'via':'stash'});
-                                    //data.temp_transfer = xml; data.stash('temp_transfer');
-                                    JSAN.use('util.window'); var win = new util.window();
+                                    var data = new OpenILS.data(); 
+                                    data.init({'via':'stash'});
+                                    JSAN.use('util.window'); 
+                                    var win = new util.window();
                                     var fancy_prompt_data = win.open(
                                         urls.XUL_FANCY_PROMPT,
-                                        //+ '?xml_in_stash=temp_transfer'
-                                        //+ '&title=' + window.escape('Volume Transfer'),
                                         'fancy_prompt', 'chrome,resizable,modal,width=500,height=300',
                                         {
                                             'xml' : xml,
@@ -1420,6 +1406,7 @@ cat.copy_browser.prototype = {
         }
     },
 
+	// On init, load all libs
     'show_libs' : function(start_aou,show_open) {
         var obj = this;
         try {
@@ -1581,6 +1568,7 @@ cat.copy_browser.prototype = {
                 'retrieve_id' : 'aou_' + org.id(),
                 'to_bottom' : true,
                 'no_auto_select' : true,
+                'flesh_immediately' : true,
             };
         
             var acn_tree_list;
@@ -1605,11 +1593,6 @@ cat.copy_browser.prototype = {
                 var v_count = 0; var c_count = 0;
                 
                 acn_tree_list = obj.hashOfVolumes[ org.id() ];
-                
-                //acn_tree_list = obj.network.simple_request(
-                    //'FM_ACN_TREE_LIST_RETRIEVE_VIA_RECORD_ID_AND_ORG_IDS.authoritative',
-                    //[ ses(), obj.docid, [ org.id() ] ]
-                //);
                 
                 for (var i = 0; i < acn_tree_list.length; i++) {
 					
@@ -1726,6 +1709,7 @@ cat.copy_browser.prototype = {
                 'node' : parent_node,
                 'to_bottom' : true,
                 'no_auto_select' : true,
+                'flesh_immediately' : true,
             };
 
             var nparams = obj.list.append(data);
@@ -1797,15 +1781,9 @@ cat.copy_browser.prototype = {
                 'node' : parent_node,
                 'to_bottom' : true,
                 'no_auto_select' : true,
+                'flesh_immediately' : true,
             };
-            
-            //alert("circ: " + JSON.stringify(acp_item.circulations()));
-            
-            //if (data.row.my.circ == null){
-				
-				//alert("Circ is null!");
-			//}
-            
+
             var nparams = obj.list.append(data);
             obj.list.refresh_ordinals();
             var node = nparams.treeitem_node;
@@ -1936,8 +1914,6 @@ cat.copy_browser.prototype = {
                         }
                         
                         obj.list.refresh_ordinals();
-                        
-                        //alert("something clicked");
                     },
                     'on_dblclick' : function(ev) {
 						
@@ -2111,9 +2087,6 @@ cat.copy_browser.prototype = {
 }
 
 function setupTemplate(template, vars){
-
-	//alert(template.length + " : " + JSON.stringify(template));
-	//alert(vars.length + " : " + JSON.stringify(vars));
 	
 	var keys = JSON.parse(JSON.stringify(template));
 	template = {};
@@ -2122,18 +2095,6 @@ function setupTemplate(template, vars){
 		
 		// If we have a key
 		if (keys[i] != null && i < vars.length){
-			
-			// Setup the value
-			//if (!vars[i] || vars[i].length == 0){
-					
-				//vars[i] = "null";
-			//}
-			
-			// Unless its all digits, make it a string
-			//else{// if (JSON.stringify(vars[i]).match(/^[0-9]+$/).length == 0){
-				
-				//vars[i] = "'"+vars[i]+"'";
-			//}
 			
 			template['var_'+keys[i]] = vars[i];
 			
@@ -2147,40 +2108,6 @@ function setupTemplate(template, vars){
 	}
 
 	return template;
-}
-
-function make_function(object, name, variable){
-	
-	if (variable.length == 0){
-				
-		variable = "null";
-	}
-	
-	else{
-		
-		variable = "'"+variable+"'";
-	}
-	
-	if (name != null){
-		
-		object['var_'+name] = variable;
-		
-		var myFunction = 'object.'+name+' = function(){'
-		
-		+'return this[var_'+name+'];}';
-
-		try{
-			
-			eval(myFunction);
-		}
-		
-		catch(E){
-			
-			alert(name);
-		}
-	}
-	
-	return object;
 }
 
 function alert_functions(object, get_there){
