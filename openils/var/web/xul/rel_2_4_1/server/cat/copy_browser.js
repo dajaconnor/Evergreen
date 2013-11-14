@@ -1,8 +1,6 @@
 dump('entering cat.copy_browser.js\n');
 // vim:noet:sw=4:ts=4:
 
-alert("start");
-
 if (typeof cat == 'undefined') cat = {};
 cat.copy_browser = function (params) {
     try {
@@ -212,8 +210,6 @@ cat.copy_browser.prototype = {
 
             obj.show_my_libs( obj.default_lib.id() );
             obj.show_consortial_count();
-            
-            alert("end");
 
         } catch(E) {
             this.error.standard_unexpected_error_alert('cat.copy_browser.init: ',E);
